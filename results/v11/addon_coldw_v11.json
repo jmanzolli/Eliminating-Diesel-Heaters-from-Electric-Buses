@@ -1,0 +1,328 @@
+{
+ "runs": [
+  {
+   "label": "econ_lam0",
+   "lam": 0.0,
+   "eps": null,
+   "obj": 6953398.4,
+   "lb": 6914475.6,
+   "abs_gap": 38922.8,
+   "rel_gap": 0.005598,
+   "time_s": 5400.1,
+   "status": 9,
+   "phase2": null,
+   "host": "manager.inescc.pt",
+   "threads": 4,
+   "F1": 6953398.4,
+   "co2_t": 53.872,
+   "diesel_L": 20101.5,
+   "diesel_by_scen": {
+    "mild": 0.0,
+    "cold": 62.01,
+    "verycold": 208.42,
+    "extreme": 421.47,
+    "severe": 693.99,
+    "offseason": 0.0
+   },
+   "scen_ops": {
+    "mild": {
+     "T": 2.5,
+     "days": 55,
+     "q_el_kWh": 5299.5,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2073.99
+    },
+    "cold": {
+     "T": -2.5,
+     "days": 44,
+     "q_el_kWh": 5856.2,
+     "q_ffh_kWh": 290.0,
+     "diesel_L": 62.01,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2230.45
+    },
+    "verycold": {
+     "T": -7.5,
+     "days": 29,
+     "q_el_kWh": 6038.7,
+     "q_ffh_kWh": 950.2,
+     "diesel_L": 208.42,
+     "precond_kWh": 6.4,
+     "electricity_cost": 2328.17
+    },
+    "extreme": {
+     "T": -12.5,
+     "days": 17,
+     "q_el_kWh": 5969.4,
+     "q_ffh_kWh": 1872.0,
+     "diesel_L": 421.47,
+     "precond_kWh": 0.0,
+     "electricity_cost": 2416.7
+    },
+    "severe": {
+     "T": -17.5,
+     "days": 6,
+     "q_el_kWh": 5687.5,
+     "q_ffh_kWh": 3000.4,
+     "diesel_L": 693.99,
+     "precond_kWh": 0.2,
+     "electricity_cost": 2425.98
+    },
+    "offseason": {
+     "T": 16.8,
+     "days": 214,
+     "q_el_kWh": 1758.8,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 5.0,
+     "electricity_cost": 1589.48
+    }
+   },
+   "cost_parts": {
+    "bus_capital": 5717832.0,
+    "charger_site_capital": 255151.2,
+    "grid_capital": 16040.0,
+    "demand_charges": 240472.8,
+    "electricity": 675513.6,
+    "ffh_om": 11000.0,
+    "diesel_cost": 37388.7,
+    "carbon_cost": 0.0,
+    "diesel_L": 20101.5,
+    "co2_t": 53.9,
+    "F1": 6953398.4
+   },
+   "n_ffh": 11,
+   "n_ext": 0,
+   "fleet": {
+    "NF-std-FFH": 11,
+    "NF-std-eOnly": 26
+   },
+   "chargers": {
+    "depot:450": 2,
+    "lawrenceStation2:450": 1,
+    "lawrenceWestStation:450": 1,
+    "theWestwayRoyal:450": 1,
+    "westwoodSquareTerminal:450": 1
+   },
+   "grid_kW": {
+    "lawrenceStation2": 250.0,
+    "lawrenceWestStation": 250.0,
+    "theWestwayRoyal": 250.0,
+    "westwoodSquareTerminal": 250.0
+   },
+   "precond": {
+    "peak_kW": 17.63,
+    "annual_kWh": 1453.3,
+    "tau_h": 0.5
+   },
+   "rho_kW": {
+    "depot:win": 600.0,
+    "depot:off": 426.9,
+    "lawrenceStation2:win": 219.5,
+    "lawrenceStation2:off": 190.7,
+    "lawrenceWestStation:win": 182.3,
+    "lawrenceWestStation:off": 79.1,
+    "theWestwayRoyal:win": 199.2,
+    "theWestwayRoyal:off": 60.2,
+    "westwoodSquareTerminal:win": 223.8,
+    "westwoodSquareTerminal:off": 127.5
+   }
+  },
+  {
+   "label": "eps_0.00",
+   "lam": 0.0,
+   "eps": 0.0,
+   "obj": 7061861.9,
+   "lb": 7057693.1,
+   "abs_gap": 4168.8,
+   "rel_gap": 0.00059,
+   "time_s": 1800.1,
+   "status": 9,
+   "phase2": {
+    "cost_incumbent_ph1": 7061973.6,
+    "cost_lb_ph1": 7057693.1,
+    "time_ph1": 5400.3,
+    "co2_ph1": 0.0,
+    "co2_ph2": 0.0,
+    "cost_ph2": 7062473.6,
+    "time_ph2": 1.4,
+    "lex_tol": 500.0,
+    "cost_ph3": 7061861.9,
+    "co2_ph3": 0.0,
+    "time_ph3": 1800.1,
+    "lex_co2_tol": 0.005
+   },
+   "host": "manager.inescc.pt",
+   "threads": 4,
+   "F1": 7061861.9,
+   "co2_t": 0.0,
+   "diesel_L": 0.0,
+   "diesel_by_scen": {
+    "mild": 0.0,
+    "cold": 0.0,
+    "verycold": 0.0,
+    "extreme": 0.0,
+    "severe": 0.0,
+    "offseason": 0.0
+   },
+   "scen_ops": {
+    "mild": {
+     "T": 2.5,
+     "days": 55,
+     "q_el_kWh": 5299.5,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2023.19
+    },
+    "cold": {
+     "T": -2.5,
+     "days": 44,
+     "q_el_kWh": 6146.2,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2209.06
+    },
+    "verycold": {
+     "T": -7.5,
+     "days": 29,
+     "q_el_kWh": 6992.8,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2392.47
+    },
+    "extreme": {
+     "T": -12.5,
+     "days": 17,
+     "q_el_kWh": 7839.5,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2610.11
+    },
+    "severe": {
+     "T": -17.5,
+     "days": 6,
+     "q_el_kWh": 8686.1,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 2790.67
+    },
+    "offseason": {
+     "T": 16.8,
+     "days": 214,
+     "q_el_kWh": 1761.8,
+     "q_ffh_kWh": 0.0,
+     "diesel_L": 0.0,
+     "precond_kWh": 2.0,
+     "electricity_cost": 1608.7
+    }
+   },
+   "cost_parts": {
+    "bus_capital": 5717832.0,
+    "charger_site_capital": 349831.6,
+    "grid_capital": 32080.0,
+    "demand_charges": 278884.6,
+    "electricity": 683233.7,
+    "ffh_om": 0.0,
+    "diesel_cost": 0.0,
+    "carbon_cost": 0.0,
+    "diesel_L": 0.0,
+    "co2_t": 0.0,
+    "F1": 7061861.9
+   },
+   "n_ffh": 0,
+   "n_ext": 0,
+   "fleet": {
+    "NF-std-eOnly": 37
+   },
+   "chargers": {
+    "depot:450": 2,
+    "lawrenceStation2:450": 1,
+    "lawrenceWestStation:450": 1,
+    "pearsonAirportTerminal:450": 1,
+    "raabBlvdHospital:450": 1,
+    "theWestwayRoyal:450": 1,
+    "westwoodSquareTerminal:450": 1
+   },
+   "grid_kW": {
+    "depot": 250.0,
+    "lawrenceStation2": 250.0,
+    "lawrenceWestStation": 250.0,
+    "pearsonAirportTerminal": 250.0,
+    "raabBlvdHospital": 250.0,
+    "theWestwayRoyal": 250.0,
+    "westwoodSquareTerminal": 500.0
+   },
+   "precond": {
+    "peak_kW": 5.46,
+    "annual_kWh": 716.1,
+    "tau_h": 0.5
+   },
+   "rho_kW": {
+    "depot:win": 694.7,
+    "depot:off": 294.9,
+    "lawrenceStation2:win": 211.1,
+    "lawrenceStation2:off": 160.3,
+    "lawrenceWestStation:win": 169.8,
+    "lawrenceWestStation:off": 89.8,
+    "pearsonAirportTerminal:win": 239.1,
+    "pearsonAirportTerminal:off": 58.9,
+    "raabBlvdHospital:win": 155.0,
+    "raabBlvdHospital:off": 58.4,
+    "theWestwayRoyal:win": 206.3,
+    "theWestwayRoyal:off": 59.9,
+    "westwoodSquareTerminal:win": 275.2,
+    "westwoodSquareTerminal:off": 90.0
+   },
+   "obj_final_cost": 7061861.9
+  }
+ ],
+ "meta": {
+  "inputs": "route52_inputs_v11g_sched_coldw.json",
+  "abs_gap": 1000.0,
+  "lex_tol": 500.0,
+  "scen_days": {
+   "mild": 55,
+   "cold": 44,
+   "verycold": 29,
+   "extreme": 17,
+   "severe": 6,
+   "offseason": 214
+  },
+  "ffh_nominal_kw": 35.0,
+  "ffh_useful_kw_by_scen": {
+   "mild": 20.61,
+   "cold": 20.11,
+   "verycold": 19.61,
+   "extreme": 19.1,
+   "severe": 18.6,
+   "offseason": 22.0
+  },
+  "el_heater_rated_kw": 23.0,
+  "reserve_kwh": 10.0,
+  "formulation": "v6 (C1 heater-bounded preconditioning, C2 chi retention, C3 single plug per bus, C4 FFH-free procurement); v11g explicit vehicle-days, auxiliary load, heat over service hours, three-phase lexicographic",
+  "n_blocks": 37,
+  "aux_kw_bands": {
+   "17.4": 6.071,
+   "2.5": 6.278,
+   "-2.5": 7.029,
+   "-7.5": 7.502,
+   "-12.5": 7.43,
+   "-17.5": 7.43
+  },
+  "precond_tau_h": 0.5,
+  "precond_max_kwh": 10.0,
+  "gurobi": [
+   11,
+   0,
+   3
+  ],
+  "threads": "all (default)"
+ }
+}

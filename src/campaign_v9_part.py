@@ -79,7 +79,17 @@ if part == "core":
                     mip_start=C.design_from_record(best))
 
 elif part == "bench":
-    pol, m100 = C.solve("policy_lam100", lam=100.0)
+    # v11: take the lambda = 100 baseline from the core file (CORE_SRC) instead
+    # of solving it again (1.5 h); frozen_z runs in its own process when
+    # BENCH_SKIP_FROZEN=1 (sens_one_v11.py)
+    import json as _json
+    import os as _os
+    _src = _os.environ.get("CORE_SRC")
+    pol = ({r["label"]: r for r in _json.load(open(_src))["runs"]}.get("policy_lam100")
+           if _src else None)
+    m100 = None
+    if not (pol and "F1" in pol):
+        pol, m100 = C.solve("policy_lam100", lam=100.0)
     d100 = C.design_of(m100) if m100 is not None else C.design_from_record(pol)
     f, g = C.set_deterministic()
     det, mdet = C.solve("det_meanT", lam=100.0, mods=f, unmods=None)
@@ -88,16 +98,17 @@ elif part == "bench":
     g()
     if ddet:
         rec, _ = C.solve("det_design_full_test", lam=100.0, fix_design=ddet)
-        C.OUT["det_feasible_full"] = rec is not None
+        C.OUT["det_feasible_full"] = bool(rec and "F1" in rec)
     C._dump()
-    C.solve("frozen_z", lam=100.0, freeze_z=True)
+    if _os.environ.get("BENCH_SKIP_FROZEN") != "1":
+        C.solve("frozen_z", lam=100.0, freeze_z=True)
     dm = {k: dict(v) if isinstance(v, dict) else v for k, v in d100.items()}
     for (n, p), v in list(dm["wch"].items()):
         if n == "depot" and v > 0:
             dm["wch"][(n, p)] = v - 1
             break
     rec, _ = C.solve("n_minus_1", lam=100.0, fix_design=dm)
-    C.OUT["n_minus_1_feasible"] = rec is not None
+    C.OUT["n_minus_1_feasible"] = bool(rec and "F1" in rec)
 
 elif part == "sensA":
     for v in (500.0, 2000.0):

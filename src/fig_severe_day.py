@@ -59,7 +59,7 @@ def solve():
                 m.addConstr(h["ygrid"][n, j] == d["ygrid"][(n, j)])
         m.Params.OutputFlag = 0
         m.Params.MIPGap = 0.002
-        m.Params.TimeLimit = 1800
+        m.Params.TimeLimit = int(os.environ.get("FIGSEV_TLIM", 1800))
         m.Params.Threads = int(os.environ.get("FIGSEV_THREADS", "8"))
         m.optimize()
         assert m.SolCount > 0, label

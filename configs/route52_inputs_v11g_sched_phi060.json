@@ -1,0 +1,10300 @@
+{
+ "traction": {
+  "a0": 0.65874,
+  "a1_cold": 0.00731,
+  "a2_speed": 0.00168,
+  "T_ref": 5.0,
+  "fit_runs": 12380,
+  "fit_R2": 0.11,
+  "fit_note": "leave-Route-52-out"
+ },
+ "scenarios": {
+  "mild": {
+   "T": 2.5,
+   "days": 83
+  },
+  "cold": {
+   "T": -2.5,
+   "days": 38
+  },
+  "verycold": {
+   "T": -7.5,
+   "days": 21
+  },
+  "extreme": {
+   "T": -12.5,
+   "days": 7
+  },
+  "severe": {
+   "T": -17.5,
+   "days": 2
+  },
+  "offseason": {
+   "T": 16.8,
+   "days": 214,
+   "heat": false,
+   "note": "Apr-Oct 2003-2026 ECCC daily means, n=5083; cabin heating zero; AC not modeled",
+   "heat_kw": 2.83
+  }
+ },
+ "eccc": {
+  "source": "ECCC climate-daily API, Toronto City (CLIMATE_IDENTIFIER 6158355)",
+  "note": "Scenario weights (scenarios.*.days) are the 24-winter mean band counts in eccc_winter_bands_v9.json. The two-winter counts carried over from v8 were removed in v2.2.0 (review item m11); no code reads this block."
+ },
+ "grid_upgrade_cost_per_kw": 200.0,
+ "grid_cost_note": "NREL/industry depot grid-upgrade range 100-300 $/kW; Toronto Hydro: project-specific capital contribution, no public schedule",
+ "ffh_annual_om": 1000.0,
+ "ffh_om_note": "assumption: annual burner service; CALSTART FFH white paper (2021) documents fuel use only; sweep 500-2000",
+ "service_start_h": 3.5,
+ "pax_per_h": 29.9,
+ "traction_full_sample": {
+  "a0": 0.66058,
+  "a1_cold": 0.00742,
+  "a2_speed": 0.00159,
+  "T_ref": 5.0,
+  "fit_runs": 13757,
+  "fit_R2": 0.117,
+  "fit_note": "full sample (all routes)"
+ },
+ "traction_loo52": {
+  "a0": 0.65874,
+  "a1_cold": 0.00731,
+  "a2_speed": 0.00168,
+  "T_ref": 5.0,
+  "fit_runs": 12380,
+  "fit_R2": 0.11,
+  "fit_note": "leave-Route-52-out"
+ },
+ "el_heater_rated_kw": 23.0,
+ "el_heater_note": "p99 of eHeat energy / electric-heating time over 9,001 telemetry runs",
+ "traction_bands": {
+  "2.5": 0.7427,
+  "-2.5": 0.7509,
+  "-7.5": 0.7699,
+  "-12.5": 0.842,
+  "-17.5": 0.8726,
+  "17.4": 0.6894
+ },
+ "traction_v7_note": "route-mean x band-factor interface; R52 mean from Jan-Mar 2025 winter (temporal split); factors from full fleet",
+ "ffh_nominal_kw": 35.0,
+ "ffh_nominal_note": "manufacturer heat flow, Valeo Thermo+ 350 (New Flyer); useful output = phi(T) x nominal, Liu et al. (Paper 1, rev. Aug 2026)",
+ "demand_charge_month": 18.06,
+ "mass_pen_ext": 0.037,
+ "charger_cost_points": [
+  [
+   50,
+   40000
+  ],
+  [
+   90,
+   66000
+  ],
+  [
+   120,
+   160000
+  ],
+  [
+   440,
+   334000
+  ]
+ ],
+ "cost_v9_note": "v9 (2026-11-05): cost parameters aligned with Liu et al. (Applied Energy, in press), Table C.1. Demand charge: Toronto Hydro General Service 50-999 kW, effective 2026-01-01: 10.5170 CAD/kVA / 0.98 PF + 4.4306 network + 2.8938 connection = 18.06 CAD/kW-month. Mass penalty: 118 kWh / 165 Wh/kg = 715 kg on a 13,500 kg curb (5.3%) x elasticity 0.7 = +3.7% traction. Charger cost points: Manzolli et al. 2025 (Sustainable Futures), Charger C = 120 kW for 160 kCAD (v8 used 160 kW).",
+ "eccc_v9": {
+  "source": "ECCC climate-daily API, Toronto City (CLIMATE_IDENTIFIER 6158355), daily MEAN_TEMPERATURE",
+  "winters": "2002-03 to 2025-26 (24 winters), Nov 1 - Mar 31, each winter's counts scaled to 151 days to absorb missing days",
+  "avg_days_per_band": {
+   "mild": 83.33,
+   "cold": 38.2,
+   "verycold": 21.37,
+   "extreme": 6.52,
+   "severe": 1.57
+  },
+  "days": {
+   "mild": 83,
+   "cold": 38,
+   "verycold": 21,
+   "extreme": 7,
+   "severe": 2
+  },
+  "daily_min_variant_days": {
+   "mild": 55,
+   "cold": 44,
+   "verycold": 29,
+   "extreme": 17,
+   "severe": 6
+  },
+  "v8_note": "v8 used two-winter counts (45/45/36/19/6) that cannot be reproduced from the ECCC daily means of those winters"
+ },
+ "energy_price_hourly": {
+  "winter": [
+   0.1069,
+   0.1047,
+   0.1051,
+   0.1059,
+   0.106,
+   0.1073,
+   0.1202,
+   0.1377,
+   0.1287,
+   0.131,
+   0.1464,
+   0.1358,
+   0.1146,
+   0.1129,
+   0.1159,
+   0.1154,
+   0.1198,
+   0.1344,
+   0.13,
+   0.1268,
+   0.1246,
+   0.1231,
+   0.1159,
+   0.1107
+  ],
+  "offseason": [
+   0.1108,
+   0.1082,
+   0.1063,
+   0.1059,
+   0.1074,
+   0.1124,
+   0.1222,
+   0.1204,
+   0.1193,
+   0.1221,
+   0.1221,
+   0.1233,
+   0.1217,
+   0.122,
+   0.1261,
+   0.1316,
+   0.1352,
+   0.1345,
+   0.1272,
+   0.1252,
+   0.1262,
+   0.1213,
+   0.1143,
+   0.114
+  ]
+ },
+ "energy_price_note": "Energy price = 0.12 CAD/kWh commodity level of Liu et al. (Applied Energy, in press, Table C.1) plus the hourly deviation of the IESO HOEP from its seasonal mean (weekdays; winter Nov 2024-Mar 2025, off-season Apr-Oct 2024; hour index = hour starting). The Global Adjustment is flat across hours, so only the wholesale component varies within the day.",
+ "aux_kw_bands": {
+  "17.4": 6.071,
+  "2.5": 6.278,
+  "-2.5": 7.029,
+  "-7.5": 7.502,
+  "-12.5": 7.43,
+  "-17.5": 7.43
+ },
+ "aux_note": "v11: non-heating auxiliary load, mean power per band (kW) from make_aux_v11.py; extreme and severe bands pooled",
+ "heaterfree_split": {
+  "rounds": [
+   {}
+  ],
+  "gtfs_blocks_split": {}
+ },
+ "vehicle_days": [
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "527710"
+   ],
+   "pullout_h": 3.7133,
+   "pullin_h": 27.3032,
+   "trips": [
+    {
+     "route": "352",
+     "dist_km": 24.271,
+     "dur_h": 0.9,
+     "speed": 26.97,
+     "f_stop": 78.89,
+     "start_h": 4.2667,
+     "end_h": 5.1667,
+     "dead_km": 16.6,
+     "svc_h": 1.5533
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0667,
+     "speed": 22.88,
+     "f_stop": 30.0,
+     "start_h": 5.2667,
+     "end_h": 5.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9,
+     "speed": 21.59,
+     "f_stop": 64.44,
+     "start_h": 5.3333,
+     "end_h": 6.2333,
+     "dead_km": 0.0,
+     "svc_h": 0.9681
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0819,
+     "speed": 19.88,
+     "f_stop": 54.53,
+     "start_h": 6.3014,
+     "end_h": 7.3833,
+     "dead_km": 0.0,
+     "svc_h": 1.0819
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 7.3833,
+     "end_h": 7.4667,
+     "dead_km": 0.0,
+     "svc_h": 0.2
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.15,
+     "speed": 16.89,
+     "f_stop": 50.43,
+     "start_h": 7.5833,
+     "end_h": 8.7333,
+     "dead_km": 0.0,
+     "svc_h": 1.2356
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1644,
+     "speed": 18.47,
+     "f_stop": 50.67,
+     "start_h": 8.8189,
+     "end_h": 9.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.1644
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 9.9833,
+     "end_h": 10.0667,
+     "dead_km": 0.0,
+     "svc_h": 0.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 10.25,
+     "end_h": 11.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 11.4522,
+     "end_h": 12.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 12.6,
+     "end_h": 12.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 12.9167,
+     "end_h": 13.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.1522
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.2144,
+     "speed": 17.71,
+     "f_stop": 48.58,
+     "start_h": 14.0689,
+     "end_h": 15.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.2144
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 15.2833,
+     "end_h": 15.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.3333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 15.6167,
+     "end_h": 16.8667,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.4969,
+     "speed": 15.98,
+     "f_stop": 52.11,
+     "start_h": 17.0031,
+     "end_h": 18.5,
+     "dead_km": 0.0,
+     "svc_h": 1.8469
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.2833,
+     "speed": 18.46,
+     "f_stop": 56.1,
+     "start_h": 18.85,
+     "end_h": 20.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.3683
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9983,
+     "speed": 21.54,
+     "f_stop": 59.1,
+     "start_h": 20.2183,
+     "end_h": 21.2167,
+     "dead_km": 0.0,
+     "svc_h": 0.9983
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 21.2167,
+     "end_h": 21.2667,
+     "dead_km": 0.0,
+     "svc_h": 0.1333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.85,
+     "speed": 22.86,
+     "f_stop": 68.24,
+     "start_h": 21.35,
+     "end_h": 22.2,
+     "dead_km": 0.0,
+     "svc_h": 0.9514
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 22.3014,
+     "end_h": 23.35,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 23.45,
+     "end_h": 24.4333,
+     "dead_km": 0.0,
+     "svc_h": 1.1014
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 24.5514,
+     "end_h": 25.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 9.948,
+     "dur_h": 0.3167,
+     "speed": 31.42,
+     "f_stop": 53.68,
+     "start_h": 25.7,
+     "end_h": 26.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0667,
+     "speed": 22.88,
+     "f_stop": 30.0,
+     "start_h": 26.0167,
+     "end_h": 26.0833,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.189,
+     "dur_h": 0.7592,
+     "speed": 25.28,
+     "f_stop": 75.08,
+     "start_h": 26.0833,
+     "end_h": 26.8425,
+     "dead_km": 13.82,
+     "svc_h": 1.2198
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     5.1667,
+     5.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     5.3333,
+     5.3333
+    ],
+    [
+     "lawrenceStation2",
+     6.2333,
+     6.3014
+    ],
+    [
+     "none",
+     7.3833,
+     7.3833
+    ],
+    [
+     "pearsonAirportTerminal",
+     7.4667,
+     7.5833
+    ],
+    [
+     "lawrenceStation2",
+     8.7333,
+     8.8189
+    ],
+    [
+     "none",
+     9.9833,
+     9.9833
+    ],
+    [
+     "pearsonAirportTerminal",
+     10.0667,
+     10.25
+    ],
+    [
+     "lawrenceStation2",
+     11.3167,
+     11.4522
+    ],
+    [
+     "none",
+     12.6,
+     12.6
+    ],
+    [
+     "pearsonAirportTerminal",
+     12.6833,
+     12.9167
+    ],
+    [
+     "lawrenceStation2",
+     13.9833,
+     14.0689
+    ],
+    [
+     "none",
+     15.2833,
+     15.2833
+    ],
+    [
+     "pearsonAirportTerminal",
+     15.3667,
+     15.6167
+    ],
+    [
+     "lawrenceStation2",
+     16.8667,
+     17.0031
+    ],
+    [
+     "westwoodSquareTerminal",
+     18.5,
+     18.85
+    ],
+    [
+     "lawrenceStation2",
+     20.1333,
+     20.2183
+    ],
+    [
+     "none",
+     21.2167,
+     21.2167
+    ],
+    [
+     "pearsonAirportTerminal",
+     21.2667,
+     21.35
+    ],
+    [
+     "lawrenceStation2",
+     22.2,
+     22.3014
+    ],
+    [
+     "westwoodSquareTerminal",
+     23.35,
+     23.45
+    ],
+    [
+     "lawrenceStation2",
+     24.4333,
+     24.5514
+    ],
+    [
+     "westwoodSquareTerminal",
+     25.6,
+     25.7
+    ],
+    [
+     "none",
+     26.0167,
+     26.0167
+    ],
+    [
+     "pearsonAirportTerminal",
+     26.0833,
+     26.0833
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "527820"
+   ],
+   "pullout_h": 4.2133,
+   "pullin_h": 27.1133,
+   "trips": [
+    {
+     "route": "352",
+     "dist_km": 24.271,
+     "dur_h": 0.9,
+     "speed": 26.97,
+     "f_stop": 78.89,
+     "start_h": 4.7667,
+     "end_h": 5.6667,
+     "dead_km": 16.6,
+     "svc_h": 1.5533
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 5.7667,
+     "end_h": 5.85,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9833,
+     "speed": 19.76,
+     "f_stop": 58.98,
+     "start_h": 5.85,
+     "end_h": 6.8333,
+     "dead_km": 0.0,
+     "svc_h": 1.0181
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1486,
+     "speed": 18.72,
+     "f_stop": 51.37,
+     "start_h": 6.8681,
+     "end_h": 8.0167,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 8.0167,
+     "end_h": 8.1,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1333,
+     "speed": 17.14,
+     "f_stop": 51.18,
+     "start_h": 8.25,
+     "end_h": 9.3833,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 9.4522,
+     "end_h": 10.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 10.6,
+     "end_h": 10.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 10.9167,
+     "end_h": 11.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 12.1189,
+     "end_h": 13.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 13.2667,
+     "end_h": 13.35,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0833,
+     "speed": 17.93,
+     "f_stop": 53.54,
+     "start_h": 13.5833,
+     "end_h": 14.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.1364
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5803,
+     "speed": 15.14,
+     "f_stop": 49.36,
+     "start_h": 14.7197,
+     "end_h": 16.3,
+     "dead_km": 0.0,
+     "svc_h": 1.8469
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.5,
+     "speed": 15.8,
+     "f_stop": 48.0,
+     "start_h": 16.5667,
+     "end_h": 18.0667,
+     "dead_km": 0.0,
+     "svc_h": 1.6192
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3475,
+     "speed": 17.76,
+     "f_stop": 57.88,
+     "start_h": 18.1858,
+     "end_h": 19.5333,
+     "dead_km": 0.0,
+     "svc_h": 1.5642
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.15,
+     "speed": 20.61,
+     "f_stop": 62.61,
+     "start_h": 19.75,
+     "end_h": 20.9,
+     "dead_km": 0.0,
+     "svc_h": 1.2183
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.1317,
+     "speed": 21.14,
+     "f_stop": 68.92,
+     "start_h": 20.9683,
+     "end_h": 22.1,
+     "dead_km": 0.0,
+     "svc_h": 1.365
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 22.3333,
+     "end_h": 23.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.1014
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 23.4347,
+     "end_h": 24.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 24.5833,
+     "end_h": 25.5667,
+     "dead_km": 0.0,
+     "svc_h": 1.2011
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.8489,
+     "speed": 25.34,
+     "f_stop": 69.5,
+     "start_h": 25.7844,
+     "end_h": 26.6333,
+     "dead_km": 0.0,
+     "svc_h": 0.8489
+    },
+    {
+     "route": "352",
+     "dist_km": 1.56,
+     "dur_h": 0.05,
+     "speed": 31.2,
+     "f_stop": 40.0,
+     "start_h": 26.6333,
+     "end_h": 26.6833,
+     "dead_km": 12.9,
+     "svc_h": 0.48
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     5.6667,
+     5.7667
+    ],
+    [
+     "pearsonAirportTerminal",
+     5.85,
+     5.85
+    ],
+    [
+     "lawrenceStation2",
+     6.8333,
+     6.8681
+    ],
+    [
+     "none",
+     8.0167,
+     8.0167
+    ],
+    [
+     "pearsonAirportTerminal",
+     8.1,
+     8.25
+    ],
+    [
+     "lawrenceStation2",
+     9.3833,
+     9.4522
+    ],
+    [
+     "none",
+     10.6,
+     10.6
+    ],
+    [
+     "pearsonAirportTerminal",
+     10.6833,
+     10.9167
+    ],
+    [
+     "lawrenceStation2",
+     11.9833,
+     12.1189
+    ],
+    [
+     "none",
+     13.2667,
+     13.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     13.35,
+     13.5833
+    ],
+    [
+     "lawrenceStation2",
+     14.6667,
+     14.7197
+    ],
+    [
+     "westwoodSquareTerminal",
+     16.3,
+     16.5667
+    ],
+    [
+     "lawrenceStation2",
+     18.0667,
+     18.1858
+    ],
+    [
+     "westwoodSquareTerminal",
+     19.5333,
+     19.75
+    ],
+    [
+     "lawrenceStation2",
+     20.9,
+     20.9683
+    ],
+    [
+     "westwoodSquareTerminal",
+     22.1,
+     22.3333
+    ],
+    [
+     "lawrenceStation2",
+     23.3167,
+     23.4347
+    ],
+    [
+     "westwoodSquareTerminal",
+     24.4833,
+     24.5833
+    ],
+    [
+     "lawrenceStation2",
+     25.5667,
+     25.7844
+    ],
+    [
+     "none",
+     26.6333,
+     26.6333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520330"
+   ],
+   "pullout_h": 4.4637,
+   "pullin_h": 26.5023,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 15.643,
+     "dur_h": 0.6403,
+     "speed": 24.43,
+     "f_stop": 64.03,
+     "start_h": 4.7764,
+     "end_h": 5.4167,
+     "dead_km": 9.38,
+     "svc_h": 0.9529
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0667,
+     "speed": 22.88,
+     "f_stop": 30.0,
+     "start_h": 5.4167,
+     "end_h": 5.4833,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9833,
+     "speed": 19.76,
+     "f_stop": 58.98,
+     "start_h": 5.5,
+     "end_h": 6.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.0847
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3153,
+     "speed": 18.19,
+     "f_stop": 59.3,
+     "start_h": 6.5847,
+     "end_h": 7.9,
+     "dead_km": 0.0,
+     "svc_h": 1.6153
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3333,
+     "speed": 17.77,
+     "f_stop": 54.0,
+     "start_h": 8.2,
+     "end_h": 9.5333,
+     "dead_km": 0.0,
+     "svc_h": 1.4189
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 9.6189,
+     "end_h": 10.95,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 11.1833,
+     "end_h": 12.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 12.6189,
+     "end_h": 13.95,
+     "dead_km": 0.0,
+     "svc_h": 1.4644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.4167,
+     "speed": 16.73,
+     "f_stop": 50.82,
+     "start_h": 14.0833,
+     "end_h": 15.5,
+     "dead_km": 0.0,
+     "svc_h": 1.5697
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5803,
+     "speed": 15.14,
+     "f_stop": 49.36,
+     "start_h": 15.6531,
+     "end_h": 17.2333,
+     "dead_km": 0.0,
+     "svc_h": 1.8136
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.35,
+     "speed": 17.55,
+     "f_stop": 53.33,
+     "start_h": 17.4667,
+     "end_h": 18.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.4358
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1975,
+     "speed": 17.96,
+     "f_stop": 49.27,
+     "start_h": 18.9025,
+     "end_h": 20.1,
+     "dead_km": 0.0,
+     "svc_h": 1.1975
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 20.1,
+     "end_h": 20.15,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9,
+     "speed": 21.59,
+     "f_stop": 64.44,
+     "start_h": 20.15,
+     "end_h": 21.05,
+     "dead_km": 0.0,
+     "svc_h": 0.9683
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9983,
+     "speed": 21.54,
+     "f_stop": 59.1,
+     "start_h": 21.1183,
+     "end_h": 22.1167,
+     "dead_km": 0.0,
+     "svc_h": 0.9983
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 22.1167,
+     "end_h": 22.1667,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 22.3333,
+     "end_h": 23.1167,
+     "dead_km": 0.0,
+     "svc_h": 0.9014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 23.2347,
+     "end_h": 24.15,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 24.15,
+     "end_h": 24.2,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 24.2167,
+     "end_h": 25.0,
+     "dead_km": 0.0,
+     "svc_h": 0.8514
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0319,
+     "speed": 23.19,
+     "f_stop": 75.59,
+     "start_h": 25.0681,
+     "end_h": 26.1,
+     "dead_km": 12.07,
+     "svc_h": 1.4343
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     5.4167,
+     5.4167
+    ],
+    [
+     "pearsonAirportTerminal",
+     5.4833,
+     5.5
+    ],
+    [
+     "lawrenceStation2",
+     6.4833,
+     6.5847
+    ],
+    [
+     "westwoodSquareTerminal",
+     7.9,
+     8.2
+    ],
+    [
+     "lawrenceStation2",
+     9.5333,
+     9.6189
+    ],
+    [
+     "westwoodSquareTerminal",
+     10.95,
+     11.1833
+    ],
+    [
+     "lawrenceStation2",
+     12.4833,
+     12.6189
+    ],
+    [
+     "westwoodSquareTerminal",
+     13.95,
+     14.0833
+    ],
+    [
+     "lawrenceStation2",
+     15.5,
+     15.6531
+    ],
+    [
+     "westwoodSquareTerminal",
+     17.2333,
+     17.4667
+    ],
+    [
+     "lawrenceStation2",
+     18.8167,
+     18.9025
+    ],
+    [
+     "none",
+     20.1,
+     20.1
+    ],
+    [
+     "pearsonAirportTerminal",
+     20.15,
+     20.15
+    ],
+    [
+     "lawrenceStation2",
+     21.05,
+     21.1183
+    ],
+    [
+     "none",
+     22.1167,
+     22.1167
+    ],
+    [
+     "pearsonAirportTerminal",
+     22.1667,
+     22.3333
+    ],
+    [
+     "lawrenceStation2",
+     23.1167,
+     23.2347
+    ],
+    [
+     "none",
+     24.15,
+     24.15
+    ],
+    [
+     "pearsonAirportTerminal",
+     24.2,
+     24.2167
+    ],
+    [
+     "lawrenceStation2",
+     25.0,
+     25.0681
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520660"
+   ],
+   "pullout_h": 4.6827,
+   "pullin_h": 26.87,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7667,
+     "speed": 18.96,
+     "f_stop": 71.74,
+     "start_h": 4.9333,
+     "end_h": 5.7,
+     "dead_km": 7.52,
+     "svc_h": 1.0673
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9167,
+     "speed": 15.87,
+     "f_stop": 57.82,
+     "start_h": 5.75,
+     "end_h": 6.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1167,
+     "speed": 13.02,
+     "f_stop": 49.25,
+     "start_h": 6.6833,
+     "end_h": 7.8,
+     "dead_km": 0.0,
+     "svc_h": 1.3
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 7.9833,
+     "end_h": 9.0667,
+     "dead_km": 0.0,
+     "svc_h": 1.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0667,
+     "speed": 13.63,
+     "f_stop": 51.56,
+     "start_h": 9.0667,
+     "end_h": 10.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 10.3333,
+     "end_h": 11.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 11.3667,
+     "end_h": 12.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 12.35,
+     "end_h": 13.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 13.3667,
+     "end_h": 14.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.2833,
+     "speed": 11.33,
+     "f_stop": 41.3,
+     "start_h": 14.35,
+     "end_h": 15.6333,
+     "dead_km": 0.0,
+     "svc_h": 1.4833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 15.8333,
+     "end_h": 17.0333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2667,
+     "speed": 11.67,
+     "f_stop": 41.05,
+     "start_h": 17.1,
+     "end_h": 18.3667,
+     "dead_km": 0.0,
+     "svc_h": 1.4
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.05,
+     "speed": 13.84,
+     "f_stop": 52.38,
+     "start_h": 18.5,
+     "end_h": 19.55,
+     "dead_km": 0.0,
+     "svc_h": 1.1
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 19.6,
+     "end_h": 20.6,
+     "dead_km": 0.0,
+     "svc_h": 1.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.234,
+     "dur_h": 0.65,
+     "speed": 17.28,
+     "f_stop": 64.62,
+     "start_h": 20.6667,
+     "end_h": 21.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.6683
+    },
+    {
+     "route": "52",
+     "dist_km": 11.635,
+     "dur_h": 0.6817,
+     "speed": 17.07,
+     "f_stop": 61.61,
+     "start_h": 21.335,
+     "end_h": 22.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.865
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7167,
+     "speed": 20.28,
+     "f_stop": 76.74,
+     "start_h": 22.2,
+     "end_h": 22.9167,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 22.95,
+     "end_h": 23.75,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8,
+     "speed": 18.17,
+     "f_stop": 68.75,
+     "start_h": 23.8333,
+     "end_h": 24.6333,
+     "dead_km": 0.0,
+     "svc_h": 0.9667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.7833,
+     "speed": 18.57,
+     "f_stop": 67.66,
+     "start_h": 24.8,
+     "end_h": 25.5833,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7167,
+     "speed": 20.28,
+     "f_stop": 76.74,
+     "start_h": 25.6,
+     "end_h": 26.3167,
+     "dead_km": 16.6,
+     "svc_h": 1.27
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     5.7,
+     5.75
+    ],
+    [
+     "theWestwayRoyal",
+     6.6667,
+     6.6833
+    ],
+    [
+     "raabBlvdHospital",
+     7.8,
+     7.9833
+    ],
+    [
+     "theWestwayRoyal",
+     9.0667,
+     9.0667
+    ],
+    [
+     "raabBlvdHospital",
+     10.1333,
+     10.3333
+    ],
+    [
+     "theWestwayRoyal",
+     11.3333,
+     11.3667
+    ],
+    [
+     "raabBlvdHospital",
+     12.3333,
+     12.35
+    ],
+    [
+     "theWestwayRoyal",
+     13.3333,
+     13.3667
+    ],
+    [
+     "raabBlvdHospital",
+     14.3333,
+     14.35
+    ],
+    [
+     "theWestwayRoyal",
+     15.6333,
+     15.8333
+    ],
+    [
+     "raabBlvdHospital",
+     17.0333,
+     17.1
+    ],
+    [
+     "theWestwayRoyal",
+     18.3667,
+     18.5
+    ],
+    [
+     "raabBlvdHospital",
+     19.55,
+     19.6
+    ],
+    [
+     "theWestwayRoyal",
+     20.6,
+     20.6667
+    ],
+    [
+     "lawrenceStation2",
+     21.3167,
+     21.335
+    ],
+    [
+     "theWestwayRoyal",
+     22.0167,
+     22.2
+    ],
+    [
+     "raabBlvdHospital",
+     22.9167,
+     22.95
+    ],
+    [
+     "theWestwayRoyal",
+     23.75,
+     23.8333
+    ],
+    [
+     "raabBlvdHospital",
+     24.6333,
+     24.8
+    ],
+    [
+     "theWestwayRoyal",
+     25.5833,
+     25.6
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520440"
+   ],
+   "pullout_h": 4.6343,
+   "pullin_h": 22.8023,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 19.253,
+     "dur_h": 0.7864,
+     "speed": 24.48,
+     "f_stop": 76.3,
+     "start_h": 4.9469,
+     "end_h": 5.7333,
+     "dead_km": 9.38,
+     "svc_h": 1.0991
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.2167,
+     "speed": 19.48,
+     "f_stop": 59.18,
+     "start_h": 5.7333,
+     "end_h": 6.95,
+     "dead_km": 0.0,
+     "svc_h": 1.2522
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.4144,
+     "speed": 16.92,
+     "f_stop": 55.15,
+     "start_h": 6.9856,
+     "end_h": 8.4,
+     "dead_km": 0.0,
+     "svc_h": 1.7144
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.2833,
+     "speed": 18.46,
+     "f_stop": 56.1,
+     "start_h": 8.7,
+     "end_h": 9.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.4189
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 10.1189,
+     "end_h": 11.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 11.2667,
+     "end_h": 11.35,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 11.5833,
+     "end_h": 12.65,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 12.7856,
+     "end_h": 13.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 13.9333,
+     "end_h": 14.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1667,
+     "speed": 16.65,
+     "f_stop": 49.71,
+     "start_h": 14.1667,
+     "end_h": 15.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.3364
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 15.5031,
+     "end_h": 16.9,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 16.9,
+     "end_h": 16.9833,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.2,
+     "speed": 16.19,
+     "f_stop": 48.33,
+     "start_h": 17.1167,
+     "end_h": 18.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.3692
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3475,
+     "speed": 17.76,
+     "f_stop": 57.88,
+     "start_h": 18.4858,
+     "end_h": 19.8333,
+     "dead_km": 0.0,
+     "svc_h": 1.5975
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.1167,
+     "speed": 21.22,
+     "f_stop": 64.48,
+     "start_h": 20.0833,
+     "end_h": 21.2,
+     "dead_km": 0.0,
+     "svc_h": 1.185
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.1317,
+     "speed": 21.14,
+     "f_stop": 68.92,
+     "start_h": 21.2683,
+     "end_h": 22.4,
+     "dead_km": 12.07,
+     "svc_h": 1.534
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     5.7333,
+     5.7333
+    ],
+    [
+     "lawrenceStation2",
+     6.95,
+     6.9856
+    ],
+    [
+     "westwoodSquareTerminal",
+     8.4,
+     8.7
+    ],
+    [
+     "lawrenceStation2",
+     9.9833,
+     10.1189
+    ],
+    [
+     "none",
+     11.2667,
+     11.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     11.35,
+     11.5833
+    ],
+    [
+     "lawrenceStation2",
+     12.65,
+     12.7856
+    ],
+    [
+     "none",
+     13.9333,
+     13.9333
+    ],
+    [
+     "pearsonAirportTerminal",
+     14.0167,
+     14.1667
+    ],
+    [
+     "lawrenceStation2",
+     15.3333,
+     15.5031
+    ],
+    [
+     "none",
+     16.9,
+     16.9
+    ],
+    [
+     "pearsonAirportTerminal",
+     16.9833,
+     17.1167
+    ],
+    [
+     "lawrenceStation2",
+     18.3167,
+     18.4858
+    ],
+    [
+     "westwoodSquareTerminal",
+     19.8333,
+     20.0833
+    ],
+    [
+     "lawrenceStation2",
+     21.2,
+     21.2683
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520550"
+   ],
+   "pullout_h": 4.7431,
+   "pullin_h": 26.8073,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.265,
+     "dur_h": 0.9472,
+     "speed": 22.45,
+     "f_stop": 71.79,
+     "start_h": 5.1194,
+     "end_h": 6.0667,
+     "dead_km": 11.29,
+     "svc_h": 1.4569
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.2833,
+     "speed": 18.46,
+     "f_stop": 56.1,
+     "start_h": 6.2,
+     "end_h": 7.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4522
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 7.6522,
+     "end_h": 8.85,
+     "dead_km": 0.0,
+     "svc_h": 1.1978
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 8.85,
+     "end_h": 8.9333,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 9.0833,
+     "end_h": 10.15,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 10.2856,
+     "end_h": 11.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 11.85,
+     "end_h": 13.15,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 13.2856,
+     "end_h": 14.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.4811
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.5,
+     "speed": 15.8,
+     "f_stop": 48.0,
+     "start_h": 14.7667,
+     "end_h": 16.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.6364
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 16.4031,
+     "end_h": 17.8,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 17.8,
+     "end_h": 17.8833,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 18.0333,
+     "end_h": 19.1,
+     "dead_km": 0.0,
+     "svc_h": 1.2025
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1642,
+     "speed": 18.47,
+     "f_stop": 50.68,
+     "start_h": 19.2358,
+     "end_h": 20.4,
+     "dead_km": 0.0,
+     "svc_h": 1.1642
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 20.4,
+     "end_h": 20.45,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9,
+     "speed": 21.59,
+     "f_stop": 64.44,
+     "start_h": 20.45,
+     "end_h": 21.35,
+     "dead_km": 0.0,
+     "svc_h": 0.9683
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9983,
+     "speed": 21.54,
+     "f_stop": 59.1,
+     "start_h": 21.4183,
+     "end_h": 22.4167,
+     "dead_km": 0.0,
+     "svc_h": 0.9983
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 22.4167,
+     "end_h": 22.4667,
+     "dead_km": 0.0,
+     "svc_h": 0.3
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 22.7167,
+     "end_h": 23.5,
+     "dead_km": 0.0,
+     "svc_h": 0.9014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 23.6181,
+     "end_h": 24.5333,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 24.5333,
+     "end_h": 24.5833,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 24.5833,
+     "end_h": 25.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9511
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.8489,
+     "speed": 25.34,
+     "f_stop": 69.5,
+     "start_h": 25.5344,
+     "end_h": 26.3833,
+     "dead_km": 12.72,
+     "svc_h": 1.2729
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     6.0667,
+     6.2
+    ],
+    [
+     "lawrenceStation2",
+     7.4833,
+     7.6522
+    ],
+    [
+     "none",
+     8.85,
+     8.85
+    ],
+    [
+     "pearsonAirportTerminal",
+     8.9333,
+     9.0833
+    ],
+    [
+     "lawrenceStation2",
+     10.15,
+     10.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     11.6167,
+     11.85
+    ],
+    [
+     "lawrenceStation2",
+     13.15,
+     13.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     14.6167,
+     14.7667
+    ],
+    [
+     "lawrenceStation2",
+     16.2667,
+     16.4031
+    ],
+    [
+     "none",
+     17.8,
+     17.8
+    ],
+    [
+     "pearsonAirportTerminal",
+     17.8833,
+     18.0333
+    ],
+    [
+     "lawrenceStation2",
+     19.1,
+     19.2358
+    ],
+    [
+     "none",
+     20.4,
+     20.4
+    ],
+    [
+     "pearsonAirportTerminal",
+     20.45,
+     20.45
+    ],
+    [
+     "lawrenceStation2",
+     21.35,
+     21.4183
+    ],
+    [
+     "none",
+     22.4167,
+     22.4167
+    ],
+    [
+     "pearsonAirportTerminal",
+     22.4667,
+     22.7167
+    ],
+    [
+     "lawrenceStation2",
+     23.5,
+     23.6181
+    ],
+    [
+     "none",
+     24.5333,
+     24.5333
+    ],
+    [
+     "pearsonAirportTerminal",
+     24.5833,
+     24.5833
+    ],
+    [
+     "lawrenceStation2",
+     25.3667,
+     25.5344
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520770"
+   ],
+   "pullout_h": 4.8598,
+   "pullin_h": 21.1023,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 17.656,
+     "dur_h": 0.7972,
+     "speed": 22.15,
+     "f_stop": 61.46,
+     "start_h": 5.2361,
+     "end_h": 6.0333,
+     "dead_km": 11.29,
+     "svc_h": 1.1736
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 6.0333,
+     "end_h": 6.1167,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0167,
+     "speed": 19.11,
+     "f_stop": 57.05,
+     "start_h": 6.1167,
+     "end_h": 7.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 7.3189,
+     "end_h": 8.5167,
+     "dead_km": 0.0,
+     "svc_h": 1.1978
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 8.5167,
+     "end_h": 8.6,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1,
+     "speed": 17.66,
+     "f_stop": 52.73,
+     "start_h": 8.75,
+     "end_h": 9.85,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 9.9522,
+     "end_h": 11.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 11.5167,
+     "end_h": 12.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 12.9522,
+     "end_h": 14.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.5311
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.4833,
+     "speed": 15.98,
+     "f_stop": 48.54,
+     "start_h": 14.4833,
+     "end_h": 15.9667,
+     "dead_km": 0.0,
+     "svc_h": 1.6197
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5803,
+     "speed": 15.14,
+     "f_stop": 49.36,
+     "start_h": 16.1031,
+     "end_h": 17.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.8469
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 17.95,
+     "end_h": 19.25,
+     "dead_km": 0.0,
+     "svc_h": 1.4525
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.2975,
+     "speed": 18.44,
+     "f_stop": 60.12,
+     "start_h": 19.4025,
+     "end_h": 20.7,
+     "dead_km": 12.07,
+     "svc_h": 1.6998
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.0333,
+     6.0333
+    ],
+    [
+     "pearsonAirportTerminal",
+     6.1167,
+     6.1167
+    ],
+    [
+     "lawrenceStation2",
+     7.1333,
+     7.3189
+    ],
+    [
+     "none",
+     8.5167,
+     8.5167
+    ],
+    [
+     "pearsonAirportTerminal",
+     8.6,
+     8.75
+    ],
+    [
+     "lawrenceStation2",
+     9.85,
+     9.9522
+    ],
+    [
+     "westwoodSquareTerminal",
+     11.2833,
+     11.5167
+    ],
+    [
+     "lawrenceStation2",
+     12.8167,
+     12.9522
+    ],
+    [
+     "westwoodSquareTerminal",
+     14.2833,
+     14.4833
+    ],
+    [
+     "lawrenceStation2",
+     15.9667,
+     16.1031
+    ],
+    [
+     "westwoodSquareTerminal",
+     17.6833,
+     17.95
+    ],
+    [
+     "lawrenceStation2",
+     19.25,
+     19.4025
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 2,
+   "gtfs_blocks": [
+    "5229291",
+    "5232322"
+   ],
+   "pullout_h": 4.9993,
+   "pullin_h": 23.1867,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.75,
+     "speed": 19.38,
+     "f_stop": 73.33,
+     "start_h": 5.25,
+     "end_h": 6.0,
+     "dead_km": 7.52,
+     "svc_h": 1.0507
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9167,
+     "speed": 15.87,
+     "f_stop": 57.82,
+     "start_h": 6.05,
+     "end_h": 6.9667,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.15,
+     "speed": 12.64,
+     "f_stop": 47.83,
+     "start_h": 6.9833,
+     "end_h": 8.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.35
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.05,
+     "speed": 13.85,
+     "f_stop": 50.48,
+     "start_h": 8.3333,
+     "end_h": 9.3833,
+     "dead_km": 0.0,
+     "svc_h": 1.05
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 9.3833,
+     "end_h": 10.35,
+     "dead_km": 16.6,
+     "svc_h": 1.52
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 14.2667,
+     "end_h": 15.4667,
+     "dead_km": 7.52,
+     "svc_h": 1.584
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 15.6,
+     "end_h": 16.8833,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1833,
+     "speed": 12.28,
+     "f_stop": 46.48,
+     "start_h": 17.0333,
+     "end_h": 18.2167,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 18.3,
+     "end_h": 19.3833,
+     "dead_km": 0.0,
+     "svc_h": 1.3833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 19.6833,
+     "end_h": 20.65,
+     "dead_km": 0.0,
+     "svc_h": 1.15
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9,
+     "speed": 16.16,
+     "f_stop": 58.89,
+     "start_h": 20.8333,
+     "end_h": 21.7333,
+     "dead_km": 0.0,
+     "svc_h": 1.05
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.75,
+     "speed": 19.38,
+     "f_stop": 73.33,
+     "start_h": 21.8833,
+     "end_h": 22.6333,
+     "dead_km": 16.6,
+     "svc_h": 1.3033
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     6.0,
+     6.05
+    ],
+    [
+     "theWestwayRoyal",
+     6.9667,
+     6.9833
+    ],
+    [
+     "raabBlvdHospital",
+     8.1333,
+     8.3333
+    ],
+    [
+     "theWestwayRoyal",
+     9.3833,
+     9.3833
+    ],
+    [
+     "depot",
+     10.9033,
+     14.016
+    ],
+    [
+     "raabBlvdHospital",
+     15.4667,
+     15.6
+    ],
+    [
+     "theWestwayRoyal",
+     16.8833,
+     17.0333
+    ],
+    [
+     "raabBlvdHospital",
+     18.2167,
+     18.3
+    ],
+    [
+     "theWestwayRoyal",
+     19.3833,
+     19.6833
+    ],
+    [
+     "raabBlvdHospital",
+     20.65,
+     20.8333
+    ],
+    [
+     "theWestwayRoyal",
+     21.7333,
+     21.8833
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520880"
+   ],
+   "pullout_h": 4.7133,
+   "pullin_h": 19.0107,
+   "trips": [
+    {
+     "route": "352",
+     "dist_km": 24.271,
+     "dur_h": 0.9,
+     "speed": 26.97,
+     "f_stop": 78.89,
+     "start_h": 5.2667,
+     "end_h": 6.1667,
+     "dead_km": 16.6,
+     "svc_h": 1.77
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 6.4833,
+     "end_h": 6.5667,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 6.5667,
+     "end_h": 7.6333,
+     "dead_km": 0.0,
+     "svc_h": 1.2522
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 7.8189,
+     "end_h": 9.0167,
+     "dead_km": 0.0,
+     "svc_h": 1.1978
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 9.0167,
+     "end_h": 9.1,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 9.25,
+     "end_h": 10.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 10.4522,
+     "end_h": 11.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 11.6,
+     "end_h": 11.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 11.9167,
+     "end_h": 12.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 13.1189,
+     "end_h": 14.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 14.2667,
+     "end_h": 14.35,
+     "dead_km": 0.0,
+     "svc_h": 0.1667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.2333,
+     "speed": 15.75,
+     "f_stop": 47.03,
+     "start_h": 14.4333,
+     "end_h": 15.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.3697
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 15.8031,
+     "end_h": 17.2,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 17.2,
+     "end_h": 17.2833,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1333,
+     "speed": 17.14,
+     "f_stop": 51.18,
+     "start_h": 17.4167,
+     "end_h": 18.55,
+     "dead_km": 13.82,
+     "svc_h": 1.594
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.1667,
+     6.4833
+    ],
+    [
+     "pearsonAirportTerminal",
+     6.5667,
+     6.5667
+    ],
+    [
+     "lawrenceStation2",
+     7.6333,
+     7.8189
+    ],
+    [
+     "none",
+     9.0167,
+     9.0167
+    ],
+    [
+     "pearsonAirportTerminal",
+     9.1,
+     9.25
+    ],
+    [
+     "lawrenceStation2",
+     10.3167,
+     10.4522
+    ],
+    [
+     "none",
+     11.6,
+     11.6
+    ],
+    [
+     "pearsonAirportTerminal",
+     11.6833,
+     11.9167
+    ],
+    [
+     "lawrenceStation2",
+     12.9833,
+     13.1189
+    ],
+    [
+     "none",
+     14.2667,
+     14.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     14.35,
+     14.4333
+    ],
+    [
+     "lawrenceStation2",
+     15.6667,
+     15.8031
+    ],
+    [
+     "none",
+     17.2,
+     17.2
+    ],
+    [
+     "pearsonAirportTerminal",
+     17.2833,
+     17.4167
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5211110"
+   ],
+   "pullout_h": 4.8438,
+   "pullin_h": 26.7865,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 23.558,
+     "dur_h": 1.1622,
+     "speed": 20.27,
+     "f_stop": 66.25,
+     "start_h": 5.3044,
+     "end_h": 6.4667,
+     "dead_km": 13.82,
+     "svc_h": 1.8062
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3333,
+     "speed": 17.77,
+     "f_stop": 54.0,
+     "start_h": 6.65,
+     "end_h": 7.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.5022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 8.1522,
+     "end_h": 9.35,
+     "dead_km": 0.0,
+     "svc_h": 1.1978
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 9.35,
+     "end_h": 9.4333,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 9.5833,
+     "end_h": 10.65,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 10.7856,
+     "end_h": 11.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 11.9333,
+     "end_h": 12.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 12.25,
+     "end_h": 13.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 13.4522,
+     "end_h": 14.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 14.6,
+     "end_h": 14.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 14.8667,
+     "end_h": 16.1167,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 16.2531,
+     "end_h": 17.65,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 17.65,
+     "end_h": 17.7333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0833,
+     "speed": 17.93,
+     "f_stop": 53.54,
+     "start_h": 17.8667,
+     "end_h": 18.95,
+     "dead_km": 0.0,
+     "svc_h": 1.2025
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3308,
+     "speed": 17.98,
+     "f_stop": 58.61,
+     "start_h": 19.0692,
+     "end_h": 20.4,
+     "dead_km": 0.0,
+     "svc_h": 1.6142
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.1167,
+     "speed": 21.22,
+     "f_stop": 64.48,
+     "start_h": 20.6833,
+     "end_h": 21.8,
+     "dead_km": 0.0,
+     "svc_h": 1.2517
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.065,
+     "speed": 22.47,
+     "f_stop": 73.24,
+     "start_h": 21.935,
+     "end_h": 23.0,
+     "dead_km": 0.0,
+     "svc_h": 1.1483
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 23.0833,
+     "end_h": 24.0667,
+     "dead_km": 0.0,
+     "svc_h": 1.1014
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 24.1847,
+     "end_h": 25.2333,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.505,
+     "dur_h": 0.9925,
+     "speed": 23.68,
+     "f_stop": 71.54,
+     "start_h": 25.3333,
+     "end_h": 26.3258,
+     "dead_km": 13.82,
+     "svc_h": 1.4532
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     6.4667,
+     6.65
+    ],
+    [
+     "lawrenceStation2",
+     7.9833,
+     8.1522
+    ],
+    [
+     "none",
+     9.35,
+     9.35
+    ],
+    [
+     "pearsonAirportTerminal",
+     9.4333,
+     9.5833
+    ],
+    [
+     "lawrenceStation2",
+     10.65,
+     10.7856
+    ],
+    [
+     "none",
+     11.9333,
+     11.9333
+    ],
+    [
+     "pearsonAirportTerminal",
+     12.0167,
+     12.25
+    ],
+    [
+     "lawrenceStation2",
+     13.3167,
+     13.4522
+    ],
+    [
+     "none",
+     14.6,
+     14.6
+    ],
+    [
+     "pearsonAirportTerminal",
+     14.6833,
+     14.8667
+    ],
+    [
+     "lawrenceStation2",
+     16.1167,
+     16.2531
+    ],
+    [
+     "none",
+     17.65,
+     17.65
+    ],
+    [
+     "pearsonAirportTerminal",
+     17.7333,
+     17.8667
+    ],
+    [
+     "lawrenceStation2",
+     18.95,
+     19.0692
+    ],
+    [
+     "westwoodSquareTerminal",
+     20.4,
+     20.6833
+    ],
+    [
+     "lawrenceStation2",
+     21.8,
+     21.935
+    ],
+    [
+     "westwoodSquareTerminal",
+     23.0,
+     23.0833
+    ],
+    [
+     "lawrenceStation2",
+     24.0667,
+     24.1847
+    ],
+    [
+     "westwoodSquareTerminal",
+     25.2333,
+     25.3333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5210100"
+   ],
+   "pullout_h": 4.9842,
+   "pullin_h": 26.274,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.034,
+     "dur_h": 0.0592,
+     "speed": 17.48,
+     "f_stop": 84.51,
+     "start_h": 5.3075,
+     "end_h": 5.3667,
+     "dead_km": 9.7,
+     "svc_h": 0.3825
+    },
+    {
+     "route": "52",
+     "dist_km": 14.973,
+     "dur_h": 0.7833,
+     "speed": 19.11,
+     "f_stop": 70.21,
+     "start_h": 5.3667,
+     "end_h": 6.15,
+     "dead_km": 0.0,
+     "svc_h": 1.0847
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0819,
+     "speed": 19.88,
+     "f_stop": 54.53,
+     "start_h": 6.4514,
+     "end_h": 7.5333,
+     "dead_km": 0.0,
+     "svc_h": 1.0819
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 7.5333,
+     "end_h": 7.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.15,
+     "speed": 16.89,
+     "f_stop": 50.43,
+     "start_h": 7.75,
+     "end_h": 8.9,
+     "dead_km": 0.0,
+     "svc_h": 1.2189
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 8.9689,
+     "end_h": 10.3,
+     "dead_km": 0.0,
+     "svc_h": 1.5478
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 10.5167,
+     "end_h": 11.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 11.9522,
+     "end_h": 13.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.5478
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3333,
+     "speed": 17.77,
+     "f_stop": 54.0,
+     "start_h": 13.5,
+     "end_h": 14.8333,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 14.8864,
+     "end_h": 16.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 16.2833,
+     "end_h": 16.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 16.5167,
+     "end_h": 17.7667,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.2303,
+     "speed": 17.48,
+     "f_stop": 47.96,
+     "start_h": 17.9031,
+     "end_h": 19.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.2303
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 19.1333,
+     "end_h": 19.2167,
+     "dead_km": 0.0,
+     "svc_h": 0.1
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0333,
+     "speed": 18.8,
+     "f_stop": 56.13,
+     "start_h": 19.2333,
+     "end_h": 20.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.135
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.1317,
+     "speed": 21.14,
+     "f_stop": 68.92,
+     "start_h": 20.3683,
+     "end_h": 21.5,
+     "dead_km": 0.0,
+     "svc_h": 1.2317
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.0,
+     "speed": 23.7,
+     "f_stop": 72.0,
+     "start_h": 21.6,
+     "end_h": 22.6,
+     "dead_km": 0.0,
+     "svc_h": 1.0847
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 22.6847,
+     "end_h": 23.7333,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 23.8333,
+     "end_h": 24.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.0681
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9486,
+     "speed": 22.67,
+     "f_stop": 62.2,
+     "start_h": 24.9014,
+     "end_h": 25.85,
+     "dead_km": 12.72,
+     "svc_h": 1.3726
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     5.3667,
+     5.3667
+    ],
+    [
+     "lawrenceStation2",
+     6.15,
+     6.4514
+    ],
+    [
+     "none",
+     7.5333,
+     7.5333
+    ],
+    [
+     "pearsonAirportTerminal",
+     7.6167,
+     7.75
+    ],
+    [
+     "lawrenceStation2",
+     8.9,
+     8.9689
+    ],
+    [
+     "westwoodSquareTerminal",
+     10.3,
+     10.5167
+    ],
+    [
+     "lawrenceStation2",
+     11.8167,
+     11.9522
+    ],
+    [
+     "westwoodSquareTerminal",
+     13.2833,
+     13.5
+    ],
+    [
+     "lawrenceStation2",
+     14.8333,
+     14.8864
+    ],
+    [
+     "none",
+     16.2833,
+     16.2833
+    ],
+    [
+     "pearsonAirportTerminal",
+     16.3667,
+     16.5167
+    ],
+    [
+     "lawrenceStation2",
+     17.7667,
+     17.9031
+    ],
+    [
+     "none",
+     19.1333,
+     19.1333
+    ],
+    [
+     "pearsonAirportTerminal",
+     19.2167,
+     19.2333
+    ],
+    [
+     "lawrenceStation2",
+     20.2667,
+     20.3683
+    ],
+    [
+     "westwoodSquareTerminal",
+     21.5,
+     21.6
+    ],
+    [
+     "lawrenceStation2",
+     22.6,
+     22.6847
+    ],
+    [
+     "westwoodSquareTerminal",
+     23.7333,
+     23.8333
+    ],
+    [
+     "lawrenceStation2",
+     24.8167,
+     24.9014
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "520990"
+   ],
+   "pullout_h": 4.9431,
+   "pullin_h": 23.124,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 17.656,
+     "dur_h": 0.8639,
+     "speed": 20.44,
+     "f_stop": 56.72,
+     "start_h": 5.3194,
+     "end_h": 6.1833,
+     "dead_km": 11.29,
+     "svc_h": 1.2402
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 6.1833,
+     "end_h": 6.2667,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.05,
+     "speed": 18.5,
+     "f_stop": 55.24,
+     "start_h": 6.2667,
+     "end_h": 7.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2189
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.4144,
+     "speed": 16.92,
+     "f_stop": 55.15,
+     "start_h": 7.4856,
+     "end_h": 8.9,
+     "dead_km": 0.0,
+     "svc_h": 1.6978
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 9.1833,
+     "end_h": 10.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 10.6189,
+     "end_h": 11.95,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 12.1833,
+     "end_h": 13.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4189
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3644,
+     "speed": 17.54,
+     "f_stop": 57.17,
+     "start_h": 13.6022,
+     "end_h": 14.9667,
+     "dead_km": 0.0,
+     "svc_h": 1.6144
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.5,
+     "speed": 15.8,
+     "f_stop": 48.0,
+     "start_h": 15.2167,
+     "end_h": 16.7167,
+     "dead_km": 0.0,
+     "svc_h": 1.6364
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3803,
+     "speed": 15.58,
+     "f_stop": 42.75,
+     "start_h": 16.8531,
+     "end_h": 18.2333,
+     "dead_km": 0.0,
+     "svc_h": 1.3803
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 18.2333,
+     "end_h": 18.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.25
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 18.4833,
+     "end_h": 19.55,
+     "dead_km": 0.0,
+     "svc_h": 1.0858
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1142,
+     "speed": 19.3,
+     "f_stop": 52.95,
+     "start_h": 19.5692,
+     "end_h": 20.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.1142
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 20.6833,
+     "end_h": 20.7333,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9,
+     "speed": 21.59,
+     "f_stop": 64.44,
+     "start_h": 20.75,
+     "end_h": 21.65,
+     "dead_km": 0.0,
+     "svc_h": 0.985
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.965,
+     "speed": 22.29,
+     "f_stop": 61.14,
+     "start_h": 21.735,
+     "end_h": 22.7,
+     "dead_km": 12.72,
+     "svc_h": 1.389
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.1833,
+     6.1833
+    ],
+    [
+     "pearsonAirportTerminal",
+     6.2667,
+     6.2667
+    ],
+    [
+     "lawrenceStation2",
+     7.3167,
+     7.4856
+    ],
+    [
+     "westwoodSquareTerminal",
+     8.9,
+     9.1833
+    ],
+    [
+     "lawrenceStation2",
+     10.4833,
+     10.6189
+    ],
+    [
+     "westwoodSquareTerminal",
+     11.95,
+     12.1833
+    ],
+    [
+     "lawrenceStation2",
+     13.4833,
+     13.6022
+    ],
+    [
+     "westwoodSquareTerminal",
+     14.9667,
+     15.2167
+    ],
+    [
+     "lawrenceStation2",
+     16.7167,
+     16.8531
+    ],
+    [
+     "none",
+     18.2333,
+     18.2333
+    ],
+    [
+     "pearsonAirportTerminal",
+     18.3167,
+     18.4833
+    ],
+    [
+     "lawrenceStation2",
+     19.55,
+     19.5692
+    ],
+    [
+     "none",
+     20.6833,
+     20.6833
+    ],
+    [
+     "pearsonAirportTerminal",
+     20.7333,
+     20.75
+    ],
+    [
+     "lawrenceStation2",
+     21.65,
+     21.735
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 2,
+   "gtfs_blocks": [
+    "5230301",
+    "5231312"
+   ],
+   "pullout_h": 5.1327,
+   "pullin_h": 26.4227,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9,
+     "speed": 16.15,
+     "f_stop": 61.11,
+     "start_h": 5.3833,
+     "end_h": 6.2833,
+     "dead_km": 7.52,
+     "svc_h": 1.2007
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9333,
+     "speed": 15.58,
+     "f_stop": 56.79,
+     "start_h": 6.3333,
+     "end_h": 7.2667,
+     "dead_km": 0.0,
+     "svc_h": 0.9667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.05,
+     "speed": 13.84,
+     "f_stop": 52.38,
+     "start_h": 7.3,
+     "end_h": 8.35,
+     "dead_km": 16.6,
+     "svc_h": 1.6033
+    },
+    {
+     "route": "52",
+     "dist_km": 1.034,
+     "dur_h": 0.0592,
+     "speed": 17.48,
+     "f_stop": 84.51,
+     "start_h": 14.1908,
+     "end_h": 14.25,
+     "dead_km": 9.7,
+     "svc_h": 0.4325
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 14.3,
+     "end_h": 15.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.8333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 15.1333,
+     "end_h": 15.9833,
+     "dead_km": 0.0,
+     "svc_h": 0.95
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 16.0833,
+     "end_h": 16.8833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 16.9667,
+     "end_h": 17.8167,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6667,
+     "speed": 16.93,
+     "f_stop": 61.5,
+     "start_h": 17.9,
+     "end_h": 18.5667,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 18.7,
+     "end_h": 19.4,
+     "dead_km": 0.0,
+     "svc_h": 0.7
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 19.4,
+     "end_h": 20.05,
+     "dead_km": 0.0,
+     "svc_h": 0.65
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6167,
+     "speed": 19.29,
+     "f_stop": 69.73,
+     "start_h": 20.05,
+     "end_h": 20.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.65
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5833,
+     "speed": 19.35,
+     "f_stop": 70.29,
+     "start_h": 20.7,
+     "end_h": 21.2833,
+     "dead_km": 0.0,
+     "svc_h": 0.7
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6167,
+     "speed": 19.29,
+     "f_stop": 69.73,
+     "start_h": 21.4,
+     "end_h": 22.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 22.0167,
+     "end_h": 22.5,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 22.6333,
+     "end_h": 23.2167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 23.2167,
+     "end_h": 23.7,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 23.8333,
+     "end_h": 24.4167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 24.4167,
+     "end_h": 24.9,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 25.0333,
+     "end_h": 25.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4667,
+     "speed": 24.19,
+     "f_stop": 87.86,
+     "start_h": 25.6167,
+     "end_h": 26.0833,
+     "dead_km": 10.18,
+     "svc_h": 0.806
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     6.2833,
+     6.3333
+    ],
+    [
+     "theWestwayRoyal",
+     7.2667,
+     7.3
+    ],
+    [
+     "depot",
+     8.9033,
+     13.8675
+    ],
+    [
+     "none",
+     14.25,
+     14.3
+    ],
+    [
+     "lawrenceWestStation",
+     15.0333,
+     15.1333
+    ],
+    [
+     "none",
+     15.9833,
+     16.0833
+    ],
+    [
+     "lawrenceWestStation",
+     16.8833,
+     16.9667
+    ],
+    [
+     "none",
+     17.8167,
+     17.9
+    ],
+    [
+     "lawrenceWestStation",
+     18.5667,
+     18.7
+    ],
+    [
+     "none",
+     19.4,
+     19.4
+    ],
+    [
+     "lawrenceWestStation",
+     20.05,
+     20.05
+    ],
+    [
+     "none",
+     20.6667,
+     20.7
+    ],
+    [
+     "lawrenceWestStation",
+     21.2833,
+     21.4
+    ],
+    [
+     "none",
+     22.0167,
+     22.0167
+    ],
+    [
+     "lawrenceWestStation",
+     22.5,
+     22.6333
+    ],
+    [
+     "none",
+     23.2167,
+     23.2167
+    ],
+    [
+     "lawrenceWestStation",
+     23.7,
+     23.8333
+    ],
+    [
+     "none",
+     24.4167,
+     24.4167
+    ],
+    [
+     "lawrenceWestStation",
+     24.9,
+     25.0333
+    ],
+    [
+     "none",
+     25.6167,
+     25.6167
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5212120"
+   ],
+   "pullout_h": 5.0907,
+   "pullin_h": 22.4107,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0819,
+     "speed": 19.88,
+     "f_stop": 54.53,
+     "start_h": 5.5514,
+     "end_h": 6.6333,
+     "dead_km": 13.82,
+     "svc_h": 1.5426
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 6.6333,
+     "end_h": 6.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1,
+     "speed": 17.66,
+     "f_stop": 52.73,
+     "start_h": 6.7167,
+     "end_h": 7.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.2689
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3811,
+     "speed": 17.32,
+     "f_stop": 56.48,
+     "start_h": 7.9856,
+     "end_h": 9.3667,
+     "dead_km": 0.0,
+     "svc_h": 1.5311
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 9.5167,
+     "end_h": 10.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 10.9522,
+     "end_h": 12.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 12.5167,
+     "end_h": 13.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.4022
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3811,
+     "speed": 17.32,
+     "f_stop": 56.48,
+     "start_h": 13.9189,
+     "end_h": 15.3,
+     "dead_km": 0.0,
+     "svc_h": 1.7478
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.5,
+     "speed": 15.8,
+     "f_stop": 48.0,
+     "start_h": 15.6667,
+     "end_h": 17.1667,
+     "dead_km": 0.0,
+     "svc_h": 1.6364
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3303,
+     "speed": 16.17,
+     "f_stop": 44.35,
+     "start_h": 17.3031,
+     "end_h": 18.6333,
+     "dead_km": 0.0,
+     "svc_h": 1.3303
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 18.6333,
+     "end_h": 18.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.15
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 18.7833,
+     "end_h": 19.85,
+     "dead_km": 0.0,
+     "svc_h": 1.1192
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0642,
+     "speed": 20.21,
+     "f_stop": 55.44,
+     "start_h": 19.9025,
+     "end_h": 20.9667,
+     "dead_km": 0.0,
+     "svc_h": 1.0642
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 20.9667,
+     "end_h": 21.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9,
+     "speed": 21.59,
+     "f_stop": 64.44,
+     "start_h": 21.05,
+     "end_h": 21.95,
+     "dead_km": 13.82,
+     "svc_h": 1.3607
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.6333,
+     6.6333
+    ],
+    [
+     "pearsonAirportTerminal",
+     6.7167,
+     6.7167
+    ],
+    [
+     "lawrenceStation2",
+     7.8167,
+     7.9856
+    ],
+    [
+     "westwoodSquareTerminal",
+     9.3667,
+     9.5167
+    ],
+    [
+     "lawrenceStation2",
+     10.8167,
+     10.9522
+    ],
+    [
+     "westwoodSquareTerminal",
+     12.2833,
+     12.5167
+    ],
+    [
+     "lawrenceStation2",
+     13.8167,
+     13.9189
+    ],
+    [
+     "westwoodSquareTerminal",
+     15.3,
+     15.6667
+    ],
+    [
+     "lawrenceStation2",
+     17.1667,
+     17.3031
+    ],
+    [
+     "none",
+     18.6333,
+     18.6333
+    ],
+    [
+     "pearsonAirportTerminal",
+     18.7167,
+     18.7833
+    ],
+    [
+     "lawrenceStation2",
+     19.85,
+     19.9025
+    ],
+    [
+     "none",
+     20.9667,
+     20.9667
+    ],
+    [
+     "pearsonAirportTerminal",
+     21.0167,
+     21.05
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5215150"
+   ],
+   "pullout_h": 5.1593,
+   "pullin_h": 21.1107,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 5.5833,
+     "end_h": 5.6667,
+     "dead_km": 12.72,
+     "svc_h": 0.5073
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9833,
+     "speed": 19.76,
+     "f_stop": 58.98,
+     "start_h": 5.6667,
+     "end_h": 6.65,
+     "dead_km": 0.0,
+     "svc_h": 1.0514
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1319,
+     "speed": 19.0,
+     "f_stop": 52.12,
+     "start_h": 6.7181,
+     "end_h": 7.85,
+     "dead_km": 0.0,
+     "svc_h": 1.1319
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 7.85,
+     "end_h": 7.9333,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1167,
+     "speed": 17.4,
+     "f_stop": 51.94,
+     "start_h": 8.0833,
+     "end_h": 9.2,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 9.2856,
+     "end_h": 10.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 10.85,
+     "end_h": 12.15,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 12.2856,
+     "end_h": 13.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.4978
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3833,
+     "speed": 17.13,
+     "f_stop": 52.05,
+     "start_h": 13.7833,
+     "end_h": 15.1667,
+     "dead_km": 0.0,
+     "svc_h": 1.5697
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 15.3531,
+     "end_h": 16.75,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 16.75,
+     "end_h": 16.8333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.2167,
+     "speed": 15.97,
+     "f_stop": 47.67,
+     "start_h": 16.9667,
+     "end_h": 18.1833,
+     "dead_km": 0.0,
+     "svc_h": 1.3692
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1975,
+     "speed": 17.96,
+     "f_stop": 49.27,
+     "start_h": 18.3358,
+     "end_h": 19.5333,
+     "dead_km": 0.0,
+     "svc_h": 1.1975
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 19.5333,
+     "end_h": 19.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.15
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9667,
+     "speed": 20.1,
+     "f_stop": 60.0,
+     "start_h": 19.6833,
+     "end_h": 20.65,
+     "dead_km": 13.82,
+     "svc_h": 1.4273
+    }
+   ],
+   "dwells": [
+    [
+     "pearsonAirportTerminal",
+     5.6667,
+     5.6667
+    ],
+    [
+     "lawrenceStation2",
+     6.65,
+     6.7181
+    ],
+    [
+     "none",
+     7.85,
+     7.85
+    ],
+    [
+     "pearsonAirportTerminal",
+     7.9333,
+     8.0833
+    ],
+    [
+     "lawrenceStation2",
+     9.2,
+     9.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     10.6167,
+     10.85
+    ],
+    [
+     "lawrenceStation2",
+     12.15,
+     12.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     13.6167,
+     13.7833
+    ],
+    [
+     "lawrenceStation2",
+     15.1667,
+     15.3531
+    ],
+    [
+     "none",
+     16.75,
+     16.75
+    ],
+    [
+     "pearsonAirportTerminal",
+     16.8333,
+     16.9667
+    ],
+    [
+     "lawrenceStation2",
+     18.1833,
+     18.3358
+    ],
+    [
+     "none",
+     19.5333,
+     19.5333
+    ],
+    [
+     "pearsonAirportTerminal",
+     19.6167,
+     19.6833
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5214140"
+   ],
+   "pullout_h": 5.2773,
+   "pullin_h": 25.9393,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6833,
+     "speed": 17.4,
+     "f_stop": 62.93,
+     "start_h": 5.6167,
+     "end_h": 6.3,
+     "dead_km": 10.18,
+     "svc_h": 1.1227
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6,
+     "speed": 18.81,
+     "f_stop": 68.33,
+     "start_h": 6.4,
+     "end_h": 7.0,
+     "dead_km": 0.0,
+     "svc_h": 0.8667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 7.2667,
+     "end_h": 8.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 8.0167,
+     "end_h": 8.75,
+     "dead_km": 0.0,
+     "svc_h": 1.0
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 9.0167,
+     "end_h": 9.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.7
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 9.7167,
+     "end_h": 10.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 10.6333,
+     "end_h": 11.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 11.3833,
+     "end_h": 12.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 12.3,
+     "end_h": 13.0,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 13.05,
+     "end_h": 13.7,
+     "dead_km": 0.0,
+     "svc_h": 0.9
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7167,
+     "speed": 16.6,
+     "f_stop": 60.0,
+     "start_h": 13.95,
+     "end_h": 14.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 14.8833,
+     "end_h": 15.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 15.7667,
+     "end_h": 16.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 16.6833,
+     "end_h": 17.4833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7833,
+     "speed": 15.18,
+     "f_stop": 54.89,
+     "start_h": 17.5667,
+     "end_h": 18.35,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 18.5,
+     "end_h": 19.15,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 19.2667,
+     "end_h": 19.9667,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5833,
+     "speed": 19.35,
+     "f_stop": 70.29,
+     "start_h": 20.0333,
+     "end_h": 20.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.7167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6167,
+     "speed": 19.29,
+     "f_stop": 69.73,
+     "start_h": 20.75,
+     "end_h": 21.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5833,
+     "speed": 19.35,
+     "f_stop": 70.29,
+     "start_h": 21.3667,
+     "end_h": 21.95,
+     "dead_km": 0.0,
+     "svc_h": 0.6667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 22.0333,
+     "end_h": 22.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 22.6167,
+     "end_h": 23.1,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 23.2333,
+     "end_h": 23.8167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 23.8167,
+     "end_h": 24.3,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 24.4333,
+     "end_h": 25.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.6833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 25.1167,
+     "end_h": 25.6,
+     "dead_km": 10.18,
+     "svc_h": 0.8227
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.3,
+     6.4
+    ],
+    [
+     "lawrenceWestStation",
+     7.0,
+     7.2667
+    ],
+    [
+     "none",
+     8.0167,
+     8.0167
+    ],
+    [
+     "lawrenceWestStation",
+     8.75,
+     9.0167
+    ],
+    [
+     "none",
+     9.7167,
+     9.7167
+    ],
+    [
+     "lawrenceWestStation",
+     10.3667,
+     10.6333
+    ],
+    [
+     "none",
+     11.3333,
+     11.3833
+    ],
+    [
+     "lawrenceWestStation",
+     12.0333,
+     12.3
+    ],
+    [
+     "none",
+     13.0,
+     13.05
+    ],
+    [
+     "lawrenceWestStation",
+     13.7,
+     13.95
+    ],
+    [
+     "none",
+     14.6667,
+     14.8833
+    ],
+    [
+     "lawrenceWestStation",
+     15.6833,
+     15.7667
+    ],
+    [
+     "none",
+     16.6167,
+     16.6833
+    ],
+    [
+     "lawrenceWestStation",
+     17.4833,
+     17.5667
+    ],
+    [
+     "none",
+     18.35,
+     18.5
+    ],
+    [
+     "lawrenceWestStation",
+     19.15,
+     19.2667
+    ],
+    [
+     "none",
+     19.9667,
+     20.0333
+    ],
+    [
+     "lawrenceWestStation",
+     20.6167,
+     20.75
+    ],
+    [
+     "none",
+     21.3667,
+     21.3667
+    ],
+    [
+     "lawrenceWestStation",
+     21.95,
+     22.0333
+    ],
+    [
+     "none",
+     22.6167,
+     22.6167
+    ],
+    [
+     "lawrenceWestStation",
+     23.1,
+     23.2333
+    ],
+    [
+     "none",
+     23.8167,
+     23.8167
+    ],
+    [
+     "lawrenceWestStation",
+     24.3,
+     24.4333
+    ],
+    [
+     "none",
+     25.0167,
+     25.1167
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5216160"
+   ],
+   "pullout_h": 5.3675,
+   "pullin_h": 20.0893,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.034,
+     "dur_h": 0.0592,
+     "speed": 17.48,
+     "f_stop": 84.51,
+     "start_h": 5.6908,
+     "end_h": 5.75,
+     "dead_km": 9.7,
+     "svc_h": 0.4158
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6,
+     "speed": 18.81,
+     "f_stop": 68.33,
+     "start_h": 5.7833,
+     "end_h": 6.3833,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 6.5833,
+     "end_h": 7.2833,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 7.35,
+     "end_h": 8.0833,
+     "dead_km": 0.0,
+     "svc_h": 0.95
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 8.3,
+     "end_h": 9.05,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 9.05,
+     "end_h": 9.7,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 9.9667,
+     "end_h": 10.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 10.7167,
+     "end_h": 11.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 11.6333,
+     "end_h": 12.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 12.3833,
+     "end_h": 13.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 13.3,
+     "end_h": 14.0,
+     "dead_km": 0.0,
+     "svc_h": 0.7333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6667,
+     "speed": 16.93,
+     "f_stop": 61.5,
+     "start_h": 14.0333,
+     "end_h": 14.7,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 14.8,
+     "end_h": 15.65,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 15.7833,
+     "end_h": 16.5833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 16.6667,
+     "end_h": 17.5167,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 17.5833,
+     "end_h": 18.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.8167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 18.4,
+     "end_h": 19.1,
+     "dead_km": 0.0,
+     "svc_h": 0.7
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 19.1,
+     "end_h": 19.75,
+     "dead_km": 10.18,
+     "svc_h": 0.9893
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     5.75,
+     5.7833
+    ],
+    [
+     "lawrenceWestStation",
+     6.3833,
+     6.5833
+    ],
+    [
+     "none",
+     7.2833,
+     7.35
+    ],
+    [
+     "lawrenceWestStation",
+     8.0833,
+     8.3
+    ],
+    [
+     "none",
+     9.05,
+     9.05
+    ],
+    [
+     "lawrenceWestStation",
+     9.7,
+     9.9667
+    ],
+    [
+     "none",
+     10.6667,
+     10.7167
+    ],
+    [
+     "lawrenceWestStation",
+     11.3667,
+     11.6333
+    ],
+    [
+     "none",
+     12.3333,
+     12.3833
+    ],
+    [
+     "lawrenceWestStation",
+     13.0333,
+     13.3
+    ],
+    [
+     "none",
+     14.0,
+     14.0333
+    ],
+    [
+     "lawrenceWestStation",
+     14.7,
+     14.8
+    ],
+    [
+     "none",
+     15.65,
+     15.7833
+    ],
+    [
+     "lawrenceWestStation",
+     16.5833,
+     16.6667
+    ],
+    [
+     "none",
+     17.5167,
+     17.5833
+    ],
+    [
+     "lawrenceWestStation",
+     18.3167,
+     18.4
+    ],
+    [
+     "none",
+     19.1,
+     19.1
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5213130"
+   ],
+   "pullout_h": 5.2407,
+   "pullin_h": 26.6273,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.2486,
+     "speed": 19.16,
+     "f_stop": 62.47,
+     "start_h": 5.7014,
+     "end_h": 6.95,
+     "dead_km": 13.82,
+     "svc_h": 1.9593
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3667,
+     "speed": 17.34,
+     "f_stop": 52.68,
+     "start_h": 7.2,
+     "end_h": 8.5667,
+     "dead_km": 0.0,
+     "svc_h": 1.4522
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3478,
+     "speed": 17.75,
+     "f_stop": 57.87,
+     "start_h": 8.6522,
+     "end_h": 10.0,
+     "dead_km": 0.0,
+     "svc_h": 1.5311
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 10.1833,
+     "end_h": 11.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 11.6189,
+     "end_h": 12.95,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 13.1833,
+     "end_h": 14.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.3697
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 14.5531,
+     "end_h": 15.95,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 15.95,
+     "end_h": 16.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 16.2167,
+     "end_h": 17.4667,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.2636,
+     "speed": 17.02,
+     "f_stop": 46.69,
+     "start_h": 17.6031,
+     "end_h": 18.8667,
+     "dead_km": 0.0,
+     "svc_h": 1.2636
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 18.8667,
+     "end_h": 18.95,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 18.95,
+     "end_h": 20.0167,
+     "dead_km": 0.0,
+     "svc_h": 1.1183
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.1317,
+     "speed": 21.14,
+     "f_stop": 68.92,
+     "start_h": 20.0683,
+     "end_h": 21.2,
+     "dead_km": 0.0,
+     "svc_h": 1.215
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.05,
+     "speed": 22.57,
+     "f_stop": 68.57,
+     "start_h": 21.2833,
+     "end_h": 22.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.2014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 22.4847,
+     "end_h": 23.4,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 23.4,
+     "end_h": 23.45,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 23.4667,
+     "end_h": 24.25,
+     "dead_km": 0.0,
+     "svc_h": 0.9014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 24.3681,
+     "end_h": 25.2833,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 25.2833,
+     "end_h": 25.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.8333,
+     "speed": 23.31,
+     "f_stop": 69.6,
+     "start_h": 25.3333,
+     "end_h": 26.1667,
+     "dead_km": 13.82,
+     "svc_h": 1.294
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     6.95,
+     7.2
+    ],
+    [
+     "lawrenceStation2",
+     8.5667,
+     8.6522
+    ],
+    [
+     "westwoodSquareTerminal",
+     10.0,
+     10.1833
+    ],
+    [
+     "lawrenceStation2",
+     11.4833,
+     11.6189
+    ],
+    [
+     "westwoodSquareTerminal",
+     12.95,
+     13.1833
+    ],
+    [
+     "lawrenceStation2",
+     14.4833,
+     14.5531
+    ],
+    [
+     "none",
+     15.95,
+     15.95
+    ],
+    [
+     "pearsonAirportTerminal",
+     16.0333,
+     16.2167
+    ],
+    [
+     "lawrenceStation2",
+     17.4667,
+     17.6031
+    ],
+    [
+     "none",
+     18.8667,
+     18.8667
+    ],
+    [
+     "pearsonAirportTerminal",
+     18.95,
+     18.95
+    ],
+    [
+     "lawrenceStation2",
+     20.0167,
+     20.0683
+    ],
+    [
+     "westwoodSquareTerminal",
+     21.2,
+     21.2833
+    ],
+    [
+     "lawrenceStation2",
+     22.3333,
+     22.4847
+    ],
+    [
+     "none",
+     23.4,
+     23.4
+    ],
+    [
+     "pearsonAirportTerminal",
+     23.45,
+     23.4667
+    ],
+    [
+     "lawrenceStation2",
+     24.25,
+     24.3681
+    ],
+    [
+     "none",
+     25.2833,
+     25.2833
+    ],
+    [
+     "pearsonAirportTerminal",
+     25.3333,
+     25.3333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5217170"
+   ],
+   "pullout_h": 5.466,
+   "pullin_h": 26.62,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8333,
+     "speed": 17.44,
+     "f_stop": 66.0,
+     "start_h": 5.7167,
+     "end_h": 6.55,
+     "dead_km": 7.52,
+     "svc_h": 1.1173
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0167,
+     "speed": 14.31,
+     "f_stop": 52.13,
+     "start_h": 6.5833,
+     "end_h": 7.6,
+     "dead_km": 0.0,
+     "svc_h": 1.15
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.15,
+     "speed": 12.64,
+     "f_stop": 47.83,
+     "start_h": 7.7333,
+     "end_h": 8.8833,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 9.0,
+     "end_h": 10.0,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 10.0333,
+     "end_h": 11.0,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 11.0167,
+     "end_h": 12.0,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 12.0333,
+     "end_h": 13.0,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 13.0167,
+     "end_h": 14.0,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1,
+     "speed": 13.21,
+     "f_stop": 50.0,
+     "start_h": 14.0333,
+     "end_h": 15.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 15.3,
+     "end_h": 16.5833,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 16.7333,
+     "end_h": 17.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 18.05,
+     "end_h": 19.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.35
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0,
+     "speed": 14.53,
+     "f_stop": 55.0,
+     "start_h": 19.4,
+     "end_h": 20.4,
+     "dead_km": 0.0,
+     "svc_h": 1.1333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9,
+     "speed": 16.16,
+     "f_stop": 58.89,
+     "start_h": 20.5333,
+     "end_h": 21.4333,
+     "dead_km": 0.0,
+     "svc_h": 1.05
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9167,
+     "speed": 15.86,
+     "f_stop": 60.0,
+     "start_h": 21.5833,
+     "end_h": 22.5,
+     "dead_km": 0.0,
+     "svc_h": 0.95
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 22.5333,
+     "end_h": 23.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8,
+     "speed": 18.17,
+     "f_stop": 68.75,
+     "start_h": 23.4667,
+     "end_h": 24.2667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.7833,
+     "speed": 18.57,
+     "f_stop": 67.66,
+     "start_h": 24.45,
+     "end_h": 25.2333,
+     "dead_km": 0.0,
+     "svc_h": 0.9
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7167,
+     "speed": 20.28,
+     "f_stop": 76.74,
+     "start_h": 25.35,
+     "end_h": 26.0667,
+     "dead_km": 16.6,
+     "svc_h": 1.27
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     6.55,
+     6.5833
+    ],
+    [
+     "theWestwayRoyal",
+     7.6,
+     7.7333
+    ],
+    [
+     "raabBlvdHospital",
+     8.8833,
+     9.0
+    ],
+    [
+     "theWestwayRoyal",
+     10.0,
+     10.0333
+    ],
+    [
+     "raabBlvdHospital",
+     11.0,
+     11.0167
+    ],
+    [
+     "theWestwayRoyal",
+     12.0,
+     12.0333
+    ],
+    [
+     "raabBlvdHospital",
+     13.0,
+     13.0167
+    ],
+    [
+     "theWestwayRoyal",
+     14.0,
+     14.0333
+    ],
+    [
+     "raabBlvdHospital",
+     15.1333,
+     15.3
+    ],
+    [
+     "theWestwayRoyal",
+     16.5833,
+     16.7333
+    ],
+    [
+     "raabBlvdHospital",
+     17.9333,
+     18.05
+    ],
+    [
+     "theWestwayRoyal",
+     19.1333,
+     19.4
+    ],
+    [
+     "raabBlvdHospital",
+     20.4,
+     20.5333
+    ],
+    [
+     "theWestwayRoyal",
+     21.4333,
+     21.5833
+    ],
+    [
+     "raabBlvdHospital",
+     22.5,
+     22.5333
+    ],
+    [
+     "theWestwayRoyal",
+     23.3333,
+     23.4667
+    ],
+    [
+     "raabBlvdHospital",
+     24.2667,
+     24.45
+    ],
+    [
+     "theWestwayRoyal",
+     25.2333,
+     25.35
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 2,
+   "gtfs_blocks": [
+    "5229292",
+    "5231311"
+   ],
+   "pullout_h": 5.3574,
+   "pullin_h": 26.1673,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0819,
+     "speed": 19.88,
+     "f_stop": 54.53,
+     "start_h": 5.8181,
+     "end_h": 6.9,
+     "dead_km": 13.82,
+     "svc_h": 1.5426
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 6.9,
+     "end_h": 6.9833,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1333,
+     "speed": 17.14,
+     "f_stop": 51.18,
+     "start_h": 6.9833,
+     "end_h": 8.1167,
+     "dead_km": 13.82,
+     "svc_h": 1.594
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.2167,
+     "speed": 11.95,
+     "f_stop": 43.56,
+     "start_h": 13.8167,
+     "end_h": 15.0333,
+     "dead_km": 16.6,
+     "svc_h": 1.97
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 15.2333,
+     "end_h": 16.4333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 16.5,
+     "end_h": 17.7833,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 17.9333,
+     "end_h": 18.9,
+     "dead_km": 0.0,
+     "svc_h": 1.0
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 18.9333,
+     "end_h": 20.0167,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 20.3667,
+     "end_h": 21.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8333,
+     "speed": 17.45,
+     "f_stop": 63.6,
+     "start_h": 21.45,
+     "end_h": 22.2833,
+     "dead_km": 0.0,
+     "svc_h": 1.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7667,
+     "speed": 18.96,
+     "f_stop": 71.74,
+     "start_h": 22.5333,
+     "end_h": 23.3,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 23.3333,
+     "end_h": 24.1333,
+     "dead_km": 0.0,
+     "svc_h": 0.85
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8,
+     "speed": 18.17,
+     "f_stop": 68.75,
+     "start_h": 24.1833,
+     "end_h": 24.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.7,
+     "speed": 20.78,
+     "f_stop": 75.71,
+     "start_h": 25.2167,
+     "end_h": 25.9167,
+     "dead_km": 7.52,
+     "svc_h": 0.9507
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.9,
+     6.9
+    ],
+    [
+     "pearsonAirportTerminal",
+     6.9833,
+     6.9833
+    ],
+    [
+     "depot",
+     8.5773,
+     13.2633
+    ],
+    [
+     "theWestwayRoyal",
+     15.0333,
+     15.2333
+    ],
+    [
+     "raabBlvdHospital",
+     16.4333,
+     16.5
+    ],
+    [
+     "theWestwayRoyal",
+     17.7833,
+     17.9333
+    ],
+    [
+     "raabBlvdHospital",
+     18.9,
+     18.9333
+    ],
+    [
+     "theWestwayRoyal",
+     20.0167,
+     20.3667
+    ],
+    [
+     "raabBlvdHospital",
+     21.3333,
+     21.45
+    ],
+    [
+     "theWestwayRoyal",
+     22.2833,
+     22.5333
+    ],
+    [
+     "raabBlvdHospital",
+     23.3,
+     23.3333
+    ],
+    [
+     "theWestwayRoyal",
+     24.1333,
+     24.1833
+    ],
+    [
+     "raabBlvdHospital",
+     24.9833,
+     25.2167
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5222220"
+   ],
+   "pullout_h": 5.6993,
+   "pullin_h": 22.0867,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8667,
+     "speed": 16.77,
+     "f_stop": 63.46,
+     "start_h": 5.95,
+     "end_h": 6.8167,
+     "dead_km": 7.52,
+     "svc_h": 1.1507
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 6.85,
+     "end_h": 7.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.15,
+     "speed": 12.64,
+     "f_stop": 47.83,
+     "start_h": 8.0667,
+     "end_h": 9.2167,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 9.3333,
+     "end_h": 10.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 10.3667,
+     "end_h": 11.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 11.35,
+     "end_h": 12.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 12.3667,
+     "end_h": 13.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 13.35,
+     "end_h": 14.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.25
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 14.6,
+     "end_h": 15.8,
+     "dead_km": 0.0,
+     "svc_h": 1.3
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 15.9,
+     "end_h": 17.1833,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1667,
+     "speed": 12.46,
+     "f_stop": 47.14,
+     "start_h": 17.3333,
+     "end_h": 18.5,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 18.6,
+     "end_h": 19.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.3833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 19.9833,
+     "end_h": 20.95,
+     "dead_km": 0.0,
+     "svc_h": 1.1833
+    },
+    {
+     "route": "11",
+     "dist_km": 3.341,
+     "dur_h": 0.1667,
+     "speed": 20.04,
+     "f_stop": 90.0,
+     "start_h": 21.1667,
+     "end_h": 21.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "11",
+     "dist_km": 2.874,
+     "dur_h": 0.15,
+     "speed": 19.16,
+     "f_stop": 86.67,
+     "start_h": 21.3833,
+     "end_h": 21.5333,
+     "dead_km": 16.6,
+     "svc_h": 0.7033
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     6.8167,
+     6.85
+    ],
+    [
+     "theWestwayRoyal",
+     7.9333,
+     8.0667
+    ],
+    [
+     "raabBlvdHospital",
+     9.2167,
+     9.3333
+    ],
+    [
+     "theWestwayRoyal",
+     10.3333,
+     10.3667
+    ],
+    [
+     "raabBlvdHospital",
+     11.3333,
+     11.35
+    ],
+    [
+     "theWestwayRoyal",
+     12.3333,
+     12.3667
+    ],
+    [
+     "raabBlvdHospital",
+     13.3333,
+     13.35
+    ],
+    [
+     "theWestwayRoyal",
+     14.3333,
+     14.6
+    ],
+    [
+     "raabBlvdHospital",
+     15.8,
+     15.9
+    ],
+    [
+     "theWestwayRoyal",
+     17.1833,
+     17.3333
+    ],
+    [
+     "raabBlvdHospital",
+     18.5,
+     18.6
+    ],
+    [
+     "theWestwayRoyal",
+     19.6833,
+     19.9833
+    ],
+    [
+     "raabBlvdHospital",
+     20.95,
+     21.1667
+    ],
+    [
+     "lawrenceStation2",
+     21.3333,
+     21.3833
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5219190"
+   ],
+   "pullout_h": 5.6342,
+   "pullin_h": 21.956,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.034,
+     "dur_h": 0.0592,
+     "speed": 17.48,
+     "f_stop": 84.51,
+     "start_h": 5.9575,
+     "end_h": 6.0167,
+     "dead_km": 9.7,
+     "svc_h": 0.4825
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6,
+     "speed": 18.81,
+     "f_stop": 68.33,
+     "start_h": 6.1167,
+     "end_h": 6.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 6.9167,
+     "end_h": 7.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 7.6833,
+     "end_h": 8.4167,
+     "dead_km": 0.0,
+     "svc_h": 0.9667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7333,
+     "speed": 16.22,
+     "f_stop": 58.64,
+     "start_h": 8.65,
+     "end_h": 9.3833,
+     "dead_km": 0.0,
+     "svc_h": 0.7333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 9.3833,
+     "end_h": 10.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 10.3,
+     "end_h": 11.0,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 11.05,
+     "end_h": 11.7,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 11.9667,
+     "end_h": 12.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 12.7167,
+     "end_h": 13.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 13.6333,
+     "end_h": 14.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 14.5667,
+     "end_h": 15.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 15.4667,
+     "end_h": 16.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 16.3833,
+     "end_h": 17.1833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.8167,
+     "speed": 14.56,
+     "f_stop": 52.65,
+     "start_h": 17.2667,
+     "end_h": 18.0833,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 18.2,
+     "end_h": 18.85,
+     "dead_km": 0.0,
+     "svc_h": 0.7333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 18.9333,
+     "end_h": 19.6333,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6,
+     "speed": 18.81,
+     "f_stop": 68.33,
+     "start_h": 19.7,
+     "end_h": 20.3,
+     "dead_km": 0.0,
+     "svc_h": 0.7167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6167,
+     "speed": 19.29,
+     "f_stop": 69.73,
+     "start_h": 20.4167,
+     "end_h": 21.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5833,
+     "speed": 19.35,
+     "f_stop": 70.29,
+     "start_h": 21.0333,
+     "end_h": 21.6167,
+     "dead_km": 10.18,
+     "svc_h": 0.9227
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.0167,
+     6.1167
+    ],
+    [
+     "lawrenceWestStation",
+     6.7167,
+     6.9167
+    ],
+    [
+     "none",
+     7.6667,
+     7.6833
+    ],
+    [
+     "lawrenceWestStation",
+     8.4167,
+     8.65
+    ],
+    [
+     "none",
+     9.3833,
+     9.3833
+    ],
+    [
+     "lawrenceWestStation",
+     10.0333,
+     10.3
+    ],
+    [
+     "none",
+     11.0,
+     11.05
+    ],
+    [
+     "lawrenceWestStation",
+     11.7,
+     11.9667
+    ],
+    [
+     "none",
+     12.6667,
+     12.7167
+    ],
+    [
+     "lawrenceWestStation",
+     13.3667,
+     13.6333
+    ],
+    [
+     "none",
+     14.3333,
+     14.5667
+    ],
+    [
+     "lawrenceWestStation",
+     15.3667,
+     15.4667
+    ],
+    [
+     "none",
+     16.3167,
+     16.3833
+    ],
+    [
+     "lawrenceWestStation",
+     17.1833,
+     17.2667
+    ],
+    [
+     "none",
+     18.0833,
+     18.2
+    ],
+    [
+     "lawrenceWestStation",
+     18.85,
+     18.9333
+    ],
+    [
+     "none",
+     19.6333,
+     19.7
+    ],
+    [
+     "lawrenceWestStation",
+     20.3,
+     20.4167
+    ],
+    [
+     "none",
+     21.0333,
+     21.0333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5220200"
+   ],
+   "pullout_h": 5.6607,
+   "pullin_h": 25.64,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6833,
+     "speed": 17.4,
+     "f_stop": 62.93,
+     "start_h": 6.0,
+     "end_h": 6.6833,
+     "dead_km": 10.18,
+     "svc_h": 1.0393
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.6333,
+     "speed": 17.82,
+     "f_stop": 64.74,
+     "start_h": 6.7,
+     "end_h": 7.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 7.6167,
+     "end_h": 8.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 8.3667,
+     "end_h": 9.1,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 9.3,
+     "end_h": 10.0,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 10.05,
+     "end_h": 10.7,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 10.9667,
+     "end_h": 11.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 11.7167,
+     "end_h": 12.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 12.6333,
+     "end_h": 13.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 13.3833,
+     "end_h": 14.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7333,
+     "speed": 16.22,
+     "f_stop": 58.64,
+     "start_h": 14.2667,
+     "end_h": 15.0,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 15.1833,
+     "end_h": 15.9833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 16.0667,
+     "end_h": 16.9167,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 16.9833,
+     "end_h": 17.7833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 17.8667,
+     "end_h": 18.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 18.8,
+     "end_h": 19.45,
+     "dead_km": 0.0,
+     "svc_h": 0.8167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 19.6167,
+     "end_h": 20.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5833,
+     "speed": 19.35,
+     "f_stop": 70.29,
+     "start_h": 20.3667,
+     "end_h": 20.95,
+     "dead_km": 0.0,
+     "svc_h": 0.7167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6167,
+     "speed": 19.29,
+     "f_stop": 69.73,
+     "start_h": 21.0833,
+     "end_h": 21.7,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.5333,
+     "speed": 21.16,
+     "f_stop": 76.87,
+     "start_h": 21.7,
+     "end_h": 22.2333,
+     "dead_km": 0.0,
+     "svc_h": 0.6333
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 22.3333,
+     "end_h": 22.9167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 22.9167,
+     "end_h": 23.4,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 23.5333,
+     "end_h": 24.1167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 24.1167,
+     "end_h": 24.6,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 24.7333,
+     "end_h": 25.3167,
+     "dead_km": 9.7,
+     "svc_h": 0.9067
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.6833,
+     6.7
+    ],
+    [
+     "lawrenceWestStation",
+     7.3333,
+     7.6167
+    ],
+    [
+     "none",
+     8.3667,
+     8.3667
+    ],
+    [
+     "lawrenceWestStation",
+     9.1,
+     9.3
+    ],
+    [
+     "none",
+     10.0,
+     10.05
+    ],
+    [
+     "lawrenceWestStation",
+     10.7,
+     10.9667
+    ],
+    [
+     "none",
+     11.6667,
+     11.7167
+    ],
+    [
+     "lawrenceWestStation",
+     12.3667,
+     12.6333
+    ],
+    [
+     "none",
+     13.3333,
+     13.3833
+    ],
+    [
+     "lawrenceWestStation",
+     14.0333,
+     14.2667
+    ],
+    [
+     "none",
+     15.0,
+     15.1833
+    ],
+    [
+     "lawrenceWestStation",
+     15.9833,
+     16.0667
+    ],
+    [
+     "none",
+     16.9167,
+     16.9833
+    ],
+    [
+     "lawrenceWestStation",
+     17.7833,
+     17.8667
+    ],
+    [
+     "none",
+     18.6167,
+     18.8
+    ],
+    [
+     "lawrenceWestStation",
+     19.45,
+     19.6167
+    ],
+    [
+     "none",
+     20.3167,
+     20.3667
+    ],
+    [
+     "lawrenceWestStation",
+     20.95,
+     21.0833
+    ],
+    [
+     "none",
+     21.7,
+     21.7
+    ],
+    [
+     "lawrenceWestStation",
+     22.2333,
+     22.3333
+    ],
+    [
+     "none",
+     22.9167,
+     22.9167
+    ],
+    [
+     "lawrenceWestStation",
+     23.4,
+     23.5333
+    ],
+    [
+     "none",
+     24.1167,
+     24.1167
+    ],
+    [
+     "lawrenceWestStation",
+     24.6,
+     24.7333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5218180"
+   ],
+   "pullout_h": 5.5407,
+   "pullin_h": 27.3073,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.0819,
+     "speed": 19.88,
+     "f_stop": 54.53,
+     "start_h": 6.0014,
+     "end_h": 7.0833,
+     "dead_km": 13.82,
+     "svc_h": 1.5426
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 7.0833,
+     "end_h": 7.1667,
+     "dead_km": 0.0,
+     "svc_h": 0.1667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.15,
+     "speed": 16.89,
+     "f_stop": 50.43,
+     "start_h": 7.25,
+     "end_h": 8.4,
+     "dead_km": 0.0,
+     "svc_h": 1.2356
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1811,
+     "speed": 18.21,
+     "f_stop": 49.95,
+     "start_h": 8.4856,
+     "end_h": 9.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.1811
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 9.6667,
+     "end_h": 9.75,
+     "dead_km": 0.0,
+     "svc_h": 0.25
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 9.9167,
+     "end_h": 10.9833,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 11.1189,
+     "end_h": 12.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 12.2667,
+     "end_h": 12.35,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 12.5833,
+     "end_h": 13.65,
+     "dead_km": 0.0,
+     "svc_h": 1.1689
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 13.7522,
+     "end_h": 14.95,
+     "dead_km": 0.0,
+     "svc_h": 1.1978
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 14.95,
+     "end_h": 15.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 15.1667,
+     "end_h": 16.4167,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5636,
+     "speed": 15.3,
+     "f_stop": 49.88,
+     "start_h": 16.5531,
+     "end_h": 18.1167,
+     "dead_km": 0.0,
+     "svc_h": 1.8469
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 18.4,
+     "end_h": 19.7,
+     "dead_km": 0.0,
+     "svc_h": 1.3358
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.2142,
+     "speed": 19.71,
+     "f_stop": 64.24,
+     "start_h": 19.7358,
+     "end_h": 20.95,
+     "dead_km": 0.0,
+     "svc_h": 1.2475
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.1,
+     "speed": 21.54,
+     "f_stop": 65.45,
+     "start_h": 20.9833,
+     "end_h": 22.0833,
+     "dead_km": 0.0,
+     "svc_h": 1.1347
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 22.1181,
+     "end_h": 23.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 23.0333,
+     "end_h": 23.0833,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 23.0833,
+     "end_h": 23.8667,
+     "dead_km": 0.0,
+     "svc_h": 0.9014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 23.9847,
+     "end_h": 24.9,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 24.9,
+     "end_h": 24.95,
+     "dead_km": 0.0,
+     "svc_h": 0.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.8333,
+     "speed": 23.31,
+     "f_stop": 69.6,
+     "start_h": 24.9667,
+     "end_h": 25.8,
+     "dead_km": 0.0,
+     "svc_h": 1.0678
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.8489,
+     "speed": 25.34,
+     "f_stop": 69.5,
+     "start_h": 26.0344,
+     "end_h": 26.8833,
+     "dead_km": 12.72,
+     "svc_h": 1.2729
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     7.0833,
+     7.0833
+    ],
+    [
+     "pearsonAirportTerminal",
+     7.1667,
+     7.25
+    ],
+    [
+     "lawrenceStation2",
+     8.4,
+     8.4856
+    ],
+    [
+     "none",
+     9.6667,
+     9.6667
+    ],
+    [
+     "pearsonAirportTerminal",
+     9.75,
+     9.9167
+    ],
+    [
+     "lawrenceStation2",
+     10.9833,
+     11.1189
+    ],
+    [
+     "none",
+     12.2667,
+     12.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     12.35,
+     12.5833
+    ],
+    [
+     "lawrenceStation2",
+     13.65,
+     13.7522
+    ],
+    [
+     "none",
+     14.95,
+     14.95
+    ],
+    [
+     "pearsonAirportTerminal",
+     15.0333,
+     15.1667
+    ],
+    [
+     "lawrenceStation2",
+     16.4167,
+     16.5531
+    ],
+    [
+     "westwoodSquareTerminal",
+     18.1167,
+     18.4
+    ],
+    [
+     "lawrenceStation2",
+     19.7,
+     19.7358
+    ],
+    [
+     "westwoodSquareTerminal",
+     20.95,
+     20.9833
+    ],
+    [
+     "lawrenceStation2",
+     22.0833,
+     22.1181
+    ],
+    [
+     "none",
+     23.0333,
+     23.0333
+    ],
+    [
+     "pearsonAirportTerminal",
+     23.0833,
+     23.0833
+    ],
+    [
+     "lawrenceStation2",
+     23.8667,
+     23.9847
+    ],
+    [
+     "none",
+     24.9,
+     24.9
+    ],
+    [
+     "pearsonAirportTerminal",
+     24.95,
+     24.9667
+    ],
+    [
+     "lawrenceStation2",
+     25.8,
+     26.0344
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 3,
+   "gtfs_blocks": [
+    "5230302",
+    "5232321",
+    "5270382"
+   ],
+   "pullout_h": 5.8493,
+   "pullin_h": 27.18,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0333,
+     "speed": 14.07,
+     "f_stop": 53.23,
+     "start_h": 6.1,
+     "end_h": 7.1333,
+     "dead_km": 7.52,
+     "svc_h": 1.434
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 7.2833,
+     "end_h": 8.3667,
+     "dead_km": 7.52,
+     "svc_h": 1.334
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.2978,
+     "speed": 16.57,
+     "f_stop": 45.46,
+     "start_h": 14.1522,
+     "end_h": 15.45,
+     "dead_km": 13.82,
+     "svc_h": 1.7584
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 15.45,
+     "end_h": 15.5333,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 15.7667,
+     "end_h": 17.0167,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3303,
+     "speed": 16.17,
+     "f_stop": 44.35,
+     "start_h": 17.1531,
+     "end_h": 18.4833,
+     "dead_km": 12.72,
+     "svc_h": 1.7543
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6333,
+     "speed": 18.78,
+     "f_stop": 67.89,
+     "start_h": 21.7,
+     "end_h": 22.3333,
+     "dead_km": 10.18,
+     "svc_h": 0.9727
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 22.3333,
+     "end_h": 22.8167,
+     "dead_km": 0.0,
+     "svc_h": 0.6
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 22.9333,
+     "end_h": 23.5167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 23.5167,
+     "end_h": 24.0,
+     "dead_km": 0.0,
+     "svc_h": 0.6167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.5833,
+     "speed": 20.39,
+     "f_stop": 73.71,
+     "start_h": 24.1333,
+     "end_h": 24.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.5833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.4833,
+     "speed": 23.35,
+     "f_stop": 84.83,
+     "start_h": 24.7167,
+     "end_h": 25.2,
+     "dead_km": 0.0,
+     "svc_h": 0.7833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.4833,
+     "speed": 24.61,
+     "f_stop": 88.97,
+     "start_h": 25.5,
+     "end_h": 25.9833,
+     "dead_km": 7.828,
+     "svc_h": 0.9
+    },
+    {
+     "route": "900",
+     "dist_km": 13.651,
+     "dur_h": 0.2667,
+     "speed": 51.19,
+     "f_stop": 15.0,
+     "start_h": 26.4,
+     "end_h": 26.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.3
+    },
+    {
+     "route": "300",
+     "dist_km": 1.521,
+     "dur_h": 0.05,
+     "speed": 30.41,
+     "f_stop": 40.0,
+     "start_h": 26.7,
+     "end_h": 26.75,
+     "dead_km": 12.9,
+     "svc_h": 0.48
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     7.1333,
+     7.2833
+    ],
+    [
+     "depot",
+     8.6173,
+     13.6916
+    ],
+    [
+     "none",
+     15.45,
+     15.45
+    ],
+    [
+     "pearsonAirportTerminal",
+     15.5333,
+     15.7667
+    ],
+    [
+     "lawrenceStation2",
+     17.0167,
+     17.1531
+    ],
+    [
+     "depot",
+     18.9073,
+     21.3607
+    ],
+    [
+     "none",
+     22.3333,
+     22.3333
+    ],
+    [
+     "lawrenceWestStation",
+     22.8167,
+     22.9333
+    ],
+    [
+     "none",
+     23.5167,
+     23.5167
+    ],
+    [
+     "lawrenceWestStation",
+     24.0,
+     24.1333
+    ],
+    [
+     "none",
+     24.7167,
+     24.7167
+    ],
+    [
+     "lawrenceWestStation",
+     25.2,
+     25.5
+    ],
+    [
+     "none",
+     26.2443,
+     26.4
+    ],
+    [
+     "none",
+     26.6667,
+     26.7
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5221210"
+   ],
+   "pullout_h": 5.6907,
+   "pullin_h": 19.3023,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.2986,
+     "speed": 18.43,
+     "f_stop": 60.06,
+     "start_h": 6.1514,
+     "end_h": 7.45,
+     "dead_km": 13.82,
+     "svc_h": 2.0093
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3667,
+     "speed": 17.34,
+     "f_stop": 52.68,
+     "start_h": 7.7,
+     "end_h": 9.0667,
+     "dead_km": 0.0,
+     "svc_h": 1.4189
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 9.1189,
+     "end_h": 10.2667,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 10.2667,
+     "end_h": 10.35,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 10.5833,
+     "end_h": 11.65,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 11.7856,
+     "end_h": 12.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 12.9333,
+     "end_h": 13.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 13.25,
+     "end_h": 14.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3311,
+     "speed": 16.16,
+     "f_stop": 44.32,
+     "start_h": 14.4522,
+     "end_h": 15.7833,
+     "dead_km": 0.0,
+     "svc_h": 1.3311
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 15.7833,
+     "end_h": 15.8667,
+     "dead_km": 0.0,
+     "svc_h": 0.2833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 16.0667,
+     "end_h": 17.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.4469,
+     "speed": 16.54,
+     "f_stop": 53.91,
+     "start_h": 17.4531,
+     "end_h": 18.9,
+     "dead_km": 12.07,
+     "svc_h": 1.8493
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     7.45,
+     7.7
+    ],
+    [
+     "lawrenceStation2",
+     9.0667,
+     9.1189
+    ],
+    [
+     "none",
+     10.2667,
+     10.2667
+    ],
+    [
+     "pearsonAirportTerminal",
+     10.35,
+     10.5833
+    ],
+    [
+     "lawrenceStation2",
+     11.65,
+     11.7856
+    ],
+    [
+     "none",
+     12.9333,
+     12.9333
+    ],
+    [
+     "pearsonAirportTerminal",
+     13.0167,
+     13.25
+    ],
+    [
+     "lawrenceStation2",
+     14.3167,
+     14.4522
+    ],
+    [
+     "none",
+     15.7833,
+     15.7833
+    ],
+    [
+     "pearsonAirportTerminal",
+     15.8667,
+     16.0667
+    ],
+    [
+     "lawrenceStation2",
+     17.3167,
+     17.4531
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 2,
+   "gtfs_blocks": [
+    "5223230",
+    "5275392"
+   ],
+   "pullout_h": 5.944,
+   "pullin_h": 26.63,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.6833,
+     "speed": 17.4,
+     "f_stop": 62.93,
+     "start_h": 6.2833,
+     "end_h": 6.9667,
+     "dead_km": 10.18,
+     "svc_h": 1.0227
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7,
+     "speed": 16.12,
+     "f_stop": 58.57,
+     "start_h": 6.9667,
+     "end_h": 7.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.0
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.75,
+     "speed": 15.86,
+     "f_stop": 57.33,
+     "start_h": 7.9667,
+     "end_h": 8.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.7333,
+     "speed": 15.39,
+     "f_stop": 55.91,
+     "start_h": 8.7167,
+     "end_h": 9.45,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 9.6333,
+     "end_h": 10.3333,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 10.3833,
+     "end_h": 11.0333,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 11.3,
+     "end_h": 12.0,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 12.05,
+     "end_h": 12.7,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 12.9667,
+     "end_h": 13.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.65,
+     "speed": 17.37,
+     "f_stop": 63.08,
+     "start_h": 13.7167,
+     "end_h": 14.3667,
+     "dead_km": 0.0,
+     "svc_h": 0.7667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.8167,
+     "speed": 14.56,
+     "f_stop": 52.65,
+     "start_h": 14.4833,
+     "end_h": 15.3,
+     "dead_km": 0.0,
+     "svc_h": 1.0
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 15.4833,
+     "end_h": 16.2833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.85,
+     "speed": 13.99,
+     "f_stop": 50.59,
+     "start_h": 16.3667,
+     "end_h": 17.2167,
+     "dead_km": 0.0,
+     "svc_h": 0.9167
+    },
+    {
+     "route": "52",
+     "dist_km": 11.287,
+     "dur_h": 0.8,
+     "speed": 14.11,
+     "f_stop": 51.25,
+     "start_h": 17.2833,
+     "end_h": 18.0833,
+     "dead_km": 0.0,
+     "svc_h": 0.8667
+    },
+    {
+     "route": "52",
+     "dist_km": 11.893,
+     "dur_h": 0.7,
+     "speed": 16.99,
+     "f_stop": 61.43,
+     "start_h": 18.15,
+     "end_h": 18.85,
+     "dead_km": 9.7,
+     "svc_h": 1.0233
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 21.95,
+     "end_h": 22.9333,
+     "dead_km": 12.07,
+     "svc_h": 1.5037
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 23.0514,
+     "end_h": 24.1,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 24.2,
+     "end_h": 25.1833,
+     "dead_km": 0.0,
+     "svc_h": 1.0847
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.8653,
+     "speed": 24.86,
+     "f_stop": 68.19,
+     "start_h": 25.2847,
+     "end_h": 26.15,
+     "dead_km": 0.0,
+     "svc_h": 0.8653
+    },
+    {
+     "route": "352",
+     "dist_km": 1.56,
+     "dur_h": 0.05,
+     "speed": 31.2,
+     "f_stop": 40.0,
+     "start_h": 26.15,
+     "end_h": 26.2,
+     "dead_km": 12.9,
+     "svc_h": 0.48
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     6.9667,
+     6.9667
+    ],
+    [
+     "lawrenceWestStation",
+     7.6667,
+     7.9667
+    ],
+    [
+     "none",
+     8.7167,
+     8.7167
+    ],
+    [
+     "lawrenceWestStation",
+     9.45,
+     9.6333
+    ],
+    [
+     "none",
+     10.3333,
+     10.3833
+    ],
+    [
+     "lawrenceWestStation",
+     11.0333,
+     11.3
+    ],
+    [
+     "none",
+     12.0,
+     12.05
+    ],
+    [
+     "lawrenceWestStation",
+     12.7,
+     12.9667
+    ],
+    [
+     "none",
+     13.6667,
+     13.7167
+    ],
+    [
+     "lawrenceWestStation",
+     14.3667,
+     14.4833
+    ],
+    [
+     "none",
+     15.3,
+     15.4833
+    ],
+    [
+     "lawrenceWestStation",
+     16.2833,
+     16.3667
+    ],
+    [
+     "none",
+     17.2167,
+     17.2833
+    ],
+    [
+     "lawrenceWestStation",
+     18.0833,
+     18.15
+    ],
+    [
+     "depot",
+     19.1733,
+     21.5477
+    ],
+    [
+     "lawrenceStation2",
+     22.9333,
+     23.0514
+    ],
+    [
+     "westwoodSquareTerminal",
+     24.1,
+     24.2
+    ],
+    [
+     "lawrenceStation2",
+     25.1833,
+     25.2847
+    ],
+    [
+     "none",
+     26.15,
+     26.15
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5225250"
+   ],
+   "pullout_h": 6.1327,
+   "pullin_h": 20.5173,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.05,
+     "speed": 13.84,
+     "f_stop": 52.38,
+     "start_h": 6.3833,
+     "end_h": 7.4333,
+     "dead_km": 7.52,
+     "svc_h": 1.5007
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 7.6333,
+     "end_h": 8.7167,
+     "dead_km": 0.0,
+     "svc_h": 1.1333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1,
+     "speed": 13.21,
+     "f_stop": 50.0,
+     "start_h": 8.7667,
+     "end_h": 9.8667,
+     "dead_km": 0.0,
+     "svc_h": 1.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 10.0,
+     "end_h": 11.0,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 11.0333,
+     "end_h": 12.0,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 12.0167,
+     "end_h": 13.0,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0,
+     "speed": 14.53,
+     "f_stop": 55.0,
+     "start_h": 13.0333,
+     "end_h": 14.0333,
+     "dead_km": 0.0,
+     "svc_h": 1.05
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.2167,
+     "speed": 11.95,
+     "f_stop": 43.56,
+     "start_h": 14.0833,
+     "end_h": 15.3,
+     "dead_km": 0.0,
+     "svc_h": 1.45
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 15.5333,
+     "end_h": 16.7333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 16.8,
+     "end_h": 18.0833,
+     "dead_km": 0.0,
+     "svc_h": 1.4
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0333,
+     "speed": 14.07,
+     "f_stop": 53.23,
+     "start_h": 18.2,
+     "end_h": 19.2333,
+     "dead_km": 0.0,
+     "svc_h": 1.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 19.2667,
+     "end_h": 20.2667,
+     "dead_km": 7.52,
+     "svc_h": 1.2507
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     7.4333,
+     7.6333
+    ],
+    [
+     "theWestwayRoyal",
+     8.7167,
+     8.7667
+    ],
+    [
+     "raabBlvdHospital",
+     9.8667,
+     10.0
+    ],
+    [
+     "theWestwayRoyal",
+     11.0,
+     11.0333
+    ],
+    [
+     "raabBlvdHospital",
+     12.0,
+     12.0167
+    ],
+    [
+     "theWestwayRoyal",
+     13.0,
+     13.0333
+    ],
+    [
+     "raabBlvdHospital",
+     14.0333,
+     14.0833
+    ],
+    [
+     "theWestwayRoyal",
+     15.3,
+     15.5333
+    ],
+    [
+     "raabBlvdHospital",
+     16.7333,
+     16.8
+    ],
+    [
+     "theWestwayRoyal",
+     18.0833,
+     18.2
+    ],
+    [
+     "raabBlvdHospital",
+     19.2333,
+     19.2667
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5226260"
+   ],
+   "pullout_h": 6.481,
+   "pullin_h": 22.2023,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3667,
+     "speed": 17.34,
+     "f_stop": 52.68,
+     "start_h": 6.8833,
+     "end_h": 8.25,
+     "dead_km": 12.07,
+     "svc_h": 1.8379
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3811,
+     "speed": 17.32,
+     "f_stop": 56.48,
+     "start_h": 8.3189,
+     "end_h": 9.7,
+     "dead_km": 0.0,
+     "svc_h": 1.5311
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 9.85,
+     "end_h": 11.15,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3311,
+     "speed": 17.98,
+     "f_stop": 58.6,
+     "start_h": 11.2856,
+     "end_h": 12.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.5644
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.3,
+     "speed": 18.23,
+     "f_stop": 55.38,
+     "start_h": 12.85,
+     "end_h": 14.15,
+     "dead_km": 0.0,
+     "svc_h": 1.4356
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5144,
+     "speed": 15.8,
+     "f_stop": 51.5,
+     "start_h": 14.2856,
+     "end_h": 15.8,
+     "dead_km": 0.0,
+     "svc_h": 1.8311
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.5,
+     "speed": 15.8,
+     "f_stop": 48.0,
+     "start_h": 16.1167,
+     "end_h": 17.6167,
+     "dead_km": 0.0,
+     "svc_h": 1.6364
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3969,
+     "speed": 17.13,
+     "f_stop": 55.84,
+     "start_h": 17.7531,
+     "end_h": 19.15,
+     "dead_km": 0.0,
+     "svc_h": 1.5469
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.2333,
+     "speed": 19.21,
+     "f_stop": 58.38,
+     "start_h": 19.3,
+     "end_h": 20.5333,
+     "dead_km": 0.0,
+     "svc_h": 1.3683
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.1317,
+     "speed": 21.14,
+     "f_stop": 68.92,
+     "start_h": 20.6683,
+     "end_h": 21.8,
+     "dead_km": 12.07,
+     "svc_h": 1.534
+    }
+   ],
+   "dwells": [
+    [
+     "lawrenceStation2",
+     8.25,
+     8.3189
+    ],
+    [
+     "westwoodSquareTerminal",
+     9.7,
+     9.85
+    ],
+    [
+     "lawrenceStation2",
+     11.15,
+     11.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     12.6167,
+     12.85
+    ],
+    [
+     "lawrenceStation2",
+     14.15,
+     14.2856
+    ],
+    [
+     "westwoodSquareTerminal",
+     15.8,
+     16.1167
+    ],
+    [
+     "lawrenceStation2",
+     17.6167,
+     17.7531
+    ],
+    [
+     "westwoodSquareTerminal",
+     19.15,
+     19.3
+    ],
+    [
+     "lawrenceStation2",
+     20.5333,
+     20.6683
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5224240"
+   ],
+   "pullout_h": 6.4633,
+   "pullin_h": 19.1867,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0833,
+     "speed": 13.43,
+     "f_stop": 48.92,
+     "start_h": 7.0167,
+     "end_h": 8.1,
+     "dead_km": 16.6,
+     "svc_h": 1.9533
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.1,
+     "speed": 13.21,
+     "f_stop": 50.0,
+     "start_h": 8.4167,
+     "end_h": 9.5167,
+     "dead_km": 0.0,
+     "svc_h": 1.25
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0,
+     "speed": 14.54,
+     "f_stop": 53.0,
+     "start_h": 9.6667,
+     "end_h": 10.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 10.7,
+     "end_h": 11.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 11.6833,
+     "end_h": 12.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 12.7,
+     "end_h": 13.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 13.6833,
+     "end_h": 14.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.25
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 14.9333,
+     "end_h": 16.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 16.2,
+     "end_h": 17.4833,
+     "dead_km": 0.0,
+     "svc_h": 1.4333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.0,
+     "speed": 14.53,
+     "f_stop": 55.0,
+     "start_h": 17.6333,
+     "end_h": 18.6333,
+     "dead_km": 16.6,
+     "svc_h": 1.5533
+    }
+   ],
+   "dwells": [
+    [
+     "theWestwayRoyal",
+     8.1,
+     8.4167
+    ],
+    [
+     "raabBlvdHospital",
+     9.5167,
+     9.6667
+    ],
+    [
+     "theWestwayRoyal",
+     10.6667,
+     10.7
+    ],
+    [
+     "raabBlvdHospital",
+     11.6667,
+     11.6833
+    ],
+    [
+     "theWestwayRoyal",
+     12.6667,
+     12.7
+    ],
+    [
+     "raabBlvdHospital",
+     13.6667,
+     13.6833
+    ],
+    [
+     "theWestwayRoyal",
+     14.6667,
+     14.9333
+    ],
+    [
+     "raabBlvdHospital",
+     16.1333,
+     16.2
+    ],
+    [
+     "theWestwayRoyal",
+     17.4833,
+     17.6333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5227270"
+   ],
+   "pullout_h": 6.6916,
+   "pullin_h": 22.9107,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1978,
+     "speed": 17.96,
+     "f_stop": 49.26,
+     "start_h": 7.1522,
+     "end_h": 8.35,
+     "dead_km": 13.82,
+     "svc_h": 1.6584
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 8.35,
+     "end_h": 8.4333,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1,
+     "speed": 17.66,
+     "f_stop": 52.73,
+     "start_h": 8.5833,
+     "end_h": 9.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 9.7856,
+     "end_h": 10.9333,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 10.9333,
+     "end_h": 11.0167,
+     "dead_km": 0.0,
+     "svc_h": 0.3167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 11.25,
+     "end_h": 12.3167,
+     "dead_km": 0.0,
+     "svc_h": 1.2022
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1478,
+     "speed": 18.74,
+     "f_stop": 51.4,
+     "start_h": 12.4522,
+     "end_h": 13.6,
+     "dead_km": 0.0,
+     "svc_h": 1.1478
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 13.6,
+     "end_h": 13.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.2833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1167,
+     "speed": 17.4,
+     "f_stop": 51.94,
+     "start_h": 13.8833,
+     "end_h": 15.0,
+     "dead_km": 0.0,
+     "svc_h": 1.1697
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 15.0531,
+     "end_h": 16.45,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 16.45,
+     "end_h": 16.5333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 16.6667,
+     "end_h": 17.9167,
+     "dead_km": 0.0,
+     "svc_h": 1.3692
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1975,
+     "speed": 17.96,
+     "f_stop": 49.27,
+     "start_h": 18.0358,
+     "end_h": 19.2333,
+     "dead_km": 0.0,
+     "svc_h": 1.1975
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 19.2333,
+     "end_h": 19.3167,
+     "dead_km": 0.0,
+     "svc_h": 0.15
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0,
+     "speed": 19.43,
+     "f_stop": 58.0,
+     "start_h": 19.3833,
+     "end_h": 20.3833,
+     "dead_km": 0.0,
+     "svc_h": 1.135
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9983,
+     "speed": 21.54,
+     "f_stop": 59.1,
+     "start_h": 20.5183,
+     "end_h": 21.5167,
+     "dead_km": 0.0,
+     "svc_h": 0.9983
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 21.5167,
+     "end_h": 21.5667,
+     "dead_km": 0.0,
+     "svc_h": 0.1333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.8,
+     "speed": 24.28,
+     "f_stop": 72.5,
+     "start_h": 21.65,
+     "end_h": 22.45,
+     "dead_km": 13.82,
+     "svc_h": 1.2607
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     8.35,
+     8.35
+    ],
+    [
+     "pearsonAirportTerminal",
+     8.4333,
+     8.5833
+    ],
+    [
+     "lawrenceStation2",
+     9.6833,
+     9.7856
+    ],
+    [
+     "none",
+     10.9333,
+     10.9333
+    ],
+    [
+     "pearsonAirportTerminal",
+     11.0167,
+     11.25
+    ],
+    [
+     "lawrenceStation2",
+     12.3167,
+     12.4522
+    ],
+    [
+     "none",
+     13.6,
+     13.6
+    ],
+    [
+     "pearsonAirportTerminal",
+     13.6833,
+     13.8833
+    ],
+    [
+     "lawrenceStation2",
+     15.0,
+     15.0531
+    ],
+    [
+     "none",
+     16.45,
+     16.45
+    ],
+    [
+     "pearsonAirportTerminal",
+     16.5333,
+     16.6667
+    ],
+    [
+     "lawrenceStation2",
+     17.9167,
+     18.0358
+    ],
+    [
+     "none",
+     19.2333,
+     19.2333
+    ],
+    [
+     "pearsonAirportTerminal",
+     19.3167,
+     19.3833
+    ],
+    [
+     "lawrenceStation2",
+     20.3833,
+     20.5183
+    ],
+    [
+     "none",
+     21.5167,
+     21.5167
+    ],
+    [
+     "pearsonAirportTerminal",
+     21.5667,
+     21.65
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5228280"
+   ],
+   "pullout_h": 7.1827,
+   "pullin_h": 26.4173,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.15,
+     "speed": 12.64,
+     "f_stop": 47.83,
+     "start_h": 7.4333,
+     "end_h": 8.5833,
+     "dead_km": 7.52,
+     "svc_h": 1.5007
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.0167,
+     "speed": 14.31,
+     "f_stop": 52.13,
+     "start_h": 8.6833,
+     "end_h": 9.7,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 9.7,
+     "end_h": 10.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 10.6833,
+     "end_h": 11.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 11.7,
+     "end_h": 12.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9833,
+     "speed": 14.79,
+     "f_stop": 53.9,
+     "start_h": 12.6833,
+     "end_h": 13.6667,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.9667,
+     "speed": 15.04,
+     "f_stop": 56.9,
+     "start_h": 13.7,
+     "end_h": 14.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 1.2833,
+     "speed": 11.33,
+     "f_stop": 41.3,
+     "start_h": 14.6833,
+     "end_h": 15.9667,
+     "dead_km": 0.0,
+     "svc_h": 1.45
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 16.1333,
+     "end_h": 17.3333,
+     "dead_km": 0.0,
+     "svc_h": 1.2667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2,
+     "speed": 12.32,
+     "f_stop": 43.33,
+     "start_h": 17.4,
+     "end_h": 18.6,
+     "dead_km": 0.0,
+     "svc_h": 1.3833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.05,
+     "speed": 13.84,
+     "f_stop": 52.38,
+     "start_h": 18.7833,
+     "end_h": 19.8333,
+     "dead_km": 0.0,
+     "svc_h": 1.1667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9,
+     "speed": 16.16,
+     "f_stop": 58.89,
+     "start_h": 19.95,
+     "end_h": 20.85,
+     "dead_km": 0.0,
+     "svc_h": 1.0167
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.85,
+     "speed": 17.1,
+     "f_stop": 64.71,
+     "start_h": 20.9667,
+     "end_h": 21.8167,
+     "dead_km": 0.0,
+     "svc_h": 0.8667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 21.8333,
+     "end_h": 22.6333,
+     "dead_km": 0.0,
+     "svc_h": 1.0667
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7667,
+     "speed": 18.96,
+     "f_stop": 71.74,
+     "start_h": 22.9,
+     "end_h": 23.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.8
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 23.7,
+     "end_h": 24.5,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8,
+     "speed": 18.17,
+     "f_stop": 68.75,
+     "start_h": 24.5833,
+     "end_h": 25.3833,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.7,
+     "speed": 20.78,
+     "f_stop": 75.71,
+     "start_h": 25.4667,
+     "end_h": 26.1667,
+     "dead_km": 7.52,
+     "svc_h": 0.9507
+    }
+   ],
+   "dwells": [
+    [
+     "raabBlvdHospital",
+     8.5833,
+     8.6833
+    ],
+    [
+     "theWestwayRoyal",
+     9.7,
+     9.7
+    ],
+    [
+     "raabBlvdHospital",
+     10.6667,
+     10.6833
+    ],
+    [
+     "theWestwayRoyal",
+     11.6667,
+     11.7
+    ],
+    [
+     "raabBlvdHospital",
+     12.6667,
+     12.6833
+    ],
+    [
+     "theWestwayRoyal",
+     13.6667,
+     13.7
+    ],
+    [
+     "raabBlvdHospital",
+     14.6667,
+     14.6833
+    ],
+    [
+     "theWestwayRoyal",
+     15.9667,
+     16.1333
+    ],
+    [
+     "raabBlvdHospital",
+     17.3333,
+     17.4
+    ],
+    [
+     "theWestwayRoyal",
+     18.6,
+     18.7833
+    ],
+    [
+     "raabBlvdHospital",
+     19.8333,
+     19.95
+    ],
+    [
+     "theWestwayRoyal",
+     20.85,
+     20.9667
+    ],
+    [
+     "raabBlvdHospital",
+     21.8167,
+     21.8333
+    ],
+    [
+     "theWestwayRoyal",
+     22.6333,
+     22.9
+    ],
+    [
+     "raabBlvdHospital",
+     23.6667,
+     23.7
+    ],
+    [
+     "theWestwayRoyal",
+     24.5,
+     24.5833
+    ],
+    [
+     "raabBlvdHospital",
+     25.3833,
+     25.4667
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5234342"
+   ],
+   "pullout_h": 14.0593,
+   "pullin_h": 26.4107,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 14.4833,
+     "end_h": 14.5667,
+     "dead_km": 12.72,
+     "svc_h": 0.5073
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 14.5667,
+     "end_h": 15.8167,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 15.9531,
+     "end_h": 17.35,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 17.35,
+     "end_h": 17.4333,
+     "dead_km": 0.0,
+     "svc_h": 0.2167
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.1167,
+     "speed": 17.4,
+     "f_stop": 51.94,
+     "start_h": 17.5667,
+     "end_h": 18.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.1692
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.3475,
+     "speed": 17.76,
+     "f_stop": 57.88,
+     "start_h": 18.7358,
+     "end_h": 20.0833,
+     "dead_km": 0.0,
+     "svc_h": 1.6475
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.1167,
+     "speed": 21.22,
+     "f_stop": 64.48,
+     "start_h": 20.3833,
+     "end_h": 21.5,
+     "dead_km": 0.0,
+     "svc_h": 1.185
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.115,
+     "speed": 21.46,
+     "f_stop": 69.96,
+     "start_h": 21.5683,
+     "end_h": 22.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.1317
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 0.9833,
+     "speed": 24.1,
+     "f_stop": 73.22,
+     "start_h": 22.7,
+     "end_h": 23.6833,
+     "dead_km": 0.0,
+     "svc_h": 1.1014
+    },
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.0486,
+     "speed": 22.82,
+     "f_stop": 74.38,
+     "start_h": 23.8014,
+     "end_h": 24.85,
+     "dead_km": 0.0,
+     "svc_h": 1.1486
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.0,
+     "speed": 23.7,
+     "f_stop": 72.0,
+     "start_h": 24.95,
+     "end_h": 25.95,
+     "dead_km": 13.82,
+     "svc_h": 1.4607
+    }
+   ],
+   "dwells": [
+    [
+     "pearsonAirportTerminal",
+     14.5667,
+     14.5667
+    ],
+    [
+     "lawrenceStation2",
+     15.8167,
+     15.9531
+    ],
+    [
+     "none",
+     17.35,
+     17.35
+    ],
+    [
+     "pearsonAirportTerminal",
+     17.4333,
+     17.5667
+    ],
+    [
+     "lawrenceStation2",
+     18.6833,
+     18.7358
+    ],
+    [
+     "westwoodSquareTerminal",
+     20.0833,
+     20.3833
+    ],
+    [
+     "lawrenceStation2",
+     21.5,
+     21.5683
+    ],
+    [
+     "westwoodSquareTerminal",
+     22.6833,
+     22.7
+    ],
+    [
+     "lawrenceStation2",
+     23.6833,
+     23.8014
+    ],
+    [
+     "westwoodSquareTerminal",
+     24.85,
+     24.95
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5233332"
+   ],
+   "pullout_h": 14.4467,
+   "pullin_h": 26.6673,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.2833,
+     "speed": 11.52,
+     "f_stop": 40.52,
+     "start_h": 15.0,
+     "end_h": 16.2833,
+     "dead_km": 16.6,
+     "svc_h": 1.9867
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.2,
+     "speed": 12.11,
+     "f_stop": 45.83,
+     "start_h": 16.4333,
+     "end_h": 17.6333,
+     "dead_km": 0.0,
+     "svc_h": 1.25
+    },
+    {
+     "route": "52",
+     "dist_km": 14.787,
+     "dur_h": 1.1833,
+     "speed": 12.5,
+     "f_stop": 43.94,
+     "start_h": 17.6833,
+     "end_h": 18.8667,
+     "dead_km": 0.0,
+     "svc_h": 1.4
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 1.05,
+     "speed": 13.84,
+     "f_stop": 52.38,
+     "start_h": 19.0833,
+     "end_h": 20.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.15
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.9,
+     "speed": 16.16,
+     "f_stop": 58.89,
+     "start_h": 20.2333,
+     "end_h": 21.1333,
+     "dead_km": 0.0,
+     "svc_h": 1.0333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8833,
+     "speed": 16.45,
+     "f_stop": 62.26,
+     "start_h": 21.2667,
+     "end_h": 22.15,
+     "dead_km": 0.0,
+     "svc_h": 0.9333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 22.2,
+     "end_h": 23.0,
+     "dead_km": 0.0,
+     "svc_h": 1.05
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.8,
+     "speed": 18.17,
+     "f_stop": 68.75,
+     "start_h": 23.25,
+     "end_h": 24.05,
+     "dead_km": 0.0,
+     "svc_h": 0.8833
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.8,
+     "speed": 18.18,
+     "f_stop": 66.25,
+     "start_h": 24.1333,
+     "end_h": 24.9333,
+     "dead_km": 0.0,
+     "svc_h": 0.8333
+    },
+    {
+     "route": "52",
+     "dist_km": 14.535,
+     "dur_h": 0.7167,
+     "speed": 20.28,
+     "f_stop": 76.74,
+     "start_h": 24.9667,
+     "end_h": 25.6833,
+     "dead_km": 0.0,
+     "svc_h": 0.75
+    },
+    {
+     "route": "52",
+     "dist_km": 14.544,
+     "dur_h": 0.7,
+     "speed": 20.78,
+     "f_stop": 75.71,
+     "start_h": 25.7167,
+     "end_h": 26.4167,
+     "dead_km": 7.52,
+     "svc_h": 0.9507
+    }
+   ],
+   "dwells": [
+    [
+     "theWestwayRoyal",
+     16.2833,
+     16.4333
+    ],
+    [
+     "raabBlvdHospital",
+     17.6333,
+     17.6833
+    ],
+    [
+     "theWestwayRoyal",
+     18.8667,
+     19.0833
+    ],
+    [
+     "raabBlvdHospital",
+     20.1333,
+     20.2333
+    ],
+    [
+     "theWestwayRoyal",
+     21.1333,
+     21.2667
+    ],
+    [
+     "raabBlvdHospital",
+     22.15,
+     22.2
+    ],
+    [
+     "theWestwayRoyal",
+     23.0,
+     23.25
+    ],
+    [
+     "raabBlvdHospital",
+     24.05,
+     24.1333
+    ],
+    [
+     "theWestwayRoyal",
+     24.9333,
+     24.9667
+    ],
+    [
+     "raabBlvdHospital",
+     25.6833,
+     25.7167
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5236362"
+   ],
+   "pullout_h": 14.776,
+   "pullin_h": 19.8607,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 15.2,
+     "end_h": 15.2833,
+     "dead_km": 12.72,
+     "svc_h": 0.5407
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.25,
+     "speed": 15.54,
+     "f_stop": 46.4,
+     "start_h": 15.3167,
+     "end_h": 16.5667,
+     "dead_km": 0.0,
+     "svc_h": 1.3864
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.3969,
+     "speed": 15.4,
+     "f_stop": 42.24,
+     "start_h": 16.7031,
+     "end_h": 18.1,
+     "dead_km": 0.0,
+     "svc_h": 1.3969
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 18.1,
+     "end_h": 18.1833,
+     "dead_km": 0.0,
+     "svc_h": 0.2333
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 1.0667,
+     "speed": 18.21,
+     "f_stop": 54.38,
+     "start_h": 18.3333,
+     "end_h": 19.4,
+     "dead_km": 13.82,
+     "svc_h": 1.5273
+    }
+   ],
+   "dwells": [
+    [
+     "pearsonAirportTerminal",
+     15.2833,
+     15.3167
+    ],
+    [
+     "lawrenceStation2",
+     16.5667,
+     16.7031
+    ],
+    [
+     "none",
+     18.1,
+     18.1
+    ],
+    [
+     "pearsonAirportTerminal",
+     18.1833,
+     18.3333
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5235352"
+   ],
+   "pullout_h": 14.7424,
+   "pullin_h": 21.2773,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 23.927,
+     "dur_h": 1.5803,
+     "speed": 15.14,
+     "f_stop": 49.36,
+     "start_h": 15.2031,
+     "end_h": 16.7833,
+     "dead_km": 13.82,
+     "svc_h": 2.2743
+    },
+    {
+     "route": "52",
+     "dist_km": 23.697,
+     "dur_h": 1.4167,
+     "speed": 16.73,
+     "f_stop": 50.82,
+     "start_h": 17.0167,
+     "end_h": 18.4333,
+     "dead_km": 0.0,
+     "svc_h": 1.5525
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 1.1975,
+     "speed": 17.96,
+     "f_stop": 49.27,
+     "start_h": 18.5692,
+     "end_h": 19.7667,
+     "dead_km": 0.0,
+     "svc_h": 1.1975
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.0833,
+     "speed": 18.3,
+     "f_stop": 24.0,
+     "start_h": 19.7667,
+     "end_h": 19.85,
+     "dead_km": 0.0,
+     "svc_h": 0.0833
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.9667,
+     "speed": 20.1,
+     "f_stop": 60.0,
+     "start_h": 19.85,
+     "end_h": 20.8167,
+     "dead_km": 13.82,
+     "svc_h": 1.4273
+    }
+   ],
+   "dwells": [
+    [
+     "westwoodSquareTerminal",
+     16.7833,
+     17.0167
+    ],
+    [
+     "lawrenceStation2",
+     18.4333,
+     18.5692
+    ],
+    [
+     "none",
+     19.7667,
+     19.7667
+    ],
+    [
+     "pearsonAirportTerminal",
+     19.85,
+     19.85
+    ]
+   ]
+  },
+  {
+   "route": "52",
+   "n_pieces": 1,
+   "gtfs_blocks": [
+    "5272372"
+   ],
+   "pullout_h": 20.3577,
+   "pullin_h": 27.3033,
+   "trips": [
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9983,
+     "speed": 21.54,
+     "f_stop": 59.1,
+     "start_h": 20.8183,
+     "end_h": 21.8167,
+     "dead_km": 13.82,
+     "svc_h": 1.459
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 21.8167,
+     "end_h": 21.8667,
+     "dead_km": 0.0,
+     "svc_h": 0.1667
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 21.9833,
+     "end_h": 22.7667,
+     "dead_km": 0.0,
+     "svc_h": 0.8847
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9153,
+     "speed": 23.5,
+     "f_stop": 64.46,
+     "start_h": 22.8681,
+     "end_h": 23.7833,
+     "dead_km": 0.0,
+     "svc_h": 0.9153
+    },
+    {
+     "route": "52",
+     "dist_km": 1.525,
+     "dur_h": 0.05,
+     "speed": 30.5,
+     "f_stop": 40.0,
+     "start_h": 23.7833,
+     "end_h": 23.8333,
+     "dead_km": 0.0,
+     "svc_h": 0.05
+    },
+    {
+     "route": "52",
+     "dist_km": 19.428,
+     "dur_h": 0.7833,
+     "speed": 24.8,
+     "f_stop": 74.04,
+     "start_h": 23.8333,
+     "end_h": 24.6167,
+     "dead_km": 0.0,
+     "svc_h": 0.9014
+    },
+    {
+     "route": "52",
+     "dist_km": 21.507,
+     "dur_h": 0.9319,
+     "speed": 23.08,
+     "f_stop": 63.31,
+     "start_h": 24.7347,
+     "end_h": 25.6667,
+     "dead_km": 0.0,
+     "svc_h": 0.9319
+    },
+    {
+     "route": "352",
+     "dist_km": 1.56,
+     "dur_h": 0.05,
+     "speed": 31.2,
+     "f_stop": 40.0,
+     "start_h": 25.6667,
+     "end_h": 25.7167,
+     "dead_km": 0.0,
+     "svc_h": 0.25
+    },
+    {
+     "route": "352",
+     "dist_km": 22.17,
+     "dur_h": 0.8333,
+     "speed": 26.6,
+     "f_stop": 86.4,
+     "start_h": 25.9167,
+     "end_h": 26.75,
+     "dead_km": 16.6,
+     "svc_h": 1.3867
+    }
+   ],
+   "dwells": [
+    [
+     "none",
+     21.8167,
+     21.8167
+    ],
+    [
+     "pearsonAirportTerminal",
+     21.8667,
+     21.9833
+    ],
+    [
+     "lawrenceStation2",
+     22.7667,
+     22.8681
+    ],
+    [
+     "none",
+     23.7833,
+     23.7833
+    ],
+    [
+     "pearsonAirportTerminal",
+     23.8333,
+     23.8333
+    ],
+    [
+     "lawrenceStation2",
+     24.6167,
+     24.7347
+    ],
+    [
+     "none",
+     25.6667,
+     25.6667
+    ],
+    [
+     "pearsonAirportTerminal",
+     25.7167,
+     25.9167
+    ]
+   ]
+  }
+ ],
+ "sites": [
+  "depot",
+  "lawrenceStation2",
+  "lawrenceWestStation",
+  "pearsonAirportTerminal",
+  "raabBlvdHospital",
+  "theWestwayRoyal",
+  "westwoodSquareTerminal"
+ ],
+ "instance_name": "route52_gtfs_as_scheduled",
+ "instance_note": "v11g: weekday service from the TTC GTFS feed S1000544 (20261101-20261219); see build_instances_v11.py",
+ "ffh_share_obs": {
+  "mild": 0.776,
+  "cold": 0.97,
+  "verycold": 0.957,
+  "extreme": 0.755,
+  "severe": 0.755,
+  "offseason": 0.242
+ },
+ "phi_logit_shift": 0.0704,
+ "variant_note": "useful fraction 0.60 (companion upper bound)",
+ "variant_of": "route52_inputs_v11g_sched.json"
+}

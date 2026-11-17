@@ -15,6 +15,7 @@ Run: ROUTE_INPUTS=garage_inputs_v9.json python merge_fragmented_v9.py \
         <division results file to update> <per-route file> [<per-route file> ...]
 """
 import json
+import re
 import sys
 
 import route52_prototype as R
@@ -24,6 +25,12 @@ per = {}
 for fn in parts:
     a = json.load(open(fn))["cases"]["A_fragmented"]
     per.update(a["per_route"])
+
+# v11: the merge must cover the whole division
+_exp = (sorted({str(v["route"]) for v in R.INP["vehicle_days"]}) if R.EXPLICIT
+        else sorted({re.match(r"r(\d+)", b).group(1) for b in R.INP["branches"]}))
+assert sorted(per) == _exp, f"routes merged {sorted(per)} != instance {_exp}"
+assert sum(r["n_buses"] for r in per.values()) == R.N_BLOCKS, "bus count mismatch"
 
 agg = {"label": "A_fragmented", "per_route": per}
 for k in ("total_annual_cost", "differentiating_cost", "diesel_L", "co2_t"):

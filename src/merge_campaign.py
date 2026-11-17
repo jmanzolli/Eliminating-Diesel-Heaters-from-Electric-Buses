@@ -26,8 +26,10 @@ best, order, meta = {}, [], {}
 for fn in shards:
     d = json.load(open(fn))
     meta.update(d.get("meta", {}))
-    for k in ("ops_metrics_policy", "frontier_labels", "breakpoint_prices",
-              "det_feasible_full", "n_minus_1_feasible", "derived"):
+    for k in ("ops_metrics_policy", "ops_metrics_econ", "frontier_labels", "breakpoint_prices",
+              "det_feasible_full", "n_minus_1_feasible", "derived",
+              "infeasible_caps", "caps_basis_co2_t", "baseline_co2_t", "caps_stale",
+              "baseline_ties"):
         if k in d:
             meta.setdefault("_carried", {})[k] = d[k]
     for r in d.get("runs", []):
@@ -35,13 +37,19 @@ for fn in shards:
         if lb not in best:
             best[lb], _ = r, order.append(lb)
             continue
-        pg = best[lb].get("abs_gap", 9e18)
-        ng = r.get("abs_gap", 9e18)
-        if ng < pg:
-            print(f"collision on {lb}: gap {pg} -> {ng} (keeping tighter)")
+        # v11: keep the better incumbent (as dedup_runs does) and carry the
+        # best bound; the old rule kept the tighter gap and could discard a
+        # cheaper design. Records without a solution lose to any with one.
+        po, no = best[lb].get("obj", 9e18), r.get("obj", 9e18)
+        lbs = [x["lb"] for x in (best[lb], r) if "lb" in x]
+        if no < po:
+            print(f"collision on {lb}: obj {po} -> {no} (keeping lower)")
             best[lb] = r
-        elif ng > pg:
-            print(f"collision on {lb}: gap {ng} discarded (kept {pg})")
+        else:
+            print(f"collision on {lb}: obj {no} discarded (kept {po})")
+        if lbs and "obj" in best[lb]:
+            best[lb]["lb"] = max(lbs)
+            best[lb]["abs_gap"] = round(best[lb]["obj"] - best[lb]["lb"], 1)
 
 merged = {"runs": [best[lb] for lb in order], "meta": meta}
 for k, v in meta.pop("_carried", {}).items():

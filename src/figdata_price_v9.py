@@ -38,7 +38,7 @@ for lb in LABELS:
             m.addConstr(h["ygrid"][n, j] == d["ygrid"][(n, j)])
     m.Params.OutputFlag = 0
     m.Params.MIPGap = 0.01
-    m.Params.TimeLimit = 900
+    m.Params.TimeLimit = int(os.environ.get("FIGD_TLIM", 900))
     m.Params.Threads = int(os.environ.get("CAMP_THREADS", 8))
     m.optimize()
     assert m.SolCount > 0, lb

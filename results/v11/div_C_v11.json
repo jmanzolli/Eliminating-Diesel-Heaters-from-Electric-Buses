@@ -1,0 +1,71 @@
+{
+ "cases": {
+  "C_shared_infra_frozen_z": {
+   "label": "C_shared_infra_frozen_z",
+   "obj_solver": 6200640.4,
+   "lb_solver": 5870191.8,
+   "abs_gap": 330448.6,
+   "rel_gap_diff_cost": 0.053293,
+   "time_s": 43200.4,
+   "status": 9,
+   "total_annual_cost": 44525568.4,
+   "differentiating_cost": 6200640.4,
+   "cost_parts": {
+    "battery_increment": 8205.9,
+    "charger_site_capital": 985280.3,
+    "grid_capital": 108270.0,
+    "demand_charges": 1036091.7,
+    "electricity": 3882066.4,
+    "ffh_om": 89000.0,
+    "diesel_cost": 91726.1
+   },
+   "n_buses": 248,
+   "n_ffh": 89,
+   "n_ext": 3,
+   "fleet": {
+    "NF-std-FFH": 86,
+    "NF-std-eOnly": 159,
+    "NF-ext-FFH": 3
+   },
+   "chargers": {
+    "depot:450": 14,
+    "finchWestStation:450": 1,
+    "kiplingStation10:450": 1,
+    "lawrenceStation2:450": 2,
+    "lawrenceWestStation:450": 1,
+    "pearsonAirportTerminal:450": 1,
+    "pioneerVillageStation:450": 2,
+    "sheppardYongeStation:450": 1,
+    "theWestwayRoyal:450": 1,
+    "yorkMillsStation:450": 2
+   },
+   "n_opp_chargers": 12,
+   "grid_kW": {
+    "depot": 4000.0,
+    "finchWestStation": 250.0,
+    "kiplingStation10": 250.0,
+    "lawrenceStation2": 250.0,
+    "lawrenceWestStation": 250.0,
+    "pearsonAirportTerminal": 250.0,
+    "pioneerVillageStation": 500.0,
+    "sheppardYongeStation": 250.0,
+    "theWestwayRoyal": 250.0,
+    "yorkMillsStation": 500.0
+   },
+   "peak_depot_kW": 4570.1,
+   "diesel_L": 49315.1,
+   "co2_t": 132.165
+  }
+ },
+ "meta": {
+  "minutes": 720.2,
+  "lam": 0.0,
+  "tau": 25000.0,
+  "abs_gap_diff_cost": 2000.0,
+  "gurobi": [
+   11,
+   0,
+   3
+  ]
+ }
+}

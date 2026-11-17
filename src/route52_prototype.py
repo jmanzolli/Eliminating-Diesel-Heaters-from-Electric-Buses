@@ -69,9 +69,12 @@ with open(os.path.join(_HERE, _INPUT_FILE)) as f:
     INP = json.load(f)
 
 DT = 0.25
-T0 = INP["service_start_h"]           # 05:00
-T_SVC_END = INP["service_end_h"]      # 22:00
-T_END = 29.0                          # overnight until 05:00 next day
+T0 = INP["service_start_h"]           # 05:00 (v11g instances: 03:30)
+T_SVC_END = INP.get("service_end_h", T0 + 17.0)   # legacy block builder only
+T_END = T0 + 24.0                     # overnight until the next day's start
+# v11g: the instance lists explicit vehicle-days (build_instances_v11.py)
+# instead of branches from which all-day blocks are generated
+EXPLICIT = "vehicle_days" in INP
 STEPS = range(int((T_END - T0) / DT))
 def step_hour(t):
     h = T0 + (t + 0.5) * DT
@@ -177,6 +180,15 @@ ETA_EL_BY_SCEN = INP.get("eta_el_by_scen")
 SCEN = {name: (s["T"], s["days"]) for name, s in INP["scenarios"].items()}
 HEATLESS = {name for name, s in INP["scenarios"].items()
             if not s.get("heat", True)}
+# v11g: a scenario may carry a fixed mean cabin-heat rate (kW per hour in
+# service) in place of the temperature model. Used for the off-season, whose
+# observed shoulder-month heat the heat-free scenario omitted. HEATLESS keeps
+# its other meaning (off-season billing period and price season).
+HEAT_KW_FIXED = {name: float(s["heat_kw"]) for name, s in INP["scenarios"].items()
+                 if s.get("heat_kw") is not None}
+# observed share of cabin heat supplied by the diesel heater, by scenario
+# (reference dispatch, build_model(dispatch_obs=True))
+FFH_SHARE_OBS = INP.get("ffh_share_obs")
 
 # heater rated outputs (v5 R1, revised): FFH useful output is temperature-
 # dependent, phi_useful(T) x nominal 35 kW (Paper 1 rev. Aug 2026), applied
@@ -263,9 +275,59 @@ def e_traction_per_km(T_amb, v, route=None):
     return (_TR["a0"] + _TR["a1_cold"] * max(0.0, _TR["T_ref"] - T_amb)
             + _TR["a2_speed"] * v)
 
+# --- v11 (2026-11): non-heating auxiliary load ------------------------------
+# The telemetry splits net battery energy into drivetrain energy, electric
+# cabin heat and a remainder (air compressor, low-voltage systems, pumps and
+# fans, battery thermal management, summer air conditioning). Up to v10 the
+# model carried only the first two. "aux_kw_bands" gives the remainder as a
+# mean power per weather band (kW, keyed like "traction_bands"; fitted by
+# make_aux_v11.py as band energy / band time in service). It is drawn from the
+# battery whenever the bus is in service: trips, terminal layovers and the
+# pull-out / pull-in deadheads. Parked at the depot the bus is off. Inputs
+# without the key (v9 and earlier) reproduce the previous model exactly.
+_AUXB = INP.get("aux_kw_bands")
+AUX_KW_MULT = float(INP.get("aux_kw_mult", 1.0))
+# The legacy block builder misaligns dwells on two-window blocks (audit A6),
+# so the auxiliary load is only defined on explicit vehicle-days.
+assert not _AUXB or EXPLICIT, \
+    "aux_kw_bands requires explicit vehicle-days (build_instances_v11.py)"
+def aux_kw(T_amb):
+    if not _AUXB:
+        return 0.0
+    return AUX_KW_MULT * float(_AUXB[_band_key(T_amb)])
+
+def aux_hours(blk, i):
+    """In-service hours charged to trip i: the trip, the terminal layover that
+    follows it, and the depot deadheads it carries (explicit vehicle-days;
+    legacy blocks carry no auxiliary load, so trip time is returned)."""
+    tr = blk.trips[i]
+    return tr.svc_h if tr.svc_h is not None else tr.dur_h
+
 # --- Route 52 blocks from GTFS-derived branch data --------------------------
-DEADHEAD_KM = INP["deadhead_km"]
+DEADHEAD_KM = INP.get("deadhead_km", 0.0)
 PRECOND_MAX_KWH = 10.0
+
+def heat_hours(blk, i):
+    """Hours over which trip i carries cabin heat. The companion heat model
+    is a rate per hour in service (runs include layovers and idling), so an
+    explicit vehicle-day is heated over all its service hours; the legacy
+    blocks keep trip time only."""
+    tr = blk.trips[i]
+    return tr.svc_h if tr.svc_h is not None else tr.dur_h
+
+def trip_km(blk, i):
+    """Distance driven on trip i including the depot deadheads it carries."""
+    tr, nt = blk.trips[i], len(blk.trips)
+    if tr.dead_km is not None:
+        return tr.dist_km + tr.dead_km
+    return tr.dist_km + (DEADHEAD_KM if i in (0, nt - 1) else 0.0)
+
+def trip_route(blk, i):
+    tr = blk.trips[i]
+    if tr.route is not None:
+        return tr.route
+    _mt = _ROUTE_RE.match(blk.branch)
+    return _mt.group(1) if _mt else blk.branch
 
 # C2: thermal-retention time constant for preconditioning credit. Cabin
 # temperature between pull-out and the first trip is not telemetered, so this
@@ -284,6 +346,9 @@ class Trip:
     dur_h: float
     speed: float
     f_stop: float          # stops per hour (door-loss driver)
+    route: str = None      # explicit vehicle-days: route of the trip
+    dead_km: float = None  # depot deadhead distance carried by the trip
+    svc_h: float = None    # service hours carried (trip, layover, deadheads)
 
 @dataclass
 class Block:
@@ -294,7 +359,28 @@ class Block:
     pullout_h: float = 0.0
     pullin_h: float = 0.0
 
+def build_blocks_explicit():
+    """Vehicle-days listed in the instance (v11g). Dwell i follows trip i:
+    a terminal layover, "none" where the terminal is not a candidate site,
+    or "depot" for a midday return (parked interval, deadheads excluded)."""
+    blocks = []
+    for bid, vd in enumerate(INP["vehicle_days"]):
+        blk = Block(bid, f"r{vd['route']}_v{bid}")
+        for t in vd["trips"]:
+            blk.trips.append(Trip(t["dist_km"], t["dur_h"], t["speed"], t["f_stop"],
+                                  route=str(t["route"]), dead_km=t["dead_km"],
+                                  svc_h=t["svc_h"]))
+        blk.dwells = [(d[0], d[1], d[2]) for d in vd["dwells"]]
+        assert len(blk.dwells) == len(blk.trips) - 1, vd["route"]
+        blk.pullout_h, blk.pullin_h = vd["pullout_h"], vd["pullin_h"]
+        assert T0 <= blk.pullout_h < blk.pullin_h <= T_END, (bid, blk.pullout_h, blk.pullin_h)
+        blocks.append(blk)
+    return blocks
+
+
 def build_blocks():
+    if EXPLICIT:
+        return build_blocks_explicit()
     blocks, bid = [], 0
     for bname, br in INP["branches"].items():
         e, w = br["east"], br["west"]
@@ -363,11 +449,30 @@ def avail_frac(blk):
                 out[(site, t)] = out.get((site, t), 0.0) + f
     for t in STEPS:
         f = _overlap_frac(blk.pullin_h, T_END, t)
+        # v11g: the model day is cyclic, so a bus that goes out late is also
+        # at the depot from the start of the day until its pull-out
+        if EXPLICIT:
+            f += _overlap_frac(T0, blk.pullout_h, t)
         if f > 1e-6:
             out[("depot", t)] = out.get(("depot", t), 0.0) + f
     return out
 
+
+def overnight_steps(blk):
+    """Depot steps of the overnight stay: after pull-in and, for explicit
+    vehicle-days, before pull-out (same stay, cyclic day)."""
+    return [t for t in STEPS
+            if _overlap_frac(blk.pullin_h, T_END, t) > 1e-6
+            or (EXPLICIT and _overlap_frac(T0, blk.pullout_h, t) > 1e-6)]
+
+def precond_frac(blk, t):
+    """Share of step t inside the hour before pull-out."""
+    return _overlap_frac(max(T0, blk.pullout_h - 1.0), blk.pullout_h, t)
+
+
 def precond_steps(blk):
+    if EXPLICIT:        # pull-out times are not on the step grid
+        return [t for t in STEPS if precond_frac(blk, t) > 1e-6]
     return [t for t in STEPS if blk.pullout_h - 1.0 <= T0 + t * DT < blk.pullout_h]
 
 AVAIL = {blk.bid: avail_frac(blk) for blk in BLOCKS}
@@ -383,8 +488,12 @@ SHORTFALL_PENALTY = 1000.0     # $/kWh on elastic energy slack (simulation only)
 def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=None,
                 spare_ratio=0.0, fix_fleet_total=False, diff_objective=False,
                 load_mult=None, elastic=False, only_scen=None, ffh_free=False,
-                soft_heat=False, heat_penalty=None):
+                soft_heat=False, heat_penalty=None, dispatch_obs=False,
+                ffh_all=False):
     """...
+    v11g: dispatch_obs fixes the diesel heater's share of cabin heat on
+    heater-equipped buses at the observed share of each band (reference case
+    for current practice), up to the heater's useful output.
     v5 simulation hooks (defaults reproduce the planning model exactly):
       load_mult  {(w, b, i): (traction_mult, heat_mult)} multiplicative
                  realization of residual energy-demand uncertainty
@@ -411,6 +520,7 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
     HW = {w: SCEN[w][1] for w in W}
     LM = load_mult or {}
     slack_terms = []
+    slack_terms_w = []          # (scenario days, var): for the objective
     heat_slack_terms = []
 
     x = m.addVars(K, vtype=GRB.INTEGER, ub=N_BLOCKS + 20, name="x_bus")
@@ -420,6 +530,10 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
         for k in K:                   # FFH-free operation
             if BUS_CLASSES[k].ffh:
                 m.addConstr(x[k] == 0, name=f"ffh_free_{k}")
+    if ffh_all:                       # reference fleet: a heater on every bus
+        for k in K:
+            if not BUS_CLASSES[k].ffh:
+                m.addConstr(x[k] == 0, name=f"ffh_all_{k}")
     wch = m.addVars(N, P, vtype=GRB.INTEGER,
                     ub={(n, p): max_ch(n) for n in N for p in P}, name="w_ch")
     ysite = m.addVars(N, P, vtype=GRB.BINARY, name="y_site")
@@ -500,20 +614,29 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
 
             # trip loads (class-dependent traction; deadhead on first/last trip)
             # v5 R2: heatless scenarios (off-season) carry zero cabin heat
-            qtrip, e_use = {}, {}
+            qtrip, e_use, e_aux = {}, {}, {}
+            p_aux = aux_kw(T_amb)
             for i, tr in enumerate(blk.trips):
                 tm, hm = LM.get((w, b, i), (1.0, 1.0))
-                qtrip[i] = (0.0 if w in HEATLESS
-                            else hm * HEAT_DEMAND_MULT * q_heat_rate(T_amb, tr.f_stop, tr.speed)
-                            * tr.dur_h)
-                dist = tr.dist_km + (DEADHEAD_KM if i in (0, nt - 1) else 0.0)
-                # branch names are 'r<route>_<variant>' (e.g. r52_E0); the
-                # leading digit group is the route key for the band table
-                _mt = _ROUTE_RE.match(blk.branch)
-                _rt = _mt.group(1) if _mt else blk.branch
+                if w in HEAT_KW_FIXED:
+                    qtrip[i] = hm * HEAT_DEMAND_MULT * HEAT_KW_FIXED[w] * heat_hours(blk, i)
+                elif w in HEATLESS:
+                    qtrip[i] = 0.0
+                else:
+                    qtrip[i] = (hm * HEAT_DEMAND_MULT
+                                * q_heat_rate(T_amb, tr.f_stop, tr.speed)
+                                * heat_hours(blk, i))
+                dist = trip_km(blk, i)
+                # route key for the band table: the trip's own route, or for
+                # the legacy blocks the leading digits of 'r<route>_<variant>'
+                _rt = trip_route(blk, i)
                 ekm = tm * e_traction_per_km(T_amb, tr.speed, route=_rt)
                 e_use[i] = gp.quicksum(ekm * dist * (1 + BUS_CLASSES[k].mass_pen)
                                        * z[b, k] for k in K)
+                # v11: the traction multiplier of a realized day is the
+                # residual of non-heating battery energy, so it scales the
+                # auxiliary load too
+                e_aux[i] = tm * p_aux * aux_hours(blk, i)
 
             # preconditioning (fix #3; through EVSE: plug + rating + acceptance)
             # qpre_e  = cabin heat delivered at the plug over the window
@@ -530,7 +653,8 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
                 # C1: preconditioning heat passes through the same electric
                 # cabin heater as in-service electric heat, so it is bounded
                 # by the heater's rated output, not by charging acceptance
-                m.addConstr(ppre[b, t] <= P_ELH_RATED)
+                m.addConstr(ppre[b, t] <= P_ELH_RATED
+                            * (precond_frac(blk, t) if EXPLICIT else 1.0))
                 # v5 R4 / C3: one EVSE connection per bus and step, charging
                 # and preconditioning combined, across every site
                 sites_t = [n for n in N if (b, n, t) in u]
@@ -564,10 +688,15 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
                             gp.quicksum(z[b, k] for k in K if BUS_CLASSES[k].ffh))
                 # v5 R1: rated heater outputs (energy <= duration x rating);
                 # FFH useful output = phi(T_w) x nominal, scenario-dependent
-                dur = blk.trips[i].dur_h
+                dur = heat_hours(blk, i)
                 m.addConstr(qel[b, i] <= dur * P_ELH_RATED)
                 m.addConstr(qff[b, i] <= dur * phi * P_FFH_NOM *
                             gp.quicksum(z[b, k] for k in K if BUS_CLASSES[k].ffh))
+                if dispatch_obs and FFH_SHARE_OBS and qtrip[i] > 0:
+                    tgt = min(FFH_SHARE_OBS.get(w, 0.0) * qtrip[i],
+                              dur * phi * P_FFH_NOM)
+                    m.addConstr(qff[b, i] >= tgt * gp.quicksum(
+                        z[b, k] for k in K if BUS_CLASSES[k].ffh))
 
             for (n, t), favail in av.items():
                 m.addConstr(c[b, n, t] <= acc_w * favail * u[b, n, t])
@@ -583,10 +712,13 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
             sl_cyc = m.addVar(lb=0.0, name=f"slackcyc_{w}_{b}") if elastic else None
             if elastic:
                 slack_terms += [sl[i] for i in range(nt)] + [sl_ret, sl_cyc]
+                slack_terms_w += [(HW[w], v) for v in
+                                  [sl[i] for i in range(nt)] + [sl_ret, sl_cyc]]
 
             m.addConstr(Edep[b, 0] == S_UP * cap)
             for i in range(nt):
-                m.addConstr(Earr[b, i] == Edep[b, i] - e_use[i] - qel[b, i] / eta_el_w)
+                m.addConstr(Earr[b, i] == Edep[b, i] - e_use[i] - e_aux[i]
+                            - qel[b, i] / eta_el_w)
                 m.addConstr(Earr[b, i] >= S_LO * cap - (sl[i] if elastic else 0.0))
                 m.addConstr(Edep[b, i] <= S_UP * cap)
                 if i < nt - 1:
@@ -597,8 +729,7 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
                     m.addConstr(Edep[b, i + 1] == Earr[b, i] + R)
             m.addConstr(Earr[b, nt - 1] >= S_LO * cap + RESERVE_RETURN
                         - (sl_ret if elastic else 0.0))
-            post_steps = [t for t in STEPS if ("depot", t) in av
-                          and _overlap_frac(blk.pullin_h, T_END, t) > 1e-6]
+            post_steps = [t for t in overnight_steps(blk) if ("depot", t) in av]
             m.addConstr(Earr[b, nt - 1]
                         + ETA_CH * DT * gp.quicksum(c[b, "depot", t] for t in post_steps)
                         + (sl_cyc if elastic else 0.0)
@@ -648,14 +779,19 @@ def build_model(eps_cap_t=None, carbon_price_t=CARBON_PRICE_T, eta_el_by_scen=No
         m.addConstr(emis_t <= eps_cap_t, name="eps_cap")
 
     total_cost = capex + demand_annual + gp.quicksum(HW[w] * opex[w] for w in W)
+    # per represented day (reliability and band checks test it against a
+    # kWh threshold); the objective prices it per year, like the heat slack
     shortfall = gp.quicksum(slack_terms) if slack_terms else 0.0
+    shortfall_w = (gp.quicksum(h * v for h, v in slack_terms_w)
+                   if slack_terms_w else 0.0)
     # annual unmet cabin heat (kWh/yr), already day-weighted
     heat_short = (gp.quicksum(h * v for h, v in heat_slack_terms)
                   if heat_slack_terms else 0.0)
     hpen = SHORTFALL_PENALTY if heat_penalty is None else heat_penalty
-    m.setObjective(total_cost + SHORTFALL_PENALTY * shortfall
+    m.setObjective(total_cost + SHORTFALL_PENALTY * shortfall_w
                    + hpen * heat_short, GRB.MINIMIZE)
     m._shortfall = shortfall
+    m._shortfall_w = shortfall_w
     m._heat_short = heat_short
     m._heat_penalty = hpen
     m._handles = dict(x=x, wch=wch, ysite=ysite, ygrid=ygrid, rho=rho,

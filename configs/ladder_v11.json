@@ -1,0 +1,129 @@
+{
+ "D0": {
+  "label": "policy_lam100_ops",
+  "fleet": {
+   "NF-std-FFH": 13,
+   "NF-std-eOnly": 24
+  },
+  "chargers": {
+   "depot:450": 2,
+   "lawrenceStation2:450": 1,
+   "lawrenceWestStation:300": 1,
+   "theWestwayRoyal:300": 1,
+   "westwoodSquareTerminal:450": 1
+  },
+  "grid_kW": {
+   "depot": 250.0,
+   "lawrenceStation2": 250.0,
+   "lawrenceWestStation": 250.0,
+   "theWestwayRoyal": 250.0,
+   "westwoodSquareTerminal": 250.0
+  },
+  "co2_t": 29.679,
+  "n_ffh": 13,
+  "F1": 6920894.1
+ },
+ "D1": {
+  "label": "bp_lam_663",
+  "fleet": {
+   "NF-std-FFH": 9,
+   "NF-std-eOnly": 28
+  },
+  "chargers": {
+   "depot:450": 2,
+   "lawrenceStation2:450": 1,
+   "lawrenceWestStation:300": 1,
+   "theWestwayRoyal:450": 1,
+   "westwoodSquareTerminal:450": 1
+  },
+  "grid_kW": {
+   "depot": 250.0,
+   "lawrenceStation2": 250.0,
+   "lawrenceWestStation": 250.0,
+   "theWestwayRoyal": 250.0,
+   "westwoodSquareTerminal": 250.0
+  },
+  "co2_t": 16.312,
+  "n_ffh": 9,
+  "F1": 6927653.6
+ },
+ "D2": {
+  "label": "eps_0.10",
+  "fleet": {
+   "NF-std-FFH": 5,
+   "NF-std-eOnly": 32
+  },
+  "chargers": {
+   "depot:450": 2,
+   "lawrenceStation2:450": 1,
+   "lawrenceWestStation:300": 1,
+   "pearsonAirportTerminal:300": 1,
+   "theWestwayRoyal:450": 1,
+   "westwoodSquareTerminal:450": 1
+  },
+  "grid_kW": {
+   "depot": 250.0,
+   "lawrenceStation2": 250.0,
+   "lawrenceWestStation": 250.0,
+   "pearsonAirportTerminal": 250.0,
+   "theWestwayRoyal": 250.0,
+   "westwoodSquareTerminal": 250.0
+  },
+  "co2_t": 3.486,
+  "n_ffh": 5,
+  "F1": 6964605.2
+ },
+ "D3": {
+  "label": "lam_10000",
+  "fleet": {
+   "NF-std-FFH": 3,
+   "NF-std-eOnly": 34
+  },
+  "chargers": {
+   "depot:300": 3,
+   "lawrenceStation2:450": 1,
+   "lawrenceWestStation:300": 1,
+   "pearsonAirportTerminal:450": 1,
+   "theWestwayRoyal:450": 1,
+   "westwoodSquareTerminal:450": 1
+  },
+  "grid_kW": {
+   "depot": 250.0,
+   "lawrenceStation2": 250.0,
+   "lawrenceWestStation": 250.0,
+   "pearsonAirportTerminal": 250.0,
+   "theWestwayRoyal": 250.0,
+   "westwoodSquareTerminal": 250.0
+  },
+  "co2_t": 1.263,
+  "n_ffh": 3,
+  "F1": 6987271.5
+ },
+ "D4": {
+  "label": "eps_0.00",
+  "fleet": {
+   "NF-std-eOnly": 37
+  },
+  "chargers": {
+   "depot:450": 2,
+   "lawrenceStation2:450": 1,
+   "lawrenceWestStation:450": 1,
+   "pearsonAirportTerminal:450": 1,
+   "raabBlvdHospital:450": 1,
+   "theWestwayRoyal:450": 1,
+   "westwoodSquareTerminal:450": 1
+  },
+  "grid_kW": {
+   "depot": 250.0,
+   "lawrenceStation2": 250.0,
+   "lawrenceWestStation": 250.0,
+   "pearsonAirportTerminal": 250.0,
+   "raabBlvdHospital": 250.0,
+   "theWestwayRoyal": 250.0,
+   "westwoodSquareTerminal": 500.0
+  },
+  "co2_t": 0.0,
+  "n_ffh": 0,
+  "F1": 7048789.7
+ }
+}

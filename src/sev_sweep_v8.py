@@ -14,5 +14,7 @@ C.solve("econ_lam0", lam=0.0, tlim=C.TLIM)
 C.solve("eps_0.00", eps=0.0, lam=0.0, lexicographic=True, tlim=C.TLIM)
 C.dedup_runs()
 for r in C.OUT["runs"]:
+    if "F1" not in r:
+        print("  ", r["label"], "no solution"); continue
     print(f"  {r['label']}: F1 {r['F1']:,.1f} gap {r.get('abs_gap',0):,.0f} "
           f"ffh {r['n_ffh']} co2 {r['co2_t']} ch {r['chargers']}")

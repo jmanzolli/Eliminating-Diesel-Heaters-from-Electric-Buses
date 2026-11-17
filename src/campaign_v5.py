@@ -30,8 +30,11 @@ import route52_prototype as R
 
 ABS_GAP = 1000.0
 LEX_TOL = 500.0
-TLIM = 3600
-TLIM_HARD = 7200
+LEX_PHASE3 = os.environ.get("CAMP_LEX_PHASE3", "1") == "1"
+LEX_CO2_TOL = 0.005             # tonnes
+TLIM = int(os.environ.get("CAMP_TLIM", 3600))
+TLIM_HARD = int(os.environ.get("CAMP_TLIM_HARD", 7200))
+TLIM_PH = min(1800, TLIM)       # lexicographic phases 2 and 3
 LOGDIR = os.environ.get("CAMP_LOGDIR", "logs_v5")
 os.makedirs(LOGDIR, exist_ok=True)
 
@@ -60,7 +63,11 @@ OUT = {"runs": [], "meta": {
     "el_heater_rated_kw": R.P_ELH_RATED,
     "reserve_kwh": R.RESERVE_RETURN,
     "formulation": "v6 (C1 heater-bounded preconditioning, C2 chi retention, "
-                   "C3 single plug per bus, C4 FFH-free procurement)",
+                   "C3 single plug per bus, C4 FFH-free procurement)"
+                   + ("; v11g explicit vehicle-days, auxiliary load, heat over "
+                      "service hours, three-phase lexicographic"
+                      if R.EXPLICIT else ""),
+    "n_blocks": R.N_BLOCKS, "aux_kw_bands": R.INP.get("aux_kw_bands"),
     "precond_tau_h": R.PRECOND_TAU_H,
     "precond_max_kwh": R.PRECOND_MAX_KWH,
     "gurobi": gp.gurobi.version(), "threads": "all (default)",
@@ -77,7 +84,9 @@ if os.path.exists(OUT_FILE):
     # carried across, or the next driver that imports this module silently
     # drops it on the following _dump(); ops_metrics_econ was lost that way
     for _k in ("ops_metrics_policy", "ops_metrics_econ", "frontier_labels",
-               "breakpoint_prices", "det_feasible_full", "n_minus_1_feasible"):
+               "breakpoint_prices", "det_feasible_full", "n_minus_1_feasible",
+               "infeasible_caps", "caps_basis_co2_t", "baseline_co2_t", "caps_stale",
+               "baseline_ties"):
         if _k in _prev:
             OUT[_k] = _prev[_k]
     DONE = {r["label"]: r for r in OUT["runs"]}
@@ -205,7 +214,8 @@ def record(m, label, lam, eps, phase2=None, extra=None):
 
 def solve(label, eps=None, lam=100.0, mods=None, unmods=None, tlim=TLIM,
           abs_gap=ABS_GAP, lexicographic=False, fix_design=None,
-          freeze_z=False, spare=0.0, force=False, mip_start=None, **bm_kwargs):
+          freeze_z=False, spare=0.0, force=False, mip_start=None, full_start=None,
+          **bm_kwargs):
     if label in DONE and not force:
         print(f"{label} -> skip (already recorded)", flush=True)
         return DONE[label], None
@@ -233,6 +243,17 @@ def solve(label, eps=None, lam=100.0, mods=None, unmods=None, tlim=TLIM,
                     h["ysite"][n, p].Start = mip_start["ysite"][(n, p)]
                 for j in range(len(R.GRID_TIERS)):
                     h["ygrid"][n, j].Start = mip_start["ygrid"][(n, j)]
+        if full_start is not None:
+            # v11b: complete start (every variable, by position) from a solve of
+            # the same model with the first stage fixed; the partial start above
+            # leaves Gurobi to complete the second stage, which it often fails
+            # to do within its start-node limit
+            m.update()                     # pending variables are not in getVars()
+            vs = m.getVars()
+            assert len(vs) == len(full_start), \
+                f"full_start from a different model ({len(full_start)} values, {len(vs)} variables)"
+            for v, val in zip(vs, full_start):
+                v.Start = val
         if freeze_z:
             W = list(R.SCEN.keys())
             z0 = m._scen[W[0]]["z"]
@@ -259,27 +280,56 @@ def solve(label, eps=None, lam=100.0, mods=None, unmods=None, tlim=TLIM,
         if lexicographic and eps is not None:
             f1_inc, f1_lb, t1 = m.ObjVal, m.ObjBound, m.Runtime
             co2_p1 = m._emis_t.getValue()
+            obj1 = m.getObjective()
             m.addConstr(m._total_cost <= f1_inc + LEX_TOL, name="lex_cost_cap")
             m.setObjective(m._emis_t, GRB.MINIMIZE)
             m.Params.LogFile = f"{LOGDIR}/{label}_ph2.log"
             m.Params.MIPGapAbs = 0.05          # tonnes
-            m.Params.TimeLimit = 1800
+            m.Params.TimeLimit = TLIM_PH
             try:
                 m.optimize()
             except gp.GurobiError as e:
                 print(label, "-> phase-2 GurobiError:", e, flush=True)
+            co2_p2, t2 = m._emis_t.getValue(), m.Runtime
             phase2 = {"cost_incumbent_ph1": round(f1_inc, 1),
                       "cost_lb_ph1": round(f1_lb, 1),
                       "time_ph1": round(t1, 1),
                       "co2_ph1": round(co2_p1, 3),
-                      "co2_ph2": round(m._emis_t.getValue(), 3),
+                      "co2_ph2": round(co2_p2, 3),
+                      "cost_ph2": round(m._total_cost.getValue(), 1),
+                      "time_ph2": round(t2, 1),
                       "lex_tol": LEX_TOL}
+            # v11 phase 3: phase 2 is free to spend the whole cost tolerance,
+            # so every lexicographic record carried F1 = phase-1 cost + LEX_TOL
+            # exactly. Re-minimise cost at the phase-2 emissions.
+            obj_ph3 = None
+            if LEX_PHASE3:
+                m.addConstr(m._emis_t <= co2_p2 + LEX_CO2_TOL, name="lex_co2_cap")
+                m.setObjective(obj1, GRB.MINIMIZE)
+                m.Params.LogFile = f"{LOGDIR}/{label}_ph3.log"
+                m.Params.MIPGapAbs = abs_gap
+                m.Params.TimeLimit = TLIM_PH
+                try:
+                    m.optimize()
+                    if m.SolCount > 0:
+                        obj_ph3 = m.ObjVal      # phase-1 objective space
+                except gp.GurobiError as e:
+                    print(label, "-> phase-3 GurobiError:", e, flush=True)
+                phase2.update({"cost_ph3": round(m._total_cost.getValue(), 1),
+                               "co2_ph3": round(m._emis_t.getValue(), 3),
+                               "time_ph3": round(m.Runtime, 1),
+                               "lex_co2_tol": LEX_CO2_TOL})
             # reporting bounds refer to phase-1 cost certification
             rec = record(m, label, lam, eps, phase2=phase2)
-            rec["obj"] = round(f1_inc + m._const_addback, 1)
+            # v11: phase 3 solves the phase-1 objective at the phase-2
+            # emissions, which is feasible for phase 1, so a cheaper phase-3
+            # solution is the better phase-1 incumbent; the bound stays the
+            # phase-1 bound
+            inc = min(f1_inc, obj_ph3) if obj_ph3 is not None else f1_inc
+            rec["obj"] = round(inc + m._const_addback, 1)
             rec["lb"] = round(f1_lb + m._const_addback, 1)
-            rec["abs_gap"] = round(f1_inc - f1_lb, 1)
-            rec["rel_gap"] = round(abs(f1_inc - f1_lb) / max(1.0, abs(f1_inc)), 6)
+            rec["abs_gap"] = round(inc - f1_lb, 1)
+            rec["rel_gap"] = round(abs(inc - f1_lb) / max(1.0, abs(inc)), 6)
             rec["obj_final_cost"] = round(m._total_cost.getValue()
                                           + m._const_addback, 1)
         else:

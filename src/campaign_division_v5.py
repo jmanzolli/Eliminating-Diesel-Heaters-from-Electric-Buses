@@ -215,11 +215,34 @@ def solve_case(label, freeze_z=False, route_lock=False, tlim=TLIM):
                 for k in K:
                     m.addConstr(gp.quicksum(z[b, k] for b in blocks_r)
                                 <= xr[r, k])
+    # v11: complete MIP start from a saved solution (DIV_START_SOL). The
+    # first-stage start above left the warm-started cases B and D above the
+    # shared-pool case C, although C's solution is feasible for D; passing
+    # every variable makes the start usable as given. Variables the saved
+    # solution does not have (the route pools of case B) are left to Gurobi.
+    ss = os.environ.get("DIV_START_SOL")
+    if ss and os.path.exists(ss):
+        sol = json.load(open(ss))
+        m.update()
+        hit = 0
+        for v in m.getVars():
+            if v.VarName in sol["x"]:
+                v.Start = sol["x"][v.VarName]
+                hit += 1
+            elif v.VType != GRB.CONTINUOUS and not v.VarName.startswith("x_route"):
+                v.Start = 0.0
+        print(f"full MIP start from {ss} ({sol.get('label')}): "
+              f"{hit} nonzero values", flush=True)
     limits(m, label, tlim=tlim)
     m.optimize()
     if m.SolCount == 0:
         print(label, "-> NO SOLUTION", m.Status, flush=True)
         return None, None
+    so = os.environ.get("DIV_SAVE_SOL")
+    if so:
+        json.dump({"label": label, "obj": m.ObjVal,
+                   "x": {v.VarName: v.X for v in m.getVars() if abs(v.X) > 1e-9}},
+                  open(so, "w"))
     rec = summarize(m, label)
     print(label, "-> total", round(rec["total_annual_cost"] / 1e3, 1),
           "kCAD | diff", round(rec["differentiating_cost"] / 1e3, 1),
@@ -235,7 +258,9 @@ def case_A():
     # the end of this function throw away all fourteen completed solves
     division_inputs = os.environ["ROUTE_INPUTS"]
     base = json.load(open(division_inputs))
-    routes = sorted({route_of(b) for b in base["branches"]})
+    explicit = "vehicle_days" in base          # v11g instances
+    routes = (sorted({str(v["route"]) for v in base["vehicle_days"]}, key=int)
+              if explicit else sorted({route_of(b) for b in base["branches"]}))
     # review (2026-11-06): DIV_ROUTES restricts case A to a subset of routes so
     # the fourteen independent solves can run as parallel processes
     if os.environ.get("DIV_ROUTES"):
@@ -248,7 +273,11 @@ def case_A():
     chargers, gridkw = {}, {}
     worst_gap = 0.0
     for r in routes:
-        brs = {k: v for k, v in base["branches"].items() if route_of(k) == r}
+        if explicit:
+            vds = [v for v in base["vehicle_days"] if str(v["route"]) == r]
+            brs = {}
+        else:
+            brs = {k: v for k, v in base["branches"].items() if route_of(k) == r}
         # review fix (2026-11-06): only real candidate sites. The branch
         # table marks non-candidate termini as "none"; the old set union made
         # "none" a buildable site in the per-route subproblems (route 99 built
@@ -257,8 +286,13 @@ def case_A():
         sites = sorted({"depot"} | ({v["site_west"] for v in brs.values()}
                                     | {v["site_east"] for v in brs.values()})
                        & cand)
+        if explicit:
+            sites = sorted({"depot"} | ({d[0] for v in vds for d in v["dwells"]} & cand))
         sub = dict(base)
-        sub["branches"] = brs
+        if explicit:
+            sub["vehicle_days"] = vds
+        else:
+            sub["branches"] = brs
         sub["sites"] = sites
         sub["instance_name"] = f"route_{r}_standalone"
         # route52_prototype resolves ROUTE_INPUTS against ITS OWN directory,
@@ -280,6 +314,7 @@ def case_A():
         m.optimize()
         if m.SolCount == 0:
             print(f"A route {r} -> NO SOLUTION", flush=True)
+            agg.setdefault("routes_without_solution", []).append(r)
             continue
         rec = summarize(m, f"A_route_{r}")
         # review: depot load profile and depot-only billing of this route, so

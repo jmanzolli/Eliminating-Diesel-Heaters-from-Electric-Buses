@@ -46,8 +46,12 @@ SRC_RUNS = {r["label"]: r for r in json.load(open(SRC))["runs"]
 
 
 def solve(label, fix_design=None, only_scen=None, tlim=TLIM):
+    # v11: with the auxiliary load the mean-temperature design runs short of
+    # battery energy, not only of heater output, so a soft heat balance alone
+    # leaves EEV infeasible. A fixed design is evaluated with the battery
+    # constraints elastic as well (shortfall at SHORTFALL_PENALTY per kWh).
     m = R.build_model(carbon_price_t=0.0, soft_heat=True, heat_penalty=PEN,
-                      only_scen=only_scen)
+                      only_scen=only_scen, elastic=fix_design is not None)
     if fix_design:
         h = m._handles
         for k, v in fix_design["x"].items():
@@ -67,17 +71,24 @@ def solve(label, fix_design=None, only_scen=None, tlim=TLIM):
         print(f"{label} -> NO SOLUTION status {m.Status}", flush=True)
         return None
     heat = m._heat_short.getValue() if hasattr(m._heat_short, "getValue") else 0.0
+    # battery shortfall per year (day-weighted, as priced in the objective)
+    short = (m._shortfall_w.getValue() if hasattr(m._shortfall_w, "getValue")
+             else 0.0)
     rec = {"label": label,
            "objective": round(m.ObjVal, 1),
            "bound": round(m.ObjBound, 1),
            "abs_gap": round(m.ObjVal - m.ObjBound, 1),
            "resource_cost": round(m._total_cost.getValue(), 1),
            "unmet_heat_kWh_yr": round(heat, 1),
+           "energy_shortfall_kWh_yr": round(short, 1),
            "penalty_cost": round(PEN * heat, 1),
+           "heat_penalty_cost": round(PEN * heat, 1),
+           "energy_penalty_cost": round(R.SHORTFALL_PENALTY * short, 1),
            "co2_t": round(m._emis_t.getValue(), 3),
            "time_s": round(m.Runtime, 1)}
     print(f"{label} -> obj {rec['objective']:,.0f} | resource "
           f"{rec['resource_cost']:,.0f} | unmet {rec['unmet_heat_kWh_yr']:,.0f} kWh"
+          f" | battery short {rec['energy_shortfall_kWh_yr']:,.0f} kWh"
           f" | gap {rec['abs_gap']:,.0f} ({rec['time_s']:.0f}s)", flush=True)
     return rec
 
@@ -98,7 +109,7 @@ ws = {}
 for w in R.SCEN:
     if w in R.HEATLESS:
         continue
-    r = solve(f"WS_{w}", only_scen=w, tlim=max(600, TLIM // 3))
+    r = solve(f"WS_{w}", only_scen=w, tlim=max(min(600, TLIM), TLIM // 3))
     if r:
         ws[w] = r
 out["runs"]["WS_by_band"] = ws
@@ -108,13 +119,19 @@ eev = out["runs"].get("EEV_meantemp")
 if rp and eev:
     out["VSS"] = round(eev["objective"] - rp["objective"], 1)
     out["VSS_resource_only"] = round(eev["resource_cost"] - rp["resource_cost"], 1)
+    out["VSS_heat_penalty"] = round(eev["heat_penalty_cost"] - rp["heat_penalty_cost"], 1)
+    out["VSS_energy_penalty"] = round(eev["energy_penalty_cost"] - rp["energy_penalty_cost"], 1)
     out["EEV_unmet_heat_kWh_yr"] = eev["unmet_heat_kWh_yr"]
+    out["EEV_energy_shortfall_kWh_yr"] = eev["energy_shortfall_kWh_yr"]
+    out["energy_penalty_CAD_per_kWh"] = R.SHORTFALL_PENALTY
 
 json.dump(out, open(OUT_FILE, "w"), indent=1)
 print()
 if rp and eev:
     print(f"RP  {rp['objective']:,.0f}")
-    print(f"EEV {eev['objective']:,.0f}  (unmet heat {eev['unmet_heat_kWh_yr']:,.0f} kWh/yr)")
-    print(f"VSS {out['VSS']:,.0f} CAD/yr  "
-          f"(of which {out['VSS_resource_only']:,.0f} is resource cost, "
-          f"the rest the comfort penalty at {PEN:g} CAD/kWh)")
+    print(f"EEV {eev['objective']:,.0f}  (unmet heat {eev['unmet_heat_kWh_yr']:,.0f} kWh/yr, "
+          f"battery shortfall {eev['energy_shortfall_kWh_yr']:,.0f} kWh/yr)")
+    print(f"VSS {out['VSS']:,.0f} CAD/yr = resource cost {out['VSS_resource_only']:,.0f}"
+          f" + unmet-heat penalty {out['VSS_heat_penalty']:,.0f} (at {PEN:g} CAD/kWh)"
+          f" + battery-shortfall penalty {out['VSS_energy_penalty']:,.0f}"
+          f" (at {R.SHORTFALL_PENALTY:g} CAD/kWh)")

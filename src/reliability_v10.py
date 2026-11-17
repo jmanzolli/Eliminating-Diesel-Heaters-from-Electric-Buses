@@ -72,6 +72,7 @@ import sys
 import time
 
 import numpy as np
+from gurobipy import GRB
 
 import route52_prototype as R
 from campaign_v5 import design_from_record
@@ -101,14 +102,19 @@ F_DATE = np.asarray(TR["f_date"])
 WITHIN = np.asarray(TR["within"])
 TEMPS = {w: np.asarray(v) for w, v in RELIN["temps"].items()}
 SIGMA_HEAT = RELIN["heat"]["sigma_kW"]
+# v11: the snow day (26 Dec 2025) is kept out of the residual pool and used as
+# a stress level. Level "snow": the day factor is fixed at that day's
+# fleet-wide log ratio; temperature, block residuals and heat as level "data".
+SNOW_F = (TR.get("snow_day") or {}).get("log_ratio")
 
 
 # ------------------------------------------------------------------ draws
 def block_rate(b, T):
     """Time-weighted mean planning heat rate (kW) of block b at T."""
     trips = R.BLOCKS[b].trips
-    num = sum(R.q_heat_rate(T, tr.f_stop, tr.speed) * tr.dur_h for tr in trips)
-    return R.HEAT_DEMAND_MULT * num / max(1e-9, sum(tr.dur_h for tr in trips))
+    hrs = [R.heat_hours(R.BLOCKS[b], i) for i in range(len(trips))]
+    num = sum(R.q_heat_rate(T, tr.f_stop, tr.speed) * h for tr, h in zip(trips, hrs))
+    return R.HEAT_DEMAND_MULT * num / max(1e-9, sum(hrs))
 
 
 def draw(rng, w, level):
@@ -116,11 +122,14 @@ def draw(rng, w, level):
     T = (R.SCEN[w][0] if level == "trac_fixT"
          else float(TEMPS[w][rng.integers(len(TEMPS[w]))]))
     f = float(F_DATE[rng.integers(len(F_DATE))])
+    if level == "snow":
+        assert SNOW_F is not None, "reliability inputs carry no snow-day factor"
+        f = float(SNOW_F)
     mu = TR["mu_log_ratio"][w]
     lm, cvs = {}, []
     for b in range(R.N_BLOCKS):
         tm = float(np.exp(mu + f + WITHIN[rng.integers(len(WITHIN))]))
-        if level == "data":
+        if level in ("data", "snow"):
             q = block_rate(b, T)
             cv = SIGMA_HEAT / q if q > 1e-6 else 0.0
         elif level.startswith("cv"):
@@ -265,6 +274,7 @@ def solve_day(w, T, lm, zfix, design, s_lo, reserve, tlim=300, obj_stop=None):
             m.Params.BestObjStop = obj_stop
         m.Params.Threads = THREADS
         m.optimize()
+        m._hit_limit = m.Status == GRB.TIME_LIMIT
         cap = {b: R.DERATE[w][0] * sum(R.BUS_CLASSES[k].batt_nom * m._scen[w]["z"][b, k].X
                                        for k in range(len(R.BUS_CLASSES)))
                for b in range(R.N_BLOCKS)} if m.SolCount else None
@@ -288,7 +298,7 @@ def simulate(w, T, lm, zfix, design):
         m._heat_short, "getValue") else 0.0
     margins = [min(s["Earr"][b, i].X - R.S_LO * cap[b]
                    for i in range(len(R.BLOCKS[b].trips))) for b in range(R.N_BLOCKS)]
-    r = {"solved": True, "T": round(T, 1),
+    r = {"solved": True, "T": round(T, 1), "time_limit": bool(m._hit_limit),
          "shortfall_kWh": round(short, 3),
          "slack_floor_kWh": round(_vsum(m, f"slack_{w}_"), 3),
          "slack_reserve_kWh": round(_vsum(m, f"slackret_{w}_"), 3),
@@ -326,6 +336,9 @@ def summarize(res, w, n_trips):
     short = [r["shortfall_kWh"] for r in ok]
     return {
         "T_rep": R.SCEN[w][0], "days": R.SCEN[w][1], "n": n, "n_solved": len(ok),
+        # days whose re-dispatch stopped at the time limit: their slack is an
+        # upper estimate, so a failure among them may be spurious
+        "n_time_limit": sum(1 for r in ok if r.get("time_limit")),
         "T_drawn_mean": round(float(np.mean([r["T"] for r in ok])), 2) if ok else None,
         "p_reserve_compliant": round(sum(r["reserve_ok"] for r in ok) / max(1, n), 4),
         "p_trips_completed": round(sum(1 for r in ok if r["trips_lost"] == 0) / max(1, n), 4),
@@ -454,8 +467,10 @@ if __name__ == "__main__":
         assignment = {"mode": "hedged", "bands": bands}
     else:
         zfix, assignment = load_assignment(ASSIGN, DESIGN_LABEL)
-    chunked = CHUNK_N > 1
-    out = {"protocol": "v10", "design_label": DESIGN_LABEL, "design": rec["fleet"],
+    # any run given REL_CHUNK writes a shard for the merge mode, also when
+    # it is the only chunk (n = 1)
+    chunked = CHUNK_N > 1 or "REL_CHUNK" in os.environ
+    out = {"protocol": "v11" if R.EXPLICIT else "v10", "design_label": DESIGN_LABEL, "design": rec["fleet"],
            "chargers": rec["chargers"], "n_per_band": N, "seed": SEED,
            "hard_floor_soc": HARD_FLOOR, "n_trips_per_day": n_trips,
            "assignment": assignment,
@@ -466,7 +481,10 @@ if __name__ == "__main__":
         out["raw"] = {}
     raw = {}
     for li, level in enumerate(LEVELS):
-        rng = np.random.default_rng(SEED + li)   # common draws across designs
+        # one stream per level, the same for every level and design. (Up to
+        # v10 the seed was SEED + position in REL_LEVELS; the run scripts
+        # passed one level per process, so it was SEED + 0 in practice.)
+        rng = np.random.default_rng(SEED)
         raw[level] = {}
         for w in BANDS:
             res = []

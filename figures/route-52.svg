@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 414" width="800" height="414" role="img" aria-labelledby="t d">
+<title id="t">TTC Route 52 and its candidate charging sites</title>
+<desc id="d">Schematic of the four branches of TTC Route 52 (52A, 52B, 52F, 52G), the Arrow Road depot, and the six terminals that are candidate opportunity-charging sites.</desc>
+<rect width="800" height="414" fill="#FFFFFF"/>
+<path d="M500,187 V298" stroke="#6F6F6F" stroke-width="3.4" stroke-dasharray="8 6" fill="none"/>
+<path d="M620,307 H725" fill="none" stroke="#7B2FBE" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M620,307 H725" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M300,262 H150" fill="none" stroke="#0659D2" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M300,262 H150" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M306,262 H294 Q282,262 276,252 L255,219 Q249,209 237,209 H95" fill="none" stroke="#068A19" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M306,262 H294 Q282,262 276,252 L255,219 Q249,209 237,209 H95" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M300,352 H150" fill="none" stroke="#F85F03" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M300,352 H150" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M620,307 H500" fill="none" stroke="#F20F0E" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M620,307 H500" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M426,307 H420 Q408,307 402,317 L387,342 Q381,352 369,352 H300" fill="none" stroke="#F20F0E" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M426,307 H420 Q408,307 402,317 L387,342 Q381,352 369,352 H300" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M500,307 H420 Q408,307 402,297 L387,272 Q381,262 369,262 H300" fill="none" stroke="#F20F0E" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M500,307 H420 Q408,307 402,297 L387,272 Q381,262 369,262 H300" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+<rect x="665" y="305" width="14" height="4" fill="#7B2FBE"/>
+<polyline points="668,303.8 671.4,307 668,310.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="673,303.8 676.4,307 673,310.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="553" y="305" width="14" height="4" fill="#F20F0E"/>
+<polyline points="556,303.8 559.4,307 556,310.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="561,303.8 564.4,307 561,310.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="329" y="260" width="14" height="4" fill="#F20F0E"/>
+<polyline points="332,258.8 335.4,262 332,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="337,258.8 340.4,262 337,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="329" y="350" width="14" height="4" fill="#F20F0E"/>
+<polyline points="332,348.8 335.4,352 332,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="337,348.8 340.4,352 337,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="193" y="260" width="14" height="4" fill="#0659D2"/>
+<polyline points="196,258.8 199.4,262 196,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="201,258.8 204.4,262 201,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="243" y="260" width="14" height="4" fill="#0659D2"/>
+<polyline points="246,258.8 249.4,262 246,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="251,258.8 254.4,262 251,265.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="133" y="207" width="14" height="4" fill="#068A19"/>
+<polyline points="136,205.8 139.4,209 136,212.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="141,205.8 144.4,209 141,212.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="188" y="207" width="14" height="4" fill="#068A19"/>
+<polyline points="191,205.8 194.4,209 191,212.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="196,205.8 199.4,209 196,212.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="193" y="350" width="14" height="4" fill="#F85F03"/>
+<polyline points="196,348.8 199.4,352 196,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="201,348.8 204.4,352 201,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="243" y="350" width="14" height="4" fill="#F85F03"/>
+<polyline points="246,348.8 249.4,352 246,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<polyline points="251,348.8 254.4,352 251,355.2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="725" cy="307" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="620" cy="307" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="500" cy="307" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="150" cy="262" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="95" cy="209" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="300" cy="352" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="150" cy="352" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.8"/>
+<circle cx="760" cy="307" r="14" fill="#FFFFFF" stroke="#7B2FBE" stroke-width="1.8"/>
+<g transform="translate(760,307)" fill="#7B2FBE"><rect x="-2.6" y="-8" width="5.2" height="16"/><rect x="-8" y="-2.6" width="16" height="5.2"/></g>
+<circle cx="115" cy="262" r="14" fill="#FFFFFF" stroke="#0659D2" stroke-width="1.8"/>
+<path transform="translate(115,262) rotate(45)" fill="#0659D2" d="M0,-10 C1.3,-10 1.7,-8 1.7,-6.5 V-2.6 L9.5,2.6 V4.6 L1.7,2.2 V6.2 L4,8 V9.6 L0,8.6 L-4,9.6 V8 L-1.7,6.2 V2.2 L-9.5,4.6 V2.6 L-1.7,-2.6 V-6.5 C-1.7,-8 -1.3,-10 0,-10 Z"/>
+<circle cx="60" cy="209" r="14" fill="#FFFFFF" stroke="#068A19" stroke-width="1.8"/>
+<g transform="translate(60,209)" fill="#068A19"><path d="M-8,8 V-2 H-3 V-7 H3 V-2 H8 V8 Z"/><g fill="#FFFFFF"><rect x="-1.2" y="-5" width="2.4" height="2.2"/><rect x="-6" y="0" width="2.2" height="2"/><rect x="-1.1" y="0" width="2.2" height="2"/><rect x="3.8" y="0" width="2.2" height="2"/><rect x="-6" y="3.6" width="2.2" height="2"/><rect x="3.8" y="3.6" width="2.2" height="2"/><rect x="-1.3" y="4" width="2.6" height="4"/></g></g>
+<circle cx="115" cy="352" r="14" fill="#FFFFFF" stroke="#F85F03" stroke-width="1.8"/>
+<g transform="translate(115,352)" fill="#F85F03"><circle cx="0" cy="-3.6" r="4.6"/><circle cx="-4" cy="0.2" r="3.9"/><circle cx="4" cy="0.2" r="3.9"/><rect x="-1.2" y="1" width="2.4" height="8"/></g>
+<g transform="translate(744,281) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<g transform="translate(639,281) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<g transform="translate(519,281) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<g transform="translate(169,236) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<g transform="translate(114,183) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<g transform="translate(319,326) scale(0.9)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<text x="672" y="296" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#7B2FBE" text-anchor="middle">52F</text>
+<text x="225" y="251" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#0659D2" text-anchor="middle">52A</text>
+<text x="168" y="198" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#068A19" text-anchor="middle">52B</text>
+<text x="225" y="341" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#F85F03" text-anchor="middle">52G</text>
+<text x="737" y="338" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Sunnybrook</text>
+<text x="737" y="355" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Hospital</text>
+<text x="620" y="338" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Lawrence</text>
+<text x="620" y="355" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Stn</text>
+<text x="500" y="338" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Lawrence</text>
+<text x="500" y="355" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">West Stn</text>
+<text x="132" y="293" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Pearson Airport</text>
+<text x="77" y="240" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Westwood Square</text>
+<text x="300" y="383" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">The Westway at</text>
+<text x="300" y="400" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Royal York</text>
+<text x="132" y="383" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#000000" text-anchor="middle">Martin Grove</text>
+<circle cx="500" cy="165" r="22" fill="#FFFFFF" stroke="#6F6F6F" stroke-width="2.2"/>
+<g transform="translate(500,165)" fill="#6F6F6F"><path d="M-14,11 V-3 L0,-12 L14,-3 V11 H9.5 V-1 H-9.5 V11 Z"/><rect x="-2" y="-8.6" width="4" height="3" fill="#FFFFFF"/><rect x="-7" y="1.4" width="14" height="9" rx="1.6"/><rect x="-5.4" y="3" width="10.8" height="3.4" fill="#FFFFFF"/><circle cx="-4" cy="8.4" r="0.9" fill="#FFFFFF"/><circle cx="4" cy="8.4" r="0.9" fill="#FFFFFF"/><rect x="-6" y="10.4" width="2.6" height="1.8"/><rect x="3.4" y="10.4" width="2.6" height="1.8"/></g>
+<text x="500" y="133" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#000000" text-anchor="middle">Depot (Arrow Rd)</text>
+<text x="655" y="118" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#000000" text-anchor="middle">Depot charging</text>
+<g transform="translate(727,112) scale(1.5)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.8 L9,5 L0,9.2" fill="none" stroke="#000" stroke-width="1.6"/></marker></defs>
+<path d="M600,124 L528,153" stroke="#000000" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="14" y="12" width="348" height="152" fill="#FFFFFF" stroke="#000000" stroke-width="1.2"/>
+<text x="28" y="33" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#000000" text-anchor="start">Legend</text>
+<rect x="28" y="45.5" width="62" height="5" fill="#0659D2"/>
+<text x="102" y="52" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">52A branch (Pearson Airport)</text>
+<rect x="28" y="63.0" width="62" height="5" fill="#068A19"/>
+<text x="102" y="69.5" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">52B branch (Westwood Square)</text>
+<rect x="28" y="80.5" width="62" height="5" fill="#7B2FBE"/>
+<text x="102" y="87.0" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">52F branch (Sunnybrook Hospital–Royal York)</text>
+<rect x="28" y="98.0" width="62" height="5" fill="#F85F03"/>
+<text x="102" y="104.5" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">52G branch (Martin Grove)</text>
+<rect x="28" y="115.5" width="62" height="5" fill="#F20F0E"/>
+<text x="102" y="122.0" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">Section shared by two or more branches</text>
+<path d="M28,135.5 H90" stroke="#6F6F6F" stroke-width="4.6" stroke-dasharray="7 5"/>
+<text x="102" y="139.5" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">Deadhead (depot pull-out/pull-in)</text>
+<g transform="translate(59,153.0) scale(0.72)" fill="none" stroke="#000000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><rect x="-8" y="-10" width="11" height="19" rx="1.2" fill="#FFFFFF"/><rect x="-6" y="-8" width="7" height="5"/><path d="M-10,9.6 H5"/><path d="M-1.6,-1 L-4.2,3.4 H-1.6 L-3,7 L0.2,2.2 H-2.2 Z" fill="#000000" stroke-width="0.6"/><path d="M3,3 H5.2 V6.2 a1.9,1.9 0 0 0 3.8,0 V-2.6"/><path d="M6.8,-2.6 h4.4 v2.2 a2.2,2.2 0 0 1 -4.4,0 Z" fill="#FFFFFF"/><path d="M7.9,-2.6 v-2.6 M10.1,-2.6 v-2.6"/></g>
+<text x="102" y="157.0" font-family="'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#000000" text-anchor="start">Candidate opportunity-charging site</text>
+</svg>

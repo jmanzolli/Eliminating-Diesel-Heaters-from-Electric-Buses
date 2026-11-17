@@ -1,0 +1,117 @@
+{
+ "note": "aux = net battery energy - drivetrain - electric cabin heat; band power = band aux energy / band time in service; extreme and severe pooled",
+ "n_traction_pool": 13757,
+ "n_runs": 13739,
+ "kw_filter": [
+  0.0,
+  30.0
+ ],
+ "bands": {
+  "offseason": {
+   "n": 8548,
+   "hours": 69239.1,
+   "kw": 6.071,
+   "kw_run_mean": 5.948,
+   "kw_run_sd": 1.92,
+   "net_kwh_km": 1.117,
+   "dt_kwh_km": 0.687,
+   "eheat_kwh_km": 0.078,
+   "aux_kwh_km": 0.352
+  },
+  "mild": {
+   "n": 2182,
+   "hours": 17284.6,
+   "kw": 6.278,
+   "kw_run_mean": 6.179,
+   "kw_run_sd": 1.017,
+   "net_kwh_km": 1.14,
+   "dt_kwh_km": 0.736,
+   "eheat_kwh_km": 0.043,
+   "aux_kwh_km": 0.361
+  },
+  "cold": {
+   "n": 2194,
+   "hours": 17966.0,
+   "kw": 7.029,
+   "kw_run_mean": 6.958,
+   "kw_run_sd": 0.957,
+   "net_kwh_km": 1.164,
+   "dt_kwh_km": 0.744,
+   "eheat_kwh_km": 0.018,
+   "aux_kwh_km": 0.402
+  },
+  "verycold": {
+   "n": 759,
+   "hours": 5670.6,
+   "kw": 7.502,
+   "kw_run_mean": 7.444,
+   "kw_run_sd": 0.955,
+   "net_kwh_km": 1.21,
+   "dt_kwh_km": 0.764,
+   "eheat_kwh_km": 0.026,
+   "aux_kwh_km": 0.42
+  },
+  "extreme": {
+   "n": 52,
+   "hours": 256.9,
+   "kw": 7.411,
+   "kw_run_mean": 7.343,
+   "kw_run_sd": 0.778,
+   "net_kwh_km": 1.418,
+   "dt_kwh_km": 0.856,
+   "eheat_kwh_km": 0.164,
+   "aux_kwh_km": 0.398
+  },
+  "severe": {
+   "n": 4,
+   "hours": 14.7,
+   "kw": 7.768,
+   "kw_run_mean": 7.712,
+   "kw_run_sd": 0.647,
+   "net_kwh_km": 1.481,
+   "dt_kwh_km": 0.868,
+   "eheat_kwh_km": 0.184,
+   "aux_kwh_km": 0.429
+  }
+ },
+ "pooled": [
+  "extreme",
+  "severe"
+ ],
+ "kw_pooled": 7.43,
+ "aux_kw_used": {
+  "offseason": 6.071,
+  "mild": 6.278,
+  "cold": 7.029,
+  "verycold": 7.502,
+  "extreme": 7.43,
+  "severe": 7.43
+ },
+ "aux_kw_bands": {
+  "17.4": 6.071,
+  "2.5": 6.278,
+  "-2.5": 7.029,
+  "-7.5": 7.502,
+  "-12.5": 7.43,
+  "-17.5": 7.43
+ },
+ "metrics": {
+  "run_MAE_kW": 1.198,
+  "run_cv": 0.265,
+  "band_energy_ratio": {
+   "offseason": 1.0,
+   "mild": 1.0,
+   "cold": 1.0,
+   "verycold": 0.9999,
+   "extreme": 1.0026,
+   "severe": 0.9565
+  },
+  "route_energy_MAPE_pct": 6.0,
+  "r52": {
+   "n": 1377,
+   "aux_energy_ratio_pred_over_obs": 0.9984,
+   "aux_kwh_km": 0.412,
+   "net_kwh_km": 1.186
+  }
+ }
+}

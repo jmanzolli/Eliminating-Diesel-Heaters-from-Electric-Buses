@@ -1,0 +1,517 @@
+{
+ "feed": {
+  "feed_publisher_name": "TTC",
+  "feed_publisher_url": "https://www.ttc.ca",
+  "feed_lang": "en",
+  "feed_start_date": "20261101",
+  "feed_end_date": "20261219",
+  "feed_version": "S1000544"
+ },
+ "params": {
+  "DAY_START_H": 3.5,
+  "GAP_CUT_H": 1.0,
+  "MAX_PIECE_H": 15.0,
+  "MAX_PIECE_KM": 250.0,
+  "MIN_DEPOT_H": 2.0,
+  "MAX_DAY_KM": 340.0,
+  "CIRCUITY": 1.3,
+  "DEADHEAD_KMH": 30.0,
+  "MIN_SITE_BUSH": 5.0,
+  "DEPOT_LATLON": [
+   43.748,
+   -79.531
+  ]
+ },
+ "observed": {
+  "pax_per_h": 29.9,
+  "offseason_heat_kw": 2.83,
+  "ffh_share_obs": {
+   "mild": 0.776,
+   "cold": 0.97,
+   "verycold": 0.957,
+   "extreme": 0.755,
+   "severe": 0.755,
+   "offseason": 0.242
+  },
+  "obs_diesel_L_busday": {
+   "mild": 10.02,
+   "cold": 16.88,
+   "verycold": 17.23,
+   "extreme": 10.27,
+   "severe": 10.27,
+   "offseason": 1.15
+  },
+  "obs_runs": {
+   "mild": 5290,
+   "cold": 2398,
+   "verycold": 754,
+   "extreme": 52,
+   "severe": 4,
+   "offseason": 12150
+  },
+  "obs_busday_hours_mean": {
+   "winter": 8.26,
+   "offseason": 8.27
+  }
+ },
+ "instances": [
+  {
+   "instance": "route52_gtfs",
+   "routes": [
+    "52"
+   ],
+   "blocking_rule": true,
+   "gtfs_blocks": 43,
+   "pieces": 65,
+   "vehicle_days": 55,
+   "peak_buses_on_trips": 35,
+   "trips": 611,
+   "revenue_km": 9330.0,
+   "km_on_other_routes": 121.0,
+   "dropped_km_share": 0.0244,
+   "km_mean": 198.2,
+   "km_p90": 263.6,
+   "km_max": 332.2,
+   "svc_h_mean": 11.59,
+   "svc_h_max": 19.75,
+   "share_multi_piece": 0.164,
+   "by_route": {
+    "52": 55
+   },
+   "sites": {
+    "lawrenceStation2": {
+     "layover_bus_h": 13.0,
+     "stop": "Lawrence Station at Bus Bay 2",
+     "deadhead_km": 13.82
+    },
+    "lawrenceWestStation": {
+     "layover_bus_h": 9.8,
+     "stop": "Lawrence West Station at Bus Bay 5",
+     "deadhead_km": 10.18
+    },
+    "westwoodSquareTerminal": {
+     "layover_bus_h": 9.6,
+     "stop": "Westwood Square Bus Terminal at Morning Star Dr",
+     "deadhead_km": 12.07
+    },
+    "pearsonAirportTerminal": {
+     "layover_bus_h": 7.9,
+     "stop": "Pearson Airport Terminal 3 (Arrivals Level Columns C8-C12)",
+     "deadhead_km": 12.9
+    },
+    "theWestwayRoyal": {
+     "layover_bus_h": 6.5,
+     "stop": "The Westway at Royal York Rd",
+     "deadhead_km": 7.52
+    },
+    "raabBlvdHospital": {
+     "layover_bus_h": 5.1,
+     "stop": "Raab Blvd at Hospital Rd West Side (K & L Wings)",
+     "deadhead_km": 16.6
+    }
+   }
+  },
+  {
+   "instance": "route52_gtfs_as_scheduled",
+   "routes": [
+    "52"
+   ],
+   "blocking_rule": false,
+   "gtfs_blocks": 43,
+   "pieces": 43,
+   "vehicle_days": 37,
+   "peak_buses_on_trips": 35,
+   "trips": 611,
+   "revenue_km": 9330.0,
+   "km_on_other_routes": 121.0,
+   "dropped_km_share": 0.0244,
+   "km_mean": 280.6,
+   "km_p90": 398.0,
+   "km_max": 437.8,
+   "svc_h_mean": 16.84,
+   "svc_h_max": 23.59,
+   "share_multi_piece": 0.135,
+   "by_route": {
+    "52": 37
+   },
+   "sites": {
+    "lawrenceStation2": {
+     "layover_bus_h": 13.9,
+     "stop": "Lawrence Station at Bus Bay 2",
+     "deadhead_km": 13.82
+    },
+    "westwoodSquareTerminal": {
+     "layover_bus_h": 10.1,
+     "stop": "Westwood Square Bus Terminal at Morning Star Dr",
+     "deadhead_km": 12.07
+    },
+    "lawrenceWestStation": {
+     "layover_bus_h": 9.9,
+     "stop": "Lawrence West Station at Bus Bay 5",
+     "deadhead_km": 10.18
+    },
+    "pearsonAirportTerminal": {
+     "layover_bus_h": 8.4,
+     "stop": "Pearson Airport Terminal 3 (Arrivals Level Columns C8-C12)",
+     "deadhead_km": 12.9
+    },
+    "theWestwayRoyal": {
+     "layover_bus_h": 7.3,
+     "stop": "The Westway at Royal York Rd",
+     "deadhead_km": 7.52
+    },
+    "raabBlvdHospital": {
+     "layover_bus_h": 5.1,
+     "stop": "Raab Blvd at Hospital Rd West Side (K & L Wings)",
+     "deadhead_km": 16.6
+    }
+   },
+   "heaterfree_split": {
+    "rounds": [
+     {}
+    ],
+    "gtfs_blocks_split": {}
+   }
+  },
+  {
+   "instance": "arrow_road_gtfs",
+   "routes": [
+    "35",
+    "36",
+    "52",
+    "84",
+    "96",
+    "99",
+    "108",
+    "120",
+    "165",
+    "927",
+    "935",
+    "952",
+    "984",
+    "996"
+   ],
+   "blocking_rule": true,
+   "gtfs_blocks": 323,
+   "pieces": 431,
+   "vehicle_days": 324,
+   "peak_buses_on_trips": 197,
+   "trips": 3781,
+   "revenue_km": 57654.0,
+   "km_on_other_routes": 1001.0,
+   "dropped_km_share": 0.02,
+   "km_mean": 202.1,
+   "km_p90": 296.3,
+   "km_max": 347.1,
+   "svc_h_mean": 10.64,
+   "svc_h_max": 19.75,
+   "share_multi_piece": 0.315,
+   "by_route": {
+    "35": 26,
+    "36": 15,
+    "52": 55,
+    "84": 24,
+    "96": 42,
+    "99": 3,
+    "108": 12,
+    "120": 4,
+    "165": 34,
+    "927": 30,
+    "935": 20,
+    "952": 13,
+    "984": 9,
+    "996": 37
+   },
+   "sites": {
+    "pioneerVillageStation": {
+     "layover_bus_h": 52.1,
+     "stop": "Pioneer Village Station Bus Bay 8",
+     "deadhead_km": 4.76
+    },
+    "yorkMillsStation": {
+     "layover_bus_h": 31.9,
+     "stop": "York Mills Station at Bus Bay 3",
+     "deadhead_km": 13.02
+    },
+    "mountDennisStation": {
+     "layover_bus_h": 20.3,
+     "stop": "Mount Dennis Station at Bus Bay 15",
+     "deadhead_km": 9.72
+    },
+    "sheppardYongeStation": {
+     "layover_bus_h": 19.1,
+     "stop": "Sheppard-Yonge Station at Bus Bay 5/5A",
+     "deadhead_km": 12.57
+    },
+    "kiplingStation10": {
+     "layover_bus_h": 16.8,
+     "stop": "Kipling Station at Bus Bay 10",
+     "deadhead_km": 15.84
+    },
+    "janeStation4": {
+     "layover_bus_h": 16.8,
+     "stop": "Jane Station at Bus Bay 4",
+     "deadhead_km": 15.0
+    },
+    "bradstockRdWeston": {
+     "layover_bus_h": 16.2,
+     "stop": "Bradstock Rd at Weston Rd East Side",
+     "deadhead_km": 1.54
+    },
+    "sheppardWestStation": {
+     "layover_bus_h": 16.1,
+     "stop": "Sheppard West Station at Bus Bay 8",
+     "deadhead_km": 7.16
+    },
+    "lawrenceStation2": {
+     "layover_bus_h": 15.9,
+     "stop": "Lawrence Station at Bus Bay 2",
+     "deadhead_km": 13.82
+    },
+    "pearsonAirportTerminal": {
+     "layover_bus_h": 13.8,
+     "stop": "Pearson Airport Terminal 3 (Arrivals Level Columns C8-C12)",
+     "deadhead_km": 12.9
+    },
+    "ormontDrWeston": {
+     "layover_bus_h": 13.2,
+     "stop": "Ormont Dr at Weston Rd",
+     "deadhead_km": 2.86
+    },
+    "finchWestStation": {
+     "layover_bus_h": 12.7,
+     "stop": "Finch West Station Bus Bay 3",
+     "deadhead_km": 4.86
+    },
+    "263CarrierDr": {
+     "layover_bus_h": 11.7,
+     "stop": "263 Carrier Dr",
+     "deadhead_km": 8.7
+    },
+    "finchStation13": {
+     "layover_bus_h": 11.2,
+     "stop": "Finch Station at Bus Bay 13",
+     "deadhead_km": 13.02
+    },
+    "lawrenceWestStation": {
+     "layover_bus_h": 9.8,
+     "stop": "Lawrence West Station at Bus Bay 5",
+     "deadhead_km": 10.18
+    },
+    "westwoodSquareTerminal": {
+     "layover_bus_h": 9.6,
+     "stop": "Westwood Square Bus Terminal at Morning Star Dr",
+     "deadhead_km": 12.07
+    },
+    "scarboroughCentreStation": {
+     "layover_bus_h": 9.6,
+     "stop": "Scarborough Centre Station at Bus Bay 11",
+     "deadhead_km": 28.71
+    },
+    "humberlineLoopAlbion": {
+     "layover_bus_h": 7.1,
+     "stop": "Humberline Loop at Albion Rd",
+     "deadhead_km": 9.56
+    },
+    "signalHillAve": {
+     "layover_bus_h": 6.9,
+     "stop": "Signal Hill Ave at Steeles Ave West",
+     "deadhead_km": 9.83
+    },
+    "theWestwayRoyal": {
+     "layover_bus_h": 6.5,
+     "stop": "The Westway at Royal York Rd",
+     "deadhead_km": 7.52
+    },
+    "raabBlvdHospital": {
+     "layover_bus_h": 5.1,
+     "stop": "Raab Blvd at Hospital Rd West Side (K & L Wings)",
+     "deadhead_km": 16.6
+    }
+   }
+  },
+  {
+   "instance": "arrow_road_gtfs_as_scheduled",
+   "routes": [
+    "35",
+    "36",
+    "52",
+    "84",
+    "96",
+    "99",
+    "108",
+    "120",
+    "165",
+    "927",
+    "935",
+    "952",
+    "984",
+    "996"
+   ],
+   "blocking_rule": "partial: 3 blocks",
+   "gtfs_blocks": 323,
+   "pieces": 327,
+   "vehicle_days": 248,
+   "peak_buses_on_trips": 197,
+   "trips": 3781,
+   "revenue_km": 57654.0,
+   "km_on_other_routes": 1001.0,
+   "dropped_km_share": 0.02,
+   "km_mean": 256.5,
+   "km_p90": 374.1,
+   "km_max": 480.2,
+   "svc_h_mean": 13.72,
+   "svc_h_max": 23.59,
+   "share_multi_piece": 0.302,
+   "by_route": {
+    "35": 24,
+    "36": 13,
+    "52": 37,
+    "84": 21,
+    "96": 27,
+    "99": 3,
+    "108": 11,
+    "120": 5,
+    "165": 24,
+    "927": 24,
+    "935": 13,
+    "952": 13,
+    "984": 9,
+    "996": 24
+   },
+   "sites": {
+    "pioneerVillageStation": {
+     "layover_bus_h": 53.8,
+     "stop": "Pioneer Village Station Bus Bay 8",
+     "deadhead_km": 4.76
+    },
+    "yorkMillsStation": {
+     "layover_bus_h": 32.4,
+     "stop": "York Mills Station at Bus Bay 3",
+     "deadhead_km": 13.02
+    },
+    "mountDennisStation": {
+     "layover_bus_h": 20.3,
+     "stop": "Mount Dennis Station at Bus Bay 15",
+     "deadhead_km": 9.72
+    },
+    "sheppardYongeStation": {
+     "layover_bus_h": 19.2,
+     "stop": "Sheppard-Yonge Station at Bus Bay 5/5A",
+     "deadhead_km": 12.57
+    },
+    "bradstockRdWeston": {
+     "layover_bus_h": 17.2,
+     "stop": "Bradstock Rd at Weston Rd East Side",
+     "deadhead_km": 1.54
+    },
+    "kiplingStation10": {
+     "layover_bus_h": 17.1,
+     "stop": "Kipling Station at Bus Bay 10",
+     "deadhead_km": 15.84
+    },
+    "janeStation4": {
+     "layover_bus_h": 16.8,
+     "stop": "Jane Station at Bus Bay 4",
+     "deadhead_km": 15.0
+    },
+    "lawrenceStation2": {
+     "layover_bus_h": 16.7,
+     "stop": "Lawrence Station at Bus Bay 2",
+     "deadhead_km": 13.82
+    },
+    "sheppardWestStation": {
+     "layover_bus_h": 16.4,
+     "stop": "Sheppard West Station at Bus Bay 8",
+     "deadhead_km": 7.16
+    },
+    "ormontDrWeston": {
+     "layover_bus_h": 14.7,
+     "stop": "Ormont Dr at Weston Rd",
+     "deadhead_km": 2.86
+    },
+    "pearsonAirportTerminal": {
+     "layover_bus_h": 14.3,
+     "stop": "Pearson Airport Terminal 3 (Arrivals Level Columns C8-C12)",
+     "deadhead_km": 12.9
+    },
+    "263CarrierDr": {
+     "layover_bus_h": 13.5,
+     "stop": "263 Carrier Dr",
+     "deadhead_km": 8.7
+    },
+    "finchWestStation": {
+     "layover_bus_h": 13.1,
+     "stop": "Finch West Station Bus Bay 3",
+     "deadhead_km": 4.86
+    },
+    "finchStation13": {
+     "layover_bus_h": 11.2,
+     "stop": "Finch Station at Bus Bay 13",
+     "deadhead_km": 13.02
+    },
+    "westwoodSquareTerminal": {
+     "layover_bus_h": 10.1,
+     "stop": "Westwood Square Bus Terminal at Morning Star Dr",
+     "deadhead_km": 12.07
+    },
+    "lawrenceWestStation": {
+     "layover_bus_h": 9.9,
+     "stop": "Lawrence West Station at Bus Bay 5",
+     "deadhead_km": 10.18
+    },
+    "scarboroughCentreStation": {
+     "layover_bus_h": 9.8,
+     "stop": "Scarborough Centre Station at Bus Bay 11",
+     "deadhead_km": 28.71
+    },
+    "humberlineLoopAlbion": {
+     "layover_bus_h": 8.8,
+     "stop": "Humberline Loop at Albion Rd",
+     "deadhead_km": 9.56
+    },
+    "theWestwayRoyal": {
+     "layover_bus_h": 7.3,
+     "stop": "The Westway at Royal York Rd",
+     "deadhead_km": 7.52
+    },
+    "signalHillAve": {
+     "layover_bus_h": 7.1,
+     "stop": "Signal Hill Ave at Steeles Ave West",
+     "deadhead_km": 9.83
+    },
+    "raabBlvdHospital": {
+     "layover_bus_h": 5.1,
+     "stop": "Raab Blvd at Hospital Rd West Side (K & L Wings)",
+     "deadhead_km": 16.6
+    }
+   },
+   "heaterfree_split": {
+    "rounds": [
+     {
+      "137": {
+       "severe": -19.4
+      },
+      "223": {
+       "severe": -2.4
+      },
+      "232": {
+       "severe": -0.2
+      }
+     },
+     {
+      "137": {
+       "severe": -19.4
+      }
+     },
+     {}
+    ],
+    "gtfs_blocks_split": {
+     "1200220": 0.75,
+     "9960110": 1.0,
+     "9960880": 1.0
+    }
+   }
+  }
+ ]
+}
