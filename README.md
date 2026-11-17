@@ -22,6 +22,8 @@ this repository from the archived result files.
 
 ## v3.0.0 (v11 campaign) supersedes v2.4.0
 
+Zenodo record 10.5281/zenodo.24298157, labelled v2.4.0 and dated 2026-11-17, was created in error from the v2.4.0 tree and is a duplicate of that version; it does not contain the v11 campaign. Use v3.0.0.
+
 The instances and several model components were rebuilt after a code audit
 (2026-11-11), so **all results changed**; numbers from v2.x should not be
 quoted against this version. The paper reports the v11 results as tightened
